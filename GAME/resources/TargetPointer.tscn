@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://assets/graphics/hud_pointer.png" type="Texture" id=1]
+
+[node name="Pointer" type="Container"]
+
+visibility/self_opacity = 0.25
+visibility/blend_mode = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+texture = ExtResource( 1 )
+flip_v = true
+modulate = Color( 0.620605, 0.834584, 0.96875, 0.309588 )
+
+

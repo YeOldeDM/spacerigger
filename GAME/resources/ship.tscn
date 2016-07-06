@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://resources/ship.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/ship_parts.png" type="Texture" id=2]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 10, 12, 2, 16, -2, 16, -10, 12, -9, -13, -8, -14, 8, -14, 9, -13 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3, 1 )
+
+[node name="Ship" type="RigidBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 12.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 3
+contact_monitor = true
+sleeping = false
+can_sleep = false
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = 0.0
+damp_override/angular = 0.0
+script/script = ExtResource( 1 )
+delta_v_main = 50.0
+delta_v = 8.0
+delta_r = 0.8
+
+[node name="Forward" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0, 50 )
+
+[node name="Camera" type="Camera2D" parent="."]
+
+transform/rot = 180.0
+anchor_mode = 1
+rotating = true
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.0
+drag_margin/top = 0.0
+drag_margin/right = 0.0
+drag_margin/bottom = 0.0
+
+[node name="Command" type="Sprite" parent="."]
+
+transform/pos = Vector2( -2.78158e-06, 6 )
+transform/rot = 180.0
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="Engine" type="Sprite" parent="."]
+
+transform/pos = Vector2( -3.71929e-06, -3 )
+transform/rot = -180.0
+texture = ExtResource( 2 )
+hframes = 3
+frame = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+build_mode = 0
+polygon = Vector2Array( 10, 12, 2, 16, -2, 16, -10, 12, -9, -13, -8, -14, 8, -14, 9, -13 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="Dock" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 17 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = { "_editor_collapsed":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dock"]
+
+transform/pos = Vector2( 0, 17 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Light" type="Polygon2D" parent="Dock"]
+
+polygon = Vector2Array( 4, 14, 3, 18, -3, 18, -4, 14 )
+uv = Vector2Array(  )
+color = Color( 1, 0.132813, 0.132813, 1 )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="DockJoint" type="PinJoint2D" parent="."]
+
+transform/pos = Vector2( 0, 16 )
+node_a = NodePath("..")
+node_b = NodePath("..")
+bias/bias = 0.9
+collision/exclude_nodes = false
+softness = 0.0
+
+[node name="Left" type="Position2D" parent="."]
+
+transform/pos = Vector2( 50, 0 )
+
+[connection signal="body_enter" from="." to="." method="_on_Ship_body_enter"]
+
+[connection signal="area_enter" from="Dock" to="." method="_on_Dock_area_enter"]
+
+[connection signal="area_exit" from="Dock" to="." method="_on_Dock_area_exit"]
+
+

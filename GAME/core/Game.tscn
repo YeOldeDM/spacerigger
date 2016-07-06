@@ -1,0 +1,197 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://core/Game.gd" type="Script" id=1]
+[ext_resource path="res://core/Control.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=3]
+[ext_resource path="res://resources/ship.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/SpaceBody.tscn" type="PackedScene" id=5]
+
+[node name="Game" type="TabContainer"]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/top = 32.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+tab_align = 2
+tabs_visible = true
+script/script = ExtResource( 1 )
+
+[node name="Space" type="Tabs" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+
+[node name="Control" type="Node" parent="Space"]
+
+script/script = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="Space"]
+
+rect = Rect2( 0, 0, 1016, 533 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = false
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = true
+gui/disable_input = false
+
+[node name="World" type="Control" parent="Space/Viewport"]
+
+margin/right = 40.0
+margin/bottom = 40.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="Space/Viewport/World"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -6.5536e+06, -6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06 )
+uv = Vector2Array( 0, 0, 6.5536e+06, 0, 6.5536e+06, 6.5536e+06, 0, 6.5536e+06 )
+color = Color( 1, 1, 1, 1 )
+offset = Vector2( 0, 0 )
+texture/texture = ExtResource( 3 )
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 4, 4 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Ship" parent="Space/Viewport/World" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 50, 50 )
+delta_v_main = 500.0
+delta_v = 500.0
+delta_r = 1.0
+
+[node name="SpaceBody" parent="Space/Viewport/World" instance=ExtResource( 5 )]
+
+[node name="Ship" type="Tabs" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+__meta__ = { "_editor_collapsed":true }
+
+[node name="ShipTabs" type="TabContainer" parent="Ship"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+tab_align = 1
+tabs_visible = true
+
+[node name="Vessel" type="Tabs" parent="Ship/ShipTabs"]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Cargo" type="Tabs" parent="Ship/ShipTabs"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Missions" type="Tabs" parent="Ship/ShipTabs"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Comm" type="Tabs" parent="Ship/ShipTabs"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Map" type="Tabs" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+
+[node name="Options" type="Tabs" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+
+
