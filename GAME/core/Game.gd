@@ -10,3 +10,6 @@ func _ready():
 	control.connect_to(ship)
 
 
+func _draw():
+	draw_string(preload('res://assets/fonts/hack14.fnt'),\
+			Vector2(16,8), "Space Rigger Alpha")
