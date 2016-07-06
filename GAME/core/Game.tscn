@@ -50,7 +50,6 @@ audio_listener/enable_2d = false
 audio_listener/enable_3d = false
 physics/object_picking = true
 gui/disable_input = false
-__meta__ = { "_editor_collapsed":true }
 
 [node name="World" parent="Space/Viewport" instance=ExtResource( 3 )]
 

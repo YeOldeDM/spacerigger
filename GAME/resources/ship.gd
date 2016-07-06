@@ -3,6 +3,9 @@ extends RigidBody2D
 
 var controller
 
+onready var world = get_node('../')
+onready var hud = world.get_node('HUD')
+
 var dock_target = null
 var docked = false
 onready var dock_joint = get_node('DockJoint')
@@ -22,7 +25,6 @@ var auto_retrograde = false
 
 func _ready():
 	dock.set_meta('dock',true)
-	#set_fixed_process(true)
 
 
 func thrust_pro(delta):
