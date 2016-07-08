@@ -6,6 +6,8 @@ var controller
 onready var world = get_node('../')
 onready var hud = world.get_node('HUD')
 
+onready var thrusters = get_node('thrust_emitters')
+
 var dock_target = null
 var docked = false
 onready var dock_joint = get_node('DockJoint')
@@ -15,9 +17,11 @@ onready var dock = get_node('Dock')
 onready var forward = get_node('Forward')
 onready var left = get_node('Left')
 
-export var delta_v_main = 120.0
-export var delta_v = 50.0
-export var delta_r = 1.0
+onready var cam = get_node('Camera')
+
+export var delta_v_main = 12600.0
+export var delta_v = 500.0
+export var delta_r = 10.0
 
 var auto_prograde = false
 var auto_retrograde = false
@@ -26,6 +30,10 @@ var auto_retrograde = false
 func _ready():
 	dock.set_meta('dock',true)
 
+
+func zoom_camera( z ):
+	assert cam.is_current()
+	cam.set_zoom(Vector2(z,z))
 
 func thrust_pro(delta):
 	var lv = get_linear_velocity()

@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://core/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Control.gd" type="Script" id=2]
 [ext_resource path="res://core/World.tscn" type="PackedScene" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.00234985, 0, 0.0429688, 1 )
+light_color = Color( 0, 0.261505, 0.816406, 1 )
+dark_color = Color( 0, 0.258824, 0.815686, 1 )
+border_size = 1
+border_blend = true
+draw_bg = true
 
 [node name="Game" type="TabContainer"]
 
@@ -33,6 +46,35 @@ size_flags/vertical = 3
 [node name="Control" type="Node" parent="Space"]
 
 script/script = ExtResource( 2 )
+
+[node name="HUD" type="CanvasLayer" parent="Space/Control"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="CameraZoom" type="VSlider" parent="Space/Control/HUD"]
+
+margin/left = 24.0
+margin/top = 128.0
+margin/right = 40.0
+margin/bottom = 256.0
+rect/min_size = Vector2( 16, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+custom_styles/slider = SubResource( 1 )
+range/min = 0.25
+range/max = 10.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = false
 
 [node name="Viewport" type="Viewport" parent="Space"]
 
@@ -160,5 +202,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+
+[connection signal="value_changed" from="Space/Control/HUD/CameraZoom" to="." method="_on_CameraZoom_value_changed"]
 
 
