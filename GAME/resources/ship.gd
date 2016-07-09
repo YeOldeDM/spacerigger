@@ -3,10 +3,12 @@ extends RigidBody2D
 
 var controller
 
-onready var world = get_node('../')
+onready var world = get_node('../../')
 onready var hud = world.get_node('HUD')
 
 onready var thrusters = get_node('thrust_emitters')
+
+var target = null
 
 var dock_target = null
 var docked = false
@@ -29,9 +31,10 @@ var auto_retrograde = false
 
 func _ready():
 	dock.set_meta('dock',true)
+	target = world.get_node('Stations').get_child(0)
 
 
-func zoom_camera( z ):
+func set_camera_zoom( z ):
 	assert cam.is_current()
 	cam.set_zoom(Vector2(z,z))
 

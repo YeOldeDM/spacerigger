@@ -1,6 +1,9 @@
 
 extends Node
 
+onready var game = get_node('/root/Game')
+
+
 var cmd_list = [
 'thrust_pro',
 'thrust_retro',
@@ -93,4 +96,6 @@ func _fixed_process(delta):
 			if ship.thrusters.get_node(key).is_emitting():
 				ship.thrusters.get_node(key).set_emitting(false)
 
-
+	if ship.target:
+		var laser = ship.get_node('Hardpoints').get_child(0)
+		laser.look_at(ship.target.get_global_pos())

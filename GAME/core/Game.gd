@@ -1,10 +1,12 @@
 
 extends TabContainer
 
+const GAME_NAME = "Space Rigger Alpha"
+
 onready var space = get_node('Space')
 onready var control = space.get_node('Control')
 
-onready var player_ship = space.get_node('Viewport/World/Ship')
+onready var player_ship = space.get_node('Viewport/World/Vessels/Ship')
 
 func _ready():
 	control.connect_to(player_ship)
@@ -12,7 +14,6 @@ func _ready():
 
 func _draw():
 	draw_string(preload('res://assets/fonts/hack14.fnt'),\
-			Vector2(16,8), "Space Rigger Alpha")
+			Vector2(16,8), GAME_NAME)
 
-func _on_CameraZoom_value_changed( value ):
-	player_ship.zoom_camera(value)
+
