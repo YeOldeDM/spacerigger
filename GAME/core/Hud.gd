@@ -5,6 +5,7 @@ onready var game = get_node('/root/Game')
 
 onready var velcon = get_node('VelCon')
 onready var target = get_node('Target')
+onready var colwarn = get_node('CollisionWarning')
 
 
 func _ready():
@@ -13,6 +14,7 @@ func _ready():
 func process():
 	velcon.process()
 	target.process()
+	colwarn.process()
 
 
 

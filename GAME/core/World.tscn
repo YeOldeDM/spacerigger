@@ -37,7 +37,7 @@ delta_r = 5.0
 
 [node name="Stations" type="Node2D" parent="."]
 
-[node name="SpaceBody" parent="Stations" instance=ExtResource( 3 )]
+[node name="Godot Station" parent="Stations" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -4.354, 431.526 )
 can_sleep = false

@@ -13,14 +13,3 @@ func _fixed_process(delta):
 	var V = get_global_pos().rotated(deg2rad(90))
 	V = V.normalized()*delta_v
 	set_linear_velocity(V)
-
-
-
-
-func _on_SpaceBody_mouse_enter():
-	get_node('Selected').show()
-	print("SDF")
-
-
-func _on_SpaceBody_mouse_exit():
-	get_node('Selected').hide()
