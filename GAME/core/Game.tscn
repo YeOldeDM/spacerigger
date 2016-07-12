@@ -26,12 +26,15 @@ draw_bg = true
 
 anchor/right = 1
 anchor/bottom = 1
-margin/top = 32.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 32.0
+margin/right = 0.0
+margin/bottom = 0.0
 tab_align = 2
 tabs_visible = true
 script/script = ExtResource( 2 )
@@ -40,14 +43,14 @@ script/script = ExtResource( 2 )
 
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 4.0
+margin/top = 30.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [node name="Control" type="Node" parent="Space"]
 
@@ -63,15 +66,15 @@ script/script = ExtResource( 4 )
 
 [node name="CameraZoom" type="VSlider" parent="Space/Control/HUD"]
 
-margin/left = 24.0
-margin/top = 128.0
-margin/right = 40.0
-margin/bottom = 256.0
 rect/min_size = Vector2( 16, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 24.0
+margin/top = 128.0
+margin/right = 40.0
+margin/bottom = 256.0
 custom_styles/slider = SubResource( 1 )
 range/min = 0.25
 range/max = 10.0
@@ -91,37 +94,40 @@ anchor/left = 3
 anchor/top = 1
 anchor/right = 3
 anchor/bottom = 1
-margin/left = 32.0
-margin/top = 128.0
-margin/right = -111.0
-margin/bottom = 12.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 32.0
+margin/top = 128.0
+margin/right = -111.0
+margin/bottom = 12.0
 script/script = ExtResource( 5 )
 
 [node name="box" type="VBoxContainer" parent="Space/Control/HUD/VelCon"]
 
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 178.0
-margin/bottom = 112.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
 theme/theme = ExtResource( 1 )
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 178.0
+margin/bottom = 112.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box"]
 
-margin/right = 174.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 174.0
+margin/bottom = 12.0
 text = "VelCon"
 align = 1
 valign = 1
@@ -131,43 +137,51 @@ max_lines_visible = -1
 
 [node name="Output" type="HBoxContainer" parent="Space/Control/HUD/VelCon/box"]
 
-margin/top = 16.0
-margin/right = 174.0
-margin/bottom = 73.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 174.0
+margin/bottom = 73.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="Lin" type="VBoxContainer" parent="Space/Control/HUD/VelCon/box/Output"]
 
-margin/right = 81.0
-margin/bottom = 57.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 81.0
+margin/bottom = 57.0
 alignment = 0
 
 [node name="Speed" type="HBoxContainer" parent="Space/Control/HUD/VelCon/box/Output/Lin"]
 
-margin/right = 81.0
-margin/bottom = 12.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 81.0
+margin/bottom = 12.0
 alignment = 0
 
 [node name="Prefix" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Lin/Speed"]
 
-margin/right = 24.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 24.0
+margin/bottom = 12.0
 text = "LV"
 align = 2
 percent_visible = 1.0
@@ -176,12 +190,14 @@ max_lines_visible = -1
 
 [node name="Value" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Lin/Speed"]
 
-margin/left = 28.0
-margin/right = 52.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 28.0
+margin/top = 0.0
+margin/right = 52.0
+margin/bottom = 12.0
 text = "0.00"
 align = 1
 percent_visible = 1.0
@@ -190,12 +206,14 @@ max_lines_visible = -1
 
 [node name="Suffix" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Lin/Speed"]
 
-margin/left = 56.0
-margin/right = 81.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 56.0
+margin/top = 0.0
+margin/right = 81.0
+margin/bottom = 12.0
 text = "m/s"
 align = 2
 percent_visible = 1.0
@@ -205,22 +223,25 @@ max_lines_visible = -1
 [node name="Vector" type="PanelContainer" parent="Space/Control/HUD/VelCon/box/Output/Lin"]
 
 visibility/blend_mode = 2
-margin/top = 16.0
-margin/right = 81.0
-margin/bottom = 41.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 81.0
+margin/bottom = 41.0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Lin"]
 
-margin/top = 45.0
-margin/right = 81.0
-margin/bottom = 57.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 45.0
+margin/right = 81.0
+margin/bottom = 57.0
 text = "Linear"
 align = 1
 percent_visible = 1.0
@@ -229,44 +250,51 @@ max_lines_visible = -1
 
 [node name="VSeparator" type="VSeparator" parent="Space/Control/HUD/VelCon/box/Output"]
 
-margin/left = 85.0
-margin/right = 88.0
-margin/bottom = 57.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 85.0
+margin/top = 0.0
+margin/right = 88.0
+margin/bottom = 57.0
 
 [node name="Rot" type="VBoxContainer" parent="Space/Control/HUD/VelCon/box/Output"]
 
-margin/left = 92.0
-margin/right = 174.0
-margin/bottom = 57.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 92.0
+margin/top = 0.0
+margin/right = 174.0
+margin/bottom = 57.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="Speed" type="HBoxContainer" parent="Space/Control/HUD/VelCon/box/Output/Rot"]
 
-margin/right = 82.0
-margin/bottom = 12.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 82.0
+margin/bottom = 12.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="Prefix" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Rot/Speed"]
 
-margin/right = 24.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 24.0
+margin/bottom = 12.0
 text = "AV"
 align = 2
 percent_visible = 1.0
@@ -275,12 +303,14 @@ max_lines_visible = -1
 
 [node name="Value" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Rot/Speed"]
 
-margin/left = 28.0
-margin/right = 52.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 28.0
+margin/top = 0.0
+margin/right = 52.0
+margin/bottom = 12.0
 text = "0.00"
 align = 1
 percent_visible = 1.0
@@ -289,12 +319,14 @@ max_lines_visible = -1
 
 [node name="Suffix" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Rot/Speed"]
 
-margin/left = 56.0
-margin/right = 82.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 56.0
+margin/top = 0.0
+margin/right = 82.0
+margin/bottom = 12.0
 text = "d/s"
 align = 2
 percent_visible = 1.0
@@ -304,22 +336,25 @@ max_lines_visible = -1
 [node name="Vector" type="PanelContainer" parent="Space/Control/HUD/VelCon/box/Output/Rot"]
 
 visibility/blend_mode = 2
-margin/top = 16.0
-margin/right = 82.0
-margin/bottom = 41.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 82.0
+margin/bottom = 41.0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Rot"]
 
-margin/top = 45.0
-margin/right = 82.0
-margin/bottom = 57.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 45.0
+margin/right = 82.0
+margin/bottom = 57.0
 text = "Angular"
 align = 1
 percent_visible = 1.0
@@ -328,33 +363,37 @@ max_lines_visible = -1
 
 [node name="HSeparator" type="HSeparator" parent="Space/Control/HUD/VelCon/box"]
 
-margin/top = 77.0
-margin/right = 174.0
-margin/bottom = 80.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 77.0
+margin/right = 174.0
+margin/bottom = 80.0
 
 [node name="Origin" type="HBoxContainer" parent="Space/Control/HUD/VelCon/box"]
 
-margin/top = 84.0
-margin/right = 174.0
-margin/bottom = 104.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 174.0
+margin/bottom = 104.0
 alignment = 0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box/Origin"]
 
-margin/top = 4.0
-margin/right = 36.0
-margin/bottom = 16.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 4.0
+margin/right = 36.0
+margin/bottom = 16.0
 text = "Global"
 percent_visible = 1.0
 lines_skipped = 0
@@ -362,26 +401,28 @@ max_lines_visible = -1
 
 [node name="Switch" type="CheckButton" parent="Space/Control/HUD/VelCon/box/Origin"]
 
-margin/left = 40.0
-margin/right = 116.0
-margin/bottom = 20.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 40.0
+margin/top = 0.0
+margin/right = 116.0
+margin/bottom = 20.0
 toggle_mode = true
 flat = false
 align = 0
 
 [node name="Label1" type="Label" parent="Space/Control/HUD/VelCon/box/Origin"]
 
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 120.0
 margin/top = 4.0
 margin/right = 174.0
 margin/bottom = 16.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
 text = "TRelative"
 percent_visible = 1.0
 lines_skipped = 0
@@ -393,37 +434,40 @@ visibility/self_opacity = 0.25
 visibility/blend_mode = 1
 anchor/top = 1
 anchor/bottom = 1
-margin/left = 16.0
-margin/top = 240.0
-margin/right = 200.0
-margin/bottom = 12.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
+margin/left = 16.0
+margin/top = 240.0
+margin/right = 200.0
+margin/bottom = 12.0
 script/script = ExtResource( 6 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="Space/Control/HUD/Target"]
 
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 180.0
-margin/bottom = 224.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 180.0
+margin/bottom = 224.0
 alignment = 0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/Target/box"]
 
-margin/right = 176.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 176.0
+margin/bottom = 12.0
 text = "TargetInfo"
 align = 1
 valign = 1
@@ -433,37 +477,40 @@ max_lines_visible = -1
 
 [node name="Icon" type="CenterContainer" parent="Space/Control/HUD/Target/box"]
 
-margin/top = 16.0
-margin/right = 176.0
-margin/bottom = 106.0
 rect/min_size = Vector2( 90, 90 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 176.0
+margin/bottom = 106.0
 use_top_left = false
 
 [node name="Base" type="Control" parent="Space/Control/HUD/Target/box/Icon"]
 
-margin/left = 88.0
-margin/top = 45.0
-margin/right = 88.0
-margin/bottom = 45.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 88.0
+margin/top = 45.0
+margin/right = 88.0
+margin/bottom = 45.0
 
 [node name="Sprite" type="Sprite" parent="Space/Control/HUD/Target/box/Icon/Base"]
 
 [node name="TargetName" type="Label" parent="Space/Control/HUD/Target/box"]
 
-margin/top = 110.0
-margin/right = 176.0
-margin/bottom = 122.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 110.0
+margin/right = 176.0
+margin/bottom = 122.0
 text = "[name]"
 align = 1
 valign = 1
@@ -473,33 +520,39 @@ max_lines_visible = -1
 
 [node name="Output" type="HBoxContainer" parent="Space/Control/HUD/Target/box"]
 
-margin/top = 126.0
-margin/right = 176.0
-margin/bottom = 216.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 126.0
+margin/right = 176.0
+margin/bottom = 216.0
 alignment = 0
 
 [node name="Labels" type="VBoxContainer" parent="Space/Control/HUD/Target/box/Output"]
 
-margin/right = 86.0
-margin/bottom = 90.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 86.0
+margin/bottom = 90.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="Distance" type="Label" parent="Space/Control/HUD/Target/box/Output/Labels"]
 
-margin/right = 86.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 86.0
+margin/bottom = 12.0
 text = "Distance"
 align = 2
 percent_visible = 1.0
@@ -508,12 +561,14 @@ max_lines_visible = -1
 
 [node name="LinVel" type="Label" parent="Space/Control/HUD/Target/box/Output/Labels"]
 
-margin/top = 16.0
-margin/right = 86.0
-margin/bottom = 28.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 86.0
+margin/bottom = 28.0
 text = "LinVel"
 align = 2
 percent_visible = 1.0
@@ -522,12 +577,14 @@ max_lines_visible = -1
 
 [node name="LinVelR" type="Label" parent="Space/Control/HUD/Target/box/Output/Labels"]
 
-margin/top = 32.0
-margin/right = 86.0
-margin/bottom = 44.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 32.0
+margin/right = 86.0
+margin/bottom = 44.0
 text = "LinVelR"
 align = 2
 percent_visible = 1.0
@@ -536,12 +593,14 @@ max_lines_visible = -1
 
 [node name="Heading" type="Label" parent="Space/Control/HUD/Target/box/Output/Labels"]
 
-margin/top = 48.0
-margin/right = 86.0
-margin/bottom = 60.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 48.0
+margin/right = 86.0
+margin/bottom = 60.0
 text = "Heading"
 align = 2
 percent_visible = 1.0
@@ -550,12 +609,14 @@ max_lines_visible = -1
 
 [node name="HeadingR" type="Label" parent="Space/Control/HUD/Target/box/Output/Labels"]
 
-margin/top = 64.0
-margin/right = 86.0
-margin/bottom = 76.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 64.0
+margin/right = 86.0
+margin/bottom = 76.0
 text = "HeadingR"
 align = 2
 percent_visible = 1.0
@@ -564,22 +625,26 @@ max_lines_visible = -1
 
 [node name="Values" type="VBoxContainer" parent="Space/Control/HUD/Target/box/Output"]
 
-margin/left = 90.0
-margin/right = 176.0
-margin/bottom = 90.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 90.0
+margin/top = 0.0
+margin/right = 176.0
+margin/bottom = 90.0
 alignment = 0
 
 [node name="Distance" type="Label" parent="Space/Control/HUD/Target/box/Output/Values"]
 
-margin/right = 86.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 86.0
+margin/bottom = 12.0
 text = "nil"
 percent_visible = 1.0
 lines_skipped = 0
@@ -587,12 +652,14 @@ max_lines_visible = -1
 
 [node name="LinVel" type="Label" parent="Space/Control/HUD/Target/box/Output/Values"]
 
-margin/top = 16.0
-margin/right = 86.0
-margin/bottom = 28.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 86.0
+margin/bottom = 28.0
 text = "nil"
 percent_visible = 1.0
 lines_skipped = 0
@@ -600,12 +667,14 @@ max_lines_visible = -1
 
 [node name="LinVelR" type="Label" parent="Space/Control/HUD/Target/box/Output/Values"]
 
-margin/top = 32.0
-margin/right = 86.0
-margin/bottom = 44.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 32.0
+margin/right = 86.0
+margin/bottom = 44.0
 text = "nil"
 percent_visible = 1.0
 lines_skipped = 0
@@ -613,12 +682,14 @@ max_lines_visible = -1
 
 [node name="Heading" type="Label" parent="Space/Control/HUD/Target/box/Output/Values"]
 
-margin/top = 48.0
-margin/right = 86.0
-margin/bottom = 60.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 48.0
+margin/right = 86.0
+margin/bottom = 60.0
 text = "nil"
 percent_visible = 1.0
 lines_skipped = 0
@@ -626,12 +697,14 @@ max_lines_visible = -1
 
 [node name="HeadingR" type="Label" parent="Space/Control/HUD/Target/box/Output/Values"]
 
-margin/top = 64.0
-margin/right = 86.0
-margin/bottom = 76.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 64.0
+margin/right = 86.0
+margin/bottom = 76.0
 text = "nil"
 percent_visible = 1.0
 lines_skipped = 0
@@ -652,37 +725,39 @@ anchor/left = 3
 anchor/top = 1
 anchor/right = 3
 anchor/bottom = 1
-margin/left = 32.0
-margin/top = 208.0
-margin/right = -152.0
-margin/bottom = 128.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
+margin/left = 32.0
+margin/top = 178.0
+margin/right = -152.0
+margin/bottom = 128.0
 script/script = ExtResource( 7 )
 
 [node name="box" type="VBoxContainer" parent="Space/Control/HUD/CollisionWarning"]
 
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 180.0
-margin/bottom = 76.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 180.0
+margin/bottom = 46.0
 alignment = 0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/CollisionWarning/box"]
 
-margin/right = 176.0
-margin/bottom = 12.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 176.0
+margin/bottom = 12.0
 text = "COLLISION WARNING"
 align = 1
 valign = 1
@@ -692,13 +767,14 @@ max_lines_visible = -1
 
 [node name="SpinBox" type="SpinBox" parent="Space/Control/HUD/CollisionWarning/box"]
 
-margin/top = 16.0
-margin/right = 176.0
-margin/bottom = 38.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 176.0
+margin/bottom = 38.0
 range/min = 1.0
 range/max = 100.0
 range/step = 1.0
@@ -709,6 +785,20 @@ range/rounded = true
 editable = false
 prefix = "warn at"
 suffix = "s"
+
+[node name="???" type="Button" parent="Space/Control/HUD"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 672.0
+margin/top = 560.0
+margin/right = 696.0
+margin/bottom = 584.0
+toggle_mode = false
+text = "\?"
+flat = false
 
 [node name="Viewport" type="Viewport" parent="Space"]
 
@@ -729,19 +819,40 @@ gui/disable_input = false
 
 [node name="World" parent="Space/Viewport" instance=ExtResource( 8 )]
 
+margin/left = 0.0
+margin/top = 0.0
+
+[node name="Help" type="AcceptDialog" parent="Space"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 356.0
+margin/top = 98.0
+margin/right = 204.0
+margin/bottom = 194.0
+popup/exclusive = false
+window/title = "~Help!~"
+dialog/text = "Controls:\n\nMain Thrust (fast):\nSpace:\t\tPrograde (forward) thrust\nC: \t\t\t\tRetrograde(backward) thrust\n\nReaction Control System (RCS) (slow corrective thrust):\nW:\t\t\t\tPrograde RCS\nS:\t\t\t\t\tRetrograde RCS\nA:\t\t\t\t\tLeft RCS\nD:\t\t\t\tRight RCS\n\nDocking Functions (line your red square up with a white square)\nF:\t\t\t\t\tDock with target\nG:\t\t\t\tUndock with target\n"
+dialog/hide_on_ok = true
+
 [node name="Ship" type="Tabs" parent="."]
 
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 4.0
+margin/top = 30.0
+margin/right = 4.0
+margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="ShipTabs" type="TabContainer" parent="Ship"]
@@ -752,6 +863,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
 tab_align = 1
 tabs_visible = true
 
@@ -759,87 +874,89 @@ tabs_visible = true
 
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [node name="Cargo" type="Tabs" parent="Ship/ShipTabs"]
 
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [node name="Missions" type="Tabs" parent="Ship/ShipTabs"]
 
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [node name="Comm" type="Tabs" parent="Ship/ShipTabs"]
 
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [node name="Map" type="Tabs" parent="."]
 
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 4.0
+margin/top = 30.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [node name="Options" type="Tabs" parent="."]
 
 visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 4.0
-margin/top = 30.0
-margin/right = 4.0
-margin/bottom = 4.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 4.0
+margin/top = 30.0
+margin/right = 4.0
+margin/bottom = 4.0
 
 [connection signal="value_changed" from="Space/Control/HUD/CameraZoom" to="Space/Control/HUD" method="_on_CameraZoom_value_changed"]
 
 [connection signal="timeout" from="Space/Control/HUD/UpdateTime" to="Space/Control/HUD" method="_on_UpdateTime_timeout"]
+
+[connection signal="pressed" from="Space/Control/HUD/???" to="." method="_on__pressed"]
 
 

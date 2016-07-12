@@ -8,6 +8,8 @@ onready var control = space.get_node('Control')
 
 onready var player_ship = space.get_node('Viewport/World/Vessels/Ship')
 
+onready var help = space.get_node('Help')
+
 func _ready():
 	control.connect_to(player_ship)
 
@@ -17,3 +19,7 @@ func _draw():
 			Vector2(16,8), GAME_NAME)
 
 
+
+
+func _on__pressed():
+	help.popup_centered()

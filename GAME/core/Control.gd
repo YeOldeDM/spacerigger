@@ -99,3 +99,5 @@ func _fixed_process(delta):
 	if ship.target:
 		var laser = ship.get_node('Hardpoints').get_child(0)
 		laser.look_at(ship.target.get_global_pos())
+	if ship.dock_target and ship.docked:
+		ship.set_rot(ship.dock_target.get_owner().get_rot()+deg2rad(180))
