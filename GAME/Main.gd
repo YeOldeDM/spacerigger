@@ -1,4 +1,10 @@
 
+
+
+
+
+#	OLD AS SHIT
+#	DELETE ME
 extends Control
 
 onready var hud = get_node('HUD/Cont')

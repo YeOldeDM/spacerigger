@@ -957,6 +957,6 @@ margin/bottom = 4.0
 
 [connection signal="timeout" from="Space/Control/HUD/UpdateTime" to="Space/Control/HUD" method="_on_UpdateTime_timeout"]
 
-[connection signal="pressed" from="Space/Control/HUD/???" to="." method="_on__pressed"]
+[connection signal="pressed" from="Space/Control/HUD/???" to="." method="_on_helpbutton_pressed"]
 
 

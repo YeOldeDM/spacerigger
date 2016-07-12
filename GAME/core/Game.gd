@@ -21,5 +21,5 @@ func _draw():
 
 
 
-func _on__pressed():
+func _on_helpbutton_pressed():
 	help.popup_centered()
