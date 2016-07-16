@@ -41,6 +41,11 @@ var auto_prograde = false
 var auto_retrograde = false
 
 
+var systems = {
+	'mainThrust':	true,
+	'RCSThrust':	true,
+	'Docking':		true,
+	}
 
 
 #################################################
@@ -57,57 +62,67 @@ var auto_retrograde = false
 
 #	PRIMARY THRUST
 func thrust_pro(delta):
-	var lv = get_linear_velocity()
-	lv += (_get_pro_thrust()*delta)/get_total_mass()
-	set_linear_velocity(lv)
+	if systems['mainThrust']:
+		var lv = get_linear_velocity()
+		lv += (_get_pro_thrust()*delta)/get_total_mass()
+		set_linear_velocity(lv)
 
 func thrust_retro(delta):
-	var lv = get_linear_velocity()
-	lv -= (_get_pro_thrust()*delta)/get_total_mass()
-	set_linear_velocity(lv)
+	if systems['mainThrust']:
+		var lv = get_linear_velocity()
+		lv -= (_get_pro_thrust()*delta)/get_total_mass()
+		set_linear_velocity(lv)
 
 #	REACTION CONTROL THRUST
 func rcs_pro(delta):
-	var lv = get_linear_velocity()
-	lv += (_get_rcs_forward()*delta)/get_total_mass()
-	set_linear_velocity(lv)
+	if systems['RCSThrust']:
+		var lv = get_linear_velocity()
+		lv += (_get_rcs_forward()*delta)/get_total_mass()
+		set_linear_velocity(lv)
 
 func rcs_retro(delta):
-	var lv = get_linear_velocity()
-	lv -= (_get_rcs_forward()*delta)/get_total_mass()
-	set_linear_velocity(lv)
+	if systems['RCSThrust']:
+		var lv = get_linear_velocity()
+		lv -= (_get_rcs_forward()*delta)/get_total_mass()
+		set_linear_velocity(lv)
 
 func rcs_left(delta):
-	var lv = get_linear_velocity()
-	lv += (_get_rcs_left()*delta)/get_total_mass()
-	set_linear_velocity(lv)
+	if systems['RCSThrust']:
+		var lv = get_linear_velocity()
+		lv += (_get_rcs_left()*delta)/get_total_mass()
+		set_linear_velocity(lv)
 
 func rcs_right(delta):
-	var lv = get_linear_velocity()
-	lv -= (_get_rcs_left()*delta)/get_total_mass()
-	set_linear_velocity(lv)
+	if systems['RCSThrust']:
+		var lv = get_linear_velocity()
+		lv -= (_get_rcs_left()*delta)/get_total_mass()
+		set_linear_velocity(lv)
 
 #	YAW THRUST
 func yaw_left(delta):
-	var lv = get_angular_velocity()
-	lv -= (_get_rcs_yaw()*delta)/get_total_mass()
-	set_angular_velocity(lv)
+	if systems['RCSThrust']:
+		var lv = get_angular_velocity()
+		lv -= (_get_rcs_yaw()*delta)/get_total_mass()
+		set_angular_velocity(lv)
 
 func yaw_right(delta):
-	var lv = get_angular_velocity()
-	lv += (_get_rcs_yaw()*delta)/get_total_mass()
-	set_angular_velocity(lv)
+	if systems['RCSThrust']:
+		var lv = get_angular_velocity()
+		lv += (_get_rcs_yaw()*delta)/get_total_mass()
+		set_angular_velocity(lv)
 
 #	DOCK/UNDOCK
 func dock(delta):
-	if in_dock_zone:
-		dock_with_target()
-		docked = true
+	if systems['Docking']:
+		if in_dock_zone:
+			dock_with_target()
+			docked = true
 
 func undock(delta):
-	if docked:
-		docked = false
-		undock_from_target()
+	if systems['Docking']:
+		if docked:
+			docked = false
+			undock_from_target()
 
 
 

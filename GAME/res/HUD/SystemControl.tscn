@@ -1,0 +1,45 @@
+[gd_scene format=1]
+
+[node name="System" type="HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+alignment = 0
+
+[node name="Switch" type="CheckButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 76.0
+margin/bottom = 40.0
+toggle_mode = true
+is_pressed = true
+flat = false
+align = 0
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = 13.0
+margin/right = 158.0
+margin/bottom = 26.0
+text = "systemName"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

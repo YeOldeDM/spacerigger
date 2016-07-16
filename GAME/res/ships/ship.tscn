@@ -1,8 +1,9 @@
 [gd_scene load_steps=10 format=1]
 
-[ext_resource path="res://resources/ship.gd" type="Script" id=1]
+[ext_resource path="res://res/ships/ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/ship2.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/smallgun.png" type="Texture" id=3]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 

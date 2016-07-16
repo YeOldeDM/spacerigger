@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
-[ext_resource path="res://ref/Game.thm" type="Theme" id=1]
-[ext_resource path="res://core/Game.gd" type="Script" id=2]
-[ext_resource path="res://core/Control.gd" type="Script" id=3]
-[ext_resource path="res://core/HUD.gd" type="Script" id=4]
-[ext_resource path="res://core/HUD/VelCon.gd" type="Script" id=5]
-[ext_resource path="res://core/HUD/TargetInfo.gd" type="Script" id=6]
-[ext_resource path="res://core/HUD/CollisionWarning.gd" type="Script" id=7]
-[ext_resource path="res://core/World.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
+[ext_resource path="res://core/Game/Game.gd" type="Script" id=2]
+[ext_resource path="res://core/Controller/Controller.gd" type="Script" id=3]
+[ext_resource path="res://core/HUD/HUD_core.gd" type="Script" id=4]
+[ext_resource path="res://core/HUD/HUD_VelCon.gd" type="Script" id=5]
+[ext_resource path="res://core/HUD/HUD_TargetInfo.gd" type="Script" id=6]
+[ext_resource path="res://core/HUD/HUD_CollisionWarning.gd" type="Script" id=7]
+[ext_resource path="res://core/HUD/SysCon.gd" type="Script" id=8]
+[ext_resource path="res://core/World/World.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -103,6 +104,7 @@ margin/top = 128.0
 margin/right = -111.0
 margin/bottom = 12.0
 script/script = ExtResource( 5 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="Space/Control/HUD/VelCon"]
 
@@ -800,6 +802,77 @@ toggle_mode = false
 text = "\?"
 flat = false
 
+[node name="SysCon" type="PanelContainer" parent="Space/Control/HUD"]
+
+visibility/self_opacity = 0.25
+visibility/blend_mode = 1
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = -312.0
+margin/top = 529.0
+margin/right = -496.0
+margin/bottom = 479.0
+script/script = ExtResource( 8 )
+
+[node name="box" type="VBoxContainer" parent="Space/Control/HUD/SysCon"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 180.0
+margin/bottom = 46.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Space/Control/HUD/SysCon/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 176.0
+margin/bottom = 12.0
+text = "SysCon"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HSeparator" type="HSeparator" parent="Space/Control/HUD/SysCon/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 176.0
+margin/bottom = 19.0
+
+[node name="Systems" type="VBoxContainer" parent="Space/Control/HUD/SysCon/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 176.0
+margin/bottom = 38.0
+alignment = 0
+
 [node name="Viewport" type="Viewport" parent="Space"]
 
 rect = Rect2( 0, 0, 1016, 534 )
@@ -816,11 +889,9 @@ audio_listener/enable_2d = false
 audio_listener/enable_3d = false
 physics/object_picking = true
 gui/disable_input = false
+__meta__ = { "_editor_collapsed":true }
 
-[node name="World" parent="Space/Viewport" instance=ExtResource( 8 )]
-
-margin/left = 0.0
-margin/top = 0.0
+[node name="World" parent="Space/Viewport" instance=ExtResource( 9 )]
 
 [node name="Help" type="AcceptDialog" parent="Space"]
 
