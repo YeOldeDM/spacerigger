@@ -61,55 +61,55 @@ var systems = {
 #############################################
 
 #	PRIMARY THRUST
-func thrust_pro(delta):
+func thrust_pro(delta, rate=1.0):
 	if systems['mainThrust']:
 		var lv = get_linear_velocity()
 		lv += (_get_pro_thrust()*delta)/get_total_mass()
-		set_linear_velocity(lv)
+		set_linear_velocity(lv*rate)
 
-func thrust_retro(delta):
+func thrust_retro(delta, rate=1.0):
 	if systems['mainThrust']:
 		var lv = get_linear_velocity()
 		lv -= (_get_pro_thrust()*delta)/get_total_mass()
-		set_linear_velocity(lv)
+		set_linear_velocity(lv*rate)
 
 #	REACTION CONTROL THRUST
-func rcs_pro(delta):
+func rcs_pro(delta, rate=1.0):
 	if systems['RCSThrust']:
 		var lv = get_linear_velocity()
 		lv += (_get_rcs_forward()*delta)/get_total_mass()
-		set_linear_velocity(lv)
+		set_linear_velocity(lv*rate)
 
-func rcs_retro(delta):
+func rcs_retro(delta, rate=1.0):
 	if systems['RCSThrust']:
 		var lv = get_linear_velocity()
 		lv -= (_get_rcs_forward()*delta)/get_total_mass()
-		set_linear_velocity(lv)
+		set_linear_velocity(lv*rate)
 
-func rcs_left(delta):
+func rcs_left(delta, rate=1.0):
 	if systems['RCSThrust']:
 		var lv = get_linear_velocity()
 		lv += (_get_rcs_left()*delta)/get_total_mass()
-		set_linear_velocity(lv)
+		set_linear_velocity(lv*rate)
 
-func rcs_right(delta):
+func rcs_right(delta, rate=1.0):
 	if systems['RCSThrust']:
 		var lv = get_linear_velocity()
 		lv -= (_get_rcs_left()*delta)/get_total_mass()
-		set_linear_velocity(lv)
+		set_linear_velocity(lv*rate)
 
 #	YAW THRUST
-func yaw_left(delta):
+func yaw_left(delta, rate=1.0):
 	if systems['RCSThrust']:
 		var lv = get_angular_velocity()
 		lv -= (_get_rcs_yaw()*delta)/get_total_mass()
-		set_angular_velocity(lv)
+		set_angular_velocity(lv*rate)
 
-func yaw_right(delta):
+func yaw_right(delta, rate=1.0):
 	if systems['RCSThrust']:
 		var lv = get_angular_velocity()
 		lv += (_get_rcs_yaw()*delta)/get_total_mass()
-		set_angular_velocity(lv)
+		set_angular_velocity(lv*rate)
 
 #	DOCK/UNDOCK
 func dock(delta):

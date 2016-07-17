@@ -22,7 +22,7 @@ onready var cast_range = get_node('box/SpinBox')
 
 # Mainloop
 func process():
-	if hud.get_player_ship():
+	if hud:
 		
 		# Get controlled ship
 		var s = hud.get_player_ship()

@@ -25,7 +25,7 @@ onready var vel_origin = velcon.get_node('Origin/Switch')
 
 # Mainloop
 func process():
-	if hud.get_player_ship():
+	if hud:
 		# Get controlled ship
 		var s = hud.get_player_ship()
 

@@ -6,6 +6,8 @@ extends Node
 #	Transfers player input into commands
 #	to a game ship.
 
+
+
 # Game node
 onready var game = get_node('/root/Game')
 
@@ -70,6 +72,7 @@ func _fixed_process(delta):
 	var thrusters = {}
 	for i in ship.thrusters.get_children():
 		thrusters[i.get_name()] = false
+	
 	
 	# Search command list for Input event matches
 	for act in cmd_list:
