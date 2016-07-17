@@ -2,7 +2,7 @@
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=2]
-[ext_resource path="res://res/ships/ship.tscn" type="PackedScene" id=3]
+[ext_resource path="res://res/ships/bigship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://res/spaceBodies/SpaceBody.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Control"]
@@ -35,15 +35,14 @@ invert/border = 100.0
 
 [node name="Ship" parent="Vessels" instance=ExtResource( 3 )]
 
-delta_v_main = 5000.0
 delta_v = 500.0
-delta_r = 5.0
+delta_r = 2.0
 
 [node name="Stations" type="Node2D" parent="."]
 
 [node name="Godot Station" parent="Stations" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -4.354, 431.526 )
+transform/pos = Vector2( 1637.73, 4829.96 )
 can_sleep = false
 velocity/angular = 0.1
 damp_override/linear = 0.0

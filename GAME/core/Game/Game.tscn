@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=2]
@@ -8,7 +8,9 @@
 [ext_resource path="res://core/HUD/HUD_TargetInfo.gd" type="Script" id=6]
 [ext_resource path="res://core/HUD/HUD_CollisionWarning.gd" type="Script" id=7]
 [ext_resource path="res://core/HUD/SysCon.gd" type="Script" id=8]
-[ext_resource path="res://core/World/World.tscn" type="PackedScene" id=9]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=10]
+[ext_resource path="res://core/World/World.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -67,15 +69,17 @@ script/script = ExtResource( 4 )
 
 [node name="CameraZoom" type="VSlider" parent="Space/Control/HUD"]
 
+anchor/left = 1
+anchor/right = 1
 rect/min_size = Vector2( 16, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 24.0
-margin/top = 128.0
-margin/right = 40.0
-margin/bottom = 256.0
+margin/left = 32.0
+margin/top = 64.0
+margin/right = 16.0
+margin/bottom = 192.0
 custom_styles/slider = SubResource( 1 )
 range/min = 0.25
 range/max = 10.0
@@ -99,9 +103,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 32.0
-margin/top = 128.0
-margin/right = -111.0
+margin/left = 208.0
+margin/top = 168.0
+margin/right = 16.0
 margin/bottom = 12.0
 script/script = ExtResource( 5 )
 __meta__ = { "_editor_collapsed":true }
@@ -115,8 +119,8 @@ size_flags/vertical = 3
 theme/theme = ExtResource( 1 )
 margin/left = 4.0
 margin/top = 8.0
-margin/right = 178.0
-margin/bottom = 112.0
+margin/right = 188.0
+margin/bottom = 152.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
@@ -128,7 +132,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 174.0
+margin/right = 184.0
 margin/bottom = 12.0
 text = "VelCon"
 align = 1
@@ -145,8 +149,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 174.0
-margin/bottom = 73.0
+margin/right = 184.0
+margin/bottom = 113.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
@@ -158,8 +162,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 81.0
-margin/bottom = 57.0
+margin/right = 86.0
+margin/bottom = 97.0
 alignment = 0
 
 [node name="Speed" type="HBoxContainer" parent="Space/Control/HUD/VelCon/box/Output/Lin"]
@@ -170,7 +174,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 81.0
+margin/right = 86.0
 margin/bottom = 12.0
 alignment = 0
 
@@ -182,7 +186,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 24.0
+margin/right = 26.0
 margin/bottom = 12.0
 text = "LV"
 align = 2
@@ -196,9 +200,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
-margin/left = 28.0
+margin/left = 30.0
 margin/top = 0.0
-margin/right = 52.0
+margin/right = 56.0
 margin/bottom = 12.0
 text = "0.00"
 align = 1
@@ -212,9 +216,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
-margin/left = 56.0
+margin/left = 60.0
 margin/top = 0.0
-margin/right = 81.0
+margin/right = 86.0
 margin/bottom = 12.0
 text = "m/s"
 align = 2
@@ -231,8 +235,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 81.0
-margin/bottom = 41.0
+margin/right = 86.0
+margin/bottom = 81.0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Lin"]
 
@@ -241,9 +245,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 45.0
-margin/right = 81.0
-margin/bottom = 57.0
+margin/top = 85.0
+margin/right = 86.0
+margin/bottom = 97.0
 text = "Linear"
 align = 1
 percent_visible = 1.0
@@ -256,10 +260,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 85.0
+margin/left = 90.0
 margin/top = 0.0
-margin/right = 88.0
-margin/bottom = 57.0
+margin/right = 93.0
+margin/bottom = 97.0
 
 [node name="Rot" type="VBoxContainer" parent="Space/Control/HUD/VelCon/box/Output"]
 
@@ -267,10 +271,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 92.0
+margin/left = 97.0
 margin/top = 0.0
-margin/right = 174.0
-margin/bottom = 57.0
+margin/right = 184.0
+margin/bottom = 97.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
 
@@ -282,7 +286,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 82.0
+margin/right = 87.0
 margin/bottom = 12.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
@@ -295,7 +299,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 24.0
+margin/right = 26.0
 margin/bottom = 12.0
 text = "AV"
 align = 2
@@ -309,9 +313,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
-margin/left = 28.0
+margin/left = 30.0
 margin/top = 0.0
-margin/right = 52.0
+margin/right = 56.0
 margin/bottom = 12.0
 text = "0.00"
 align = 1
@@ -325,9 +329,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
-margin/left = 56.0
+margin/left = 60.0
 margin/top = 0.0
-margin/right = 82.0
+margin/right = 87.0
 margin/bottom = 12.0
 text = "d/s"
 align = 2
@@ -344,8 +348,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 82.0
-margin/bottom = 41.0
+margin/right = 87.0
+margin/bottom = 81.0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box/Output/Rot"]
 
@@ -354,9 +358,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 45.0
-margin/right = 82.0
-margin/bottom = 57.0
+margin/top = 85.0
+margin/right = 87.0
+margin/bottom = 97.0
 text = "Angular"
 align = 1
 percent_visible = 1.0
@@ -370,9 +374,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 77.0
-margin/right = 174.0
-margin/bottom = 80.0
+margin/top = 117.0
+margin/right = 184.0
+margin/bottom = 120.0
 
 [node name="Origin" type="HBoxContainer" parent="Space/Control/HUD/VelCon/box"]
 
@@ -381,9 +385,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 84.0
-margin/right = 174.0
-margin/bottom = 104.0
+margin/top = 124.0
+margin/right = 184.0
+margin/bottom = 144.0
 alignment = 0
 
 [node name="Label" type="Label" parent="Space/Control/HUD/VelCon/box/Origin"]
@@ -432,6 +436,7 @@ max_lines_visible = -1
 
 [node name="Target" type="PanelContainer" parent="Space/Control/HUD"]
 
+visibility/visible = false
 visibility/self_opacity = 0.25
 visibility/blend_mode = 1
 anchor/top = 1
@@ -715,7 +720,7 @@ max_lines_visible = -1
 [node name="UpdateTime" type="Timer" parent="Space/Control/HUD"]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.25
 one_shot = false
 autostart = true
 
@@ -723,20 +728,19 @@ autostart = true
 
 visibility/self_opacity = 0.25
 visibility/blend_mode = 1
-anchor/left = 3
-anchor/top = 1
-anchor/right = 3
-anchor/bottom = 1
+anchor/left = 1
+anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
-margin/left = 32.0
-margin/top = 178.0
-margin/right = -152.0
-margin/bottom = 128.0
+margin/left = 224.0
+margin/top = 64.0
+margin/right = 40.0
+margin/bottom = 114.0
 script/script = ExtResource( 7 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="Space/Control/HUD/CollisionWarning"]
 
@@ -777,11 +781,11 @@ margin/left = 0.0
 margin/top = 16.0
 margin/right = 176.0
 margin/bottom = 38.0
-range/min = 1.0
-range/max = 100.0
+range/min = 5.0
+range/max = 120.0
 range/step = 1.0
 range/page = 0.0
-range/value = 5.0
+range/value = 30.0
 range/exp_edit = false
 range/rounded = true
 editable = false
@@ -790,22 +794,6 @@ suffix = "s"
 
 [node name="???" type="Button" parent="Space/Control/HUD"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 672.0
-margin/top = 560.0
-margin/right = 696.0
-margin/bottom = 584.0
-toggle_mode = false
-text = "\?"
-flat = false
-
-[node name="SysCon" type="PanelContainer" parent="Space/Control/HUD"]
-
-visibility/self_opacity = 0.25
-visibility/blend_mode = 1
 anchor/left = 3
 anchor/top = 1
 anchor/right = 3
@@ -814,12 +802,31 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = -544.0
+margin/top = 756.0
+margin/right = -568.0
+margin/bottom = 732.0
+toggle_mode = false
+text = "\?"
+flat = false
+
+[node name="SysCon" type="PanelContainer" parent="Space/Control/HUD"]
+
+visibility/self_opacity = 0.25
+visibility/blend_mode = 1
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
-margin/left = -312.0
-margin/top = 529.0
-margin/right = -496.0
-margin/bottom = 479.0
+margin/left = 224.0
+margin/top = 128.0
+margin/right = 40.0
+margin/bottom = 178.0
 script/script = ExtResource( 8 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="Space/Control/HUD/SysCon"]
 
@@ -873,9 +880,22 @@ margin/right = 176.0
 margin/bottom = 38.0
 alignment = 0
 
+[node name="MFDPanelL" parent="Space/Control/HUD" instance=ExtResource( 9 )]
+
+[node name="MFDPanelR" parent="Space/Control/HUD" instance=ExtResource( 9 )]
+
+anchor/left = 1
+anchor/right = 1
+margin/left = 300.0
+margin/right = 32.0
+
+[node name="ProMark" type="Sprite" parent="Space/Control/HUD"]
+
+texture = ExtResource( 10 )
+
 [node name="Viewport" type="Viewport" parent="Space"]
 
-rect = Rect2( 0, 0, 1016, 534 )
+rect = Rect2( 0, 0, 1592, 834 )
 own_world = false
 world = null
 transparent_bg = false
@@ -889,9 +909,8 @@ audio_listener/enable_2d = false
 audio_listener/enable_3d = false
 physics/object_picking = true
 gui/disable_input = false
-__meta__ = { "_editor_collapsed":true }
 
-[node name="World" parent="Space/Viewport" instance=ExtResource( 9 )]
+[node name="World" parent="Space/Viewport" instance=ExtResource( 11 )]
 
 [node name="Help" type="AcceptDialog" parent="Space"]
 

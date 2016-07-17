@@ -13,6 +13,7 @@ const OFF = Color(0.2,0.2,0.2)
 
 # Game node
 onready var game = get_node('/root/Game')
+onready var hud = game.hud
 
 # Shortcuts
 onready var text = get_node('box/Label')
@@ -21,10 +22,10 @@ onready var cast_range = get_node('box/SpinBox')
 
 # Mainloop
 func process():
-	if game.control.ship:
+	if hud.get_player_ship():
 		
 		# Get controlled ship
-		var s = game.control.ship
+		var s = hud.get_player_ship()
 		# Get raycast range (in seconds)
 		var cd = cast_range.get_value()
 		

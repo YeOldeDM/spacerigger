@@ -1,28 +1,63 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://res/ships/ship.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/ship2.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/ship3.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/smallgun.png" type="Texture" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -15, 6, -25, -17, -17, -25, -10, -25, -3, -22 )
+points = Vector2Array( 13, -32, 18, -32, 18, -21, 13, -11, -13, -11, -18, -21 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 3, -22, 10, -25, 17, -25, 25, -17, 15, 6, -15, 6 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -15, 6, -3, -22, 3, -22 )
+points = Vector2Array( -15, 5, 13, -6, 19, -6, 19, -1, 15, 5, -17, 22 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -15, 26, -15, 6, 15, 6, 15, 26, 3, 36, -3, 36 )
+points = Vector2Array( 17, 22, 17, 34, 14, 34 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 14, 34, 14, 50, -14, 50, -14, 34 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 17, 22, -14, 34, -17, 34, -17, 22, 15, 5 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -19, 0, -19, -6, -13, -6, -15, 5 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -18, -21, -18, -32, -13, -32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 17, 22, 14, 34, -14, 34 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 13, -6, -15, 5, -13, -6, 13, -11 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 13, -11, -13, -6, -13, -11 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 11, -36, 13, -32, -18, -21, -13, -32, -11, -36 )
 
 [sub_resource type="RectangleShape2D" id=5]
 
@@ -37,22 +72,43 @@ colors = ColorArray( 0.378906, 0.956329, 1, 1, 0.376099, 0.925781, 0.848482, 1, 
 [node name="Ship" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
+shapes/1/shape = SubResource( 8 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
+shapes/2/shape = SubResource( 9 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 4 )
+shapes/3/shape = SubResource( 10 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
+shapes/4/shape = SubResource( 11 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 12 )
+shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/5/trigger = false
+shapes/6/shape = SubResource( 13 )
+shapes/6/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/6/trigger = false
+shapes/7/shape = SubResource( 14 )
+shapes/7/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/7/trigger = false
+shapes/8/shape = SubResource( 15 )
+shapes/8/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/8/trigger = false
+shapes/9/shape = SubResource( 16 )
+shapes/9/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/9/trigger = false
+shapes/10/shape = SubResource( 17 )
+shapes/10/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/10/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 6.0
+mass = 20.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -67,8 +123,8 @@ velocity/angular = 0.0
 damp_override/linear = 0.0
 damp_override/angular = 0.0
 script/script = ExtResource( 1 )
-delta_v_main = 50.0
-delta_v = 8.0
+delta_v_main = 1500.0
+delta_v = 50.0
 delta_r = 0.8
 
 [node name="Forward" type="Position2D" parent="."]
@@ -104,8 +160,8 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 build_mode = 0
-polygon = Vector2Array( 15, 6, 15, 26, 3, 36, -3, 36, -15, 26, -15, 6, -25, -17, -17, -25, -10, -25, -3, -22, 3, -22, 10, -25, 17, -25, 25, -17 )
-shape_range = Vector2( 0, 3 )
+polygon = Vector2Array( 11, -36, -11, -36, -13, -32, -18, -32, -18, -21, -13, -11, -13, -6, -19, -6, -19, 0, -15, 5, -17, 22, -17, 34, -14, 34, -14, 50, 14, 50, 14, 34, 17, 34, 17, 22, 15, 5, 19, -1, 19, -6, 13, -6, 13, -11, 18, -21, 18, -32, 13, -32 )
+shape_range = Vector2( 0, 10 )
 trigger = false
 
 [node name="Dock" type="Area2D" parent="."]
@@ -163,7 +219,7 @@ __meta__ = { "_editor_collapsed":true }
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( -13, -24 )
+transform/pos = Vector2( -4, -38 )
 transform/rot = 180.0
 config/amount = 24
 config/lifetime = 1.0
@@ -193,7 +249,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( 13, -24 )
+transform/pos = Vector2( 4, -38 )
 transform/rot = 180.0
 config/amount = 24
 config/lifetime = 1.0
@@ -223,7 +279,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( -9, 30 )
+transform/pos = Vector2( -9, 50 )
 config/amount = 24
 config/lifetime = 1.0
 config/time_scale = 2.0
@@ -252,7 +308,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( 9, 30 )
+transform/pos = Vector2( 9, 50 )
 config/amount = 24
 config/lifetime = 1.0
 config/time_scale = 2.0
@@ -281,7 +337,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( -19, -23 )
+transform/pos = Vector2( -15, -32 )
 transform/rot = 180.0
 config/amount = 24
 config/lifetime = 0.5
@@ -311,7 +367,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( 19, -23 )
+transform/pos = Vector2( 15, -32 )
 transform/rot = 180.0
 config/amount = 24
 config/lifetime = 0.5
@@ -341,7 +397,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( -14, 27 )
+transform/pos = Vector2( -15, 34 )
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 2.0
@@ -370,7 +426,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( 14, 27 )
+transform/pos = Vector2( 15, 34 )
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 2.0
@@ -429,7 +485,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( -18, 1 )
+transform/pos = Vector2( -16, -3 )
 transform/rot = 270.0
 config/amount = 24
 config/lifetime = 0.5
@@ -489,7 +545,7 @@ color/color_ramp = SubResource( 6 )
 
 visibility/self_opacity = 0.5
 visibility/blend_mode = 1
-transform/pos = Vector2( 18, 1 )
+transform/pos = Vector2( 16, -3 )
 transform/rot = 90.0
 config/amount = 24
 config/lifetime = 0.5

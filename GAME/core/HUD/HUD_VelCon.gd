@@ -9,6 +9,7 @@ extends PanelContainer
 
 # Game node
 onready var game = get_node('/root/Game')
+onready var hud = game.hud
 
 
 # Shortcuts
@@ -24,9 +25,9 @@ onready var vel_origin = velcon.get_node('Origin/Switch')
 
 # Mainloop
 func process():
-	if game.control.ship:
+	if hud.get_player_ship():
 		# Get controlled ship
-		var s = game.control.ship
+		var s = hud.get_player_ship()
 
 		# Get velocity values
 		var lv = s.get_linear_velocity()
@@ -34,11 +35,11 @@ func process():
 		# Get target-relative velocity if TVR is enabled
 		if vel_origin.is_pressed() and s.target:
 			var t = s.target
-			lv = (t.get_linear_velocity() - lv)
+			lv = t.get_linear_velocity() - lv
 			av = t.get_angular_velocity() - av
 
 		# Display velocity values
-		linvalue.set_text(str(lv.length()).pad_decimals(2))
+		linvalue.set_text(str(lv.length()*0.1).pad_decimals(2))
 		angvalue.set_text(str(abs(rad2deg(av))).pad_decimals(2))
 
 
