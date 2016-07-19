@@ -42,7 +42,7 @@ delta_r = 2.0
 
 [node name="Godot Station" parent="Stations" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 1637.73, 4829.96 )
+transform/pos = Vector2( 197.854, 544.821 )
 can_sleep = false
 velocity/angular = 0.1
 damp_override/linear = 0.0

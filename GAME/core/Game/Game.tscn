@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=2]
@@ -11,19 +11,6 @@
 [ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=10]
 [ext_resource path="res://core/World/World.tscn" type="PackedScene" id=11]
-
-[sub_resource type="StyleBoxFlat" id=1]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-bg_color = Color( 0.00234985, 0, 0.0429688, 1 )
-light_color = Color( 0, 0.261505, 0.816406, 1 )
-dark_color = Color( 0, 0.258824, 0.815686, 1 )
-border_size = 1
-border_blend = true
-draw_bg = true
 
 [node name="Game" type="TabContainer"]
 
@@ -80,7 +67,6 @@ margin/left = 32.0
 margin/top = 64.0
 margin/right = 16.0
 margin/bottom = 192.0
-custom_styles/slider = SubResource( 1 )
 range/min = 0.25
 range/max = 10.0
 range/step = 1.0
@@ -794,18 +780,16 @@ suffix = "s"
 
 [node name="???" type="Button" parent="Space/Control/HUD"]
 
-anchor/left = 3
-anchor/top = 1
-anchor/right = 3
-anchor/bottom = 1
+anchor/left = 1
+anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -544.0
-margin/top = 756.0
-margin/right = -568.0
-margin/bottom = 732.0
+margin/left = 256.0
+margin/top = 144.0
+margin/right = 232.0
+margin/bottom = 168.0
 toggle_mode = false
 text = "\?"
 flat = false
@@ -891,11 +875,13 @@ margin/right = 32.0
 
 [node name="ProMark" type="Sprite" parent="Space/Control/HUD"]
 
+visibility/self_opacity = 0.75
+visibility/blend_mode = 1
 texture = ExtResource( 10 )
 
 [node name="Viewport" type="Viewport" parent="Space"]
 
-rect = Rect2( 0, 0, 1592, 834 )
+rect = Rect2( 0, 0, 1016, 534 )
 own_world = false
 world = null
 transparent_bg = false

@@ -130,4 +130,4 @@ func _fixed_process(delta):
 	
 	# If the ship is docked..
 	if ship.dock_target and ship.docked:
-		ship.set_rot(ship.dock_target.get_owner().get_rot()+deg2rad(180))
+		ship.sync_rot_with_dock()

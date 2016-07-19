@@ -174,9 +174,9 @@ func dock_with_target(port=0):
 	
 	# Get the angle of our docking target
 	var dock_angle = dock_target.get_owner().get_rot()+dock_target.get_rot()
-	
+	dock_angle -= get_node('Dock').get_rot()
 	# Snap our rotation to that of the dock
-	set_rot(dock_angle)
+	#set_rot(dock_angle)
 	
 	# Set dock joint to dock_target
 	dock_joint.set_node_a(dock_target.get_owner().get_path())
@@ -187,18 +187,23 @@ func undock_from_target():
 	var dock_body = dock_target.get_owner()
 	
 	# Get direction and magnitude of pushoff force
-	var dir = (get_global_pos() - dock_target.get_global_pos()).normalized()
+	var dir = (dock_body.get_linear_velocity()+(get_global_pos() - dock_target.get_global_pos())).normalized()
 	var pushoff = dir * (get_total_mass() * 4.0)
 	
 	# Push off from docked vessel
-	set_linear_velocity(dock_body.get_linear_velocity()+pushoff)
+	set_linear_velocity(pushoff)
 	set_angular_velocity((dock_body.get_angular_velocity()/dock_body.get_mass()) * get_total_mass())
 	
 	dock_target = null
 	# set dock joint to ourself
 	dock_joint.set_node_a(get_path())
 
-
+func sync_rot_with_dock():
+	var dock_body = dock_target.get_owner()
+	var t_rot = dock_body.get_rot()
+	var d_rot = get_node('Dock').get_rot()
+	printt(t_rot,d_rot)
+	set_rot(t_rot-d_rot+PI)
 
 # Called when we bash into something
 func _on_Ship_body_enter( body ):

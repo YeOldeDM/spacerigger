@@ -20,19 +20,18 @@ func get_screen():
 
 func set_screen( name ):
 	var path = 'res://core/HUD/MFD/screens/mfd_screen_'+name+'.tscn'
+	print(path)
 	var screen = load(path).instance()
-	if screen:
-		if !display.get_children().empty():
-			for i in display.get_children():
-				i.queue_free()
-		display.add_child(screen)
-		
-		if name != 'nopower':
-			module = name
-		if screen.get('script/script'):
-			screen.mfd = self
-	else:
-		print("No Such Thing: "+path)
+	if !display.get_children().empty():
+		for i in display.get_children():
+			i.queue_free()
+	display.add_child(screen)
+	
+	if name != 'nopower':
+		module = name
+	if screen.get('script/script'):
+		screen.mfd = self
+
 	
 
 func _mainFunction( id ):
