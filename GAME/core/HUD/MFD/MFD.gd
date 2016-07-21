@@ -20,7 +20,6 @@ func get_screen():
 
 func set_screen( name ):
 	var path = 'res://core/HUD/MFD/screens/mfd_screen_'+name+'.tscn'
-	print(path)
 	var screen = load(path).instance()
 	if !display.get_children().empty():
 		for i in display.get_children():

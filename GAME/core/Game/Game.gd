@@ -6,9 +6,12 @@ const GAME_NAME = "Space Rigger Alpha"
 #onready var space = get_node('Space')
 onready var control = get_node('Controller')
 onready var world = get_node('World')
-onready var hud = control.get_node('HUD')
+onready var hud = get_node('HUD')
 
 
+func get_player():
+	if control.controlled:
+		return control.controlled
 
 func get_world():
 	if !world.get_children().empty():

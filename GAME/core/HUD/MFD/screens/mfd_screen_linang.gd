@@ -4,13 +4,12 @@ extends PanelContainer
 onready var box = get_node('box')
 
 onready var game = get_node('/root/Game')
-onready var hud = game.hud
 
 var mfd
 
 func process():
-	if hud.get_player_ship():
-		var ship = hud.get_player_ship()
+	if game.get_player():
+		var ship = game.get_player()
 		var lv = ship.get_linear_velocity().length()*0.1
 		var av = abs(ship.get_angular_velocity())
 		var hd = ship.get_rotd()+180.0

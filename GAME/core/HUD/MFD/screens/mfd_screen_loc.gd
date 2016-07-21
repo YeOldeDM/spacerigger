@@ -19,8 +19,8 @@ func _ready():
 	pass
 
 func process():
-	if hud.get_player_ship():
-		var ship = hud.get_player_ship()
+	if game.get_player():
+		var ship = game.get_player()
 		var pos = ship.get_global_pos()*0.1
 		var x = pos.x
 		var y = pos.y

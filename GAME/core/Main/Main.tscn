@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
-[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://core/HUD/HUD_core.gd" type="Script" id=3]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=7]
 
 [node name="Game" type="Control"]
 
@@ -28,6 +32,7 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+script/script = ExtResource( 3 )
 
 [node name="box" type="Control" parent="HUD"]
 
@@ -41,23 +46,62 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-__meta__ = { "_editor_collapsed":true }
 
-[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 3 )]
+[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 4 )]
 
 margin/left = 20.0
-margin/top = 240.0
+margin/top = 250.0
 margin/right = 288.0
-margin/bottom = 23.0
+margin/bottom = 33.0
 
-[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 3 )]
+[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 4 )]
 
 anchor/left = 1
 anchor/right = 1
 margin/left = 294.0
-margin/top = 240.0
+margin/top = 250.0
 margin/right = 26.0
-margin/bottom = 23.0
+margin/bottom = 33.0
+
+[node name="Compass" type="Control" parent="HUD/box"]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 512.0
+margin/top = 600.0
+margin/right = 472.0
+margin/bottom = 560.0
+
+[node name="Back" type="Sprite" parent="HUD/box/Compass"]
+
+transform/pos = Vector2( 340, 520 )
+texture = ExtResource( 5 )
+
+[node name="Dial" type="Sprite" parent="HUD/box/Compass"]
+
+transform/pos = Vector2( 340, 520 )
+texture = ExtResource( 6 )
+flip_h = true
+flip_v = true
+
+[node name="UpdateTime" type="Timer" parent="HUD"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = true
+
+[node name="ProMark" type="Sprite" parent="HUD"]
+
+visibility/blend_mode = 1
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
 
 [node name="Context" type="CanvasLayer" parent="."]
 
@@ -65,5 +109,7 @@ layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+
+[connection signal="timeout" from="HUD/UpdateTime" to="HUD" method="_on_UpdateTime_timeout"]
 
 

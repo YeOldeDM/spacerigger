@@ -283,7 +283,6 @@ func sync_rot_with_dock():
 	var dock_body = dock_target.get_owner()
 	var t_rot = dock_body.get_rot()
 	var d_rot = get_node('Dock').get_rot()
-	printt(t_rot,d_rot)
 	set_rot(t_rot-d_rot+PI)
 
 
