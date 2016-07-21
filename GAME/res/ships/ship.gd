@@ -36,6 +36,8 @@ export var delta_v_main = 12600.0
 export var delta_v = 500.0
 export var delta_r = 10.0
 
+export var rcs_config_I = true
+
 # Autopilot states
 var auto_prograde = false
 var auto_retrograde = false
@@ -149,7 +151,8 @@ func set_thruster_emission(cmd_state):
 	if cmd_state['thrust_retro'] == true:
 		 thr['RetroThrustR'] = true
 		 thr['RetroThrustL'] = true
-	
+
+
 	if cmd_state['rcs_pro'] == true:
 		 thr['RCSProR'] = true
 		 thr['RCSProL'] = true
@@ -166,13 +169,23 @@ func set_thruster_emission(cmd_state):
 		 thr['RCSLeftF'] = true
 		 thr['RCSLeftA'] = true
 
+
 	if cmd_state['yaw_left'] == true:
-		 thr['RCSRightF'] = true
-		 thr['RCSLeftA'] = true
+		if rcs_config_I:
+			thr['RCSRightF'] = true
+			thr['RCSLeftA'] = true
+		else:
+			thr['RCSProR'] = true
+			thr['RCSRetroL'] = true
 
 	if cmd_state['yaw_right'] == true:
-		 thr['RCSLeftF'] = true
-		 thr['RCSRightA'] = true
+		if rcs_config_I:
+			thr['RCSLeftF'] = true
+			thr['RCSRightA'] = true
+		else:
+			thr['RCSProL'] = true
+			thr['RCSRetroR'] = true
+			
 
 	for key in  thr:
 		if  thr[key] == true:

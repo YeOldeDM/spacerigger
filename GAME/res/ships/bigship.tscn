@@ -126,6 +126,7 @@ script/script = ExtResource( 1 )
 delta_v_main = 1500.0
 delta_v = 50.0
 delta_r = 0.8
+rcs_config_I = true
 
 [node name="Forward" type="Position2D" parent="."]
 
