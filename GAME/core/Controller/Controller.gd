@@ -13,23 +13,23 @@ onready var game = get_node('/root/Game')
 
 # List of current Actions used by Controller.
 #	(update this as new actions are added)
-var cmd = [
-'thrust_pro',
-'thrust_retro',
-'rcs_pro',
-'rcs_retro',
-'rcs_left',
-'rcs_right',
-'yaw_left',
-'yaw_right',
-'dock',
-'undock'
-]
+var cmd_state = {
+'thrust_pro':	false,
+'thrust_retro':	false,
+'rcs_pro':		false,
+'rcs_retro':	false,
+'rcs_left':		false,
+'rcs_right':	false,
+'yaw_left':		false,
+'yaw_right':	false,
+'dock':			false,
+'undock':		false,
+}
 
 #	The thing this Controller is controlling
 var controlled
 
-var cmd_state = {}
+
 
 
 # Turn controls on
@@ -59,9 +59,6 @@ func unplug():
 
 # Init
 func _ready():
-	for act in cmd:
-		cmd_state[act] = false
-		#add_user_signal(act,['delta'])
 	set_fixed_process(true)
 
 
@@ -69,11 +66,13 @@ func _ready():
 
 #	CONTROL PROCESS LOOP
 func _fixed_process(delta):
+	# Construct cmdState dick
 	for act in cmd_state:
 		cmd_state[act] = false
 		if Input.is_action_pressed(act):
 			cmd_state[act] = true
-	
+			
+	# Process ship controls
 	if controlled:
 		controlled.process(delta, cmd_state)
 

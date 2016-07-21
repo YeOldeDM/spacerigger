@@ -1,6 +1,7 @@
 
 extends Control
 
+onready var game = get_node('/root/Game')
 
 var player_ship
 
@@ -20,7 +21,7 @@ func add_vessel(vessel, position, is_player=false):
 	get_node('Vessels').add_child(vessel)
 	vessel.set_pos(position)
 	if is_player:
-		player_ship = vessel
+		game.control.plug_in(vessel)
 
 func add_station(station, position):
 	get_node('Stations').add_child(station)
