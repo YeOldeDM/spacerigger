@@ -44,7 +44,7 @@ shapes/2/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 6.0
+mass = 28.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -59,9 +59,9 @@ velocity/angular = 0.0
 damp_override/linear = 0.0
 damp_override/angular = 0.0
 script/script = ExtResource( 1 )
-delta_v_main = 500.0
-delta_v = 8.0
-delta_r = 8.0
+delta_v_main = 1260.0
+delta_v = 500.0
+delta_r = 5.0
 rcs_config_I = true
 
 [node name="Forward" type="Position2D" parent="."]
@@ -103,9 +103,10 @@ trigger = false
 
 [node name="Dock" type="Area2D" parent="."]
 
+transform/pos = Vector2( 0, 37 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 37 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -114,8 +115,7 @@ angular_damp = 1.0
 
 [node name="Light" type="Polygon2D" parent="Dock"]
 
-transform/pos = Vector2( 0, 20 )
-polygon = Vector2Array( 3, 16, 3, 18, -3, 18, -3, 16 )
+polygon = Vector2Array( 3, -1, 3, 1, -3, 1, -3, -1 )
 uv = Vector2Array(  )
 color = Color( 1, 0.132813, 0.132813, 1 )
 offset = Vector2( 0, 0 )
@@ -128,7 +128,6 @@ invert/border = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dock"]
 
-transform/pos = Vector2( 0, 37 )
 shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0

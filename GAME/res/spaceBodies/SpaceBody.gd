@@ -1,7 +1,7 @@
 
 extends RigidBody2D
 
-var delta_v = 1.0
+var delta_v = 10.0
 
 onready var dock = get_node('Dock')
 

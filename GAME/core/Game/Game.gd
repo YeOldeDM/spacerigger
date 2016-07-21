@@ -8,17 +8,16 @@ onready var control = get_node('Controller')
 onready var world = get_node('World')
 onready var hud = control.get_node('HUD')
 
-# might not want this: get ship ref from control
-#onready var player_ship = space.get_node('Viewport/World/Vessels/Ship')
-#onready var other_ship = space.get_node('Viewport/World/Vessels/Ship 2')
-#
-#onready var help = space.get_node('Help')
+
 
 func get_world():
 	if !world.get_children().empty():
 		return world.get_child(0)
 
 func _ready():
+	var init_world = Spawn.world('test_world')
+	world.add_child(init_world)
+	
 	var player_ship = Spawn.ship('Tauro')
 	get_world().add_vessel(player_ship, Vector2(0,0), true)
 

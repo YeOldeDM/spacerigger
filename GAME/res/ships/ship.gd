@@ -32,9 +32,9 @@ var docked = false
 var in_dock_zone = false
 
 # Velocity force vars
-export var delta_v_main = 12600.0
+export var delta_v_main = 1260.0
 export var delta_v = 500.0
-export var delta_r = 10.0
+export var delta_r = 5.0
 
 export var rcs_config_I = true
 
@@ -264,12 +264,13 @@ func undock_from_target():
 	var dock_body = dock_target.get_owner()
 	
 	# Get direction and magnitude of pushoff force
-	var dir = (dock_body.get_linear_velocity()+(get_node('Dock').get_global_pos() - get_global_pos())).normalized()
-#	var dir = (dock_body.get_linear_velocity()+(get_global_pos() - dock_target.get_global_pos())).normalized()
-	var pushoff = dir * (get_total_mass() * 4.0)
+
+	var dir = (get_node('Dock').get_global_pos() - get_global_pos())
+	var pushoff = dir.normalized() * get_total_mass()
+	
 	
 	# Push off from docked vessel
-	set_linear_velocity(-pushoff)
+	set_linear_velocity(-pushoff+dock_body.get_linear_velocity())
 	#set_angular_velocity((dock_body.get_angular_velocity()/dock_body.get_mass()) * get_total_mass())
 	
 	dock_target = null

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://core/World/World.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=2]
+[ext_resource path="res://res/spaceBodies/SpaceBody.tscn" type="PackedScene" id=3]
+
+[node name="World" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+
+[node name="Background" type="Polygon2D" parent="."]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -6.5536e+06, -6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06 )
+uv = Vector2Array( 0, 0, 6.5536e+06, 0, 6.5536e+06, 6.5536e+06, 0, 6.5536e+06 )
+color = Color( 1, 1, 1, 1 )
+offset = Vector2( 0, 0 )
+texture/texture = ExtResource( 2 )
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 8, 8 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Vessels" type="Node2D" parent="."]
+
+[node name="Stations" type="Node2D" parent="."]
+
+[node name="Godot Station" parent="Stations" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 197.854, 544.821 )
+transform/rot = -151.318
+can_sleep = false
+velocity/angular = 0.1
+damp_override/linear = 0.0
+damp_override/angular = 0.0
+
+
