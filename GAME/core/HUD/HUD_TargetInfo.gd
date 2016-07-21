@@ -26,12 +26,12 @@ onready var headingr = out_values.get_node('HeadingR')
 
 # Mainloop
 func process():
-	if game.control.ship:
+	if game.control.controlled:
 		# Get controlled ship
-		var s = game.control.ship
-		if game.control.ship.target:
+		var s = game.control.controlled
+		if game.control.controlled.target:
 			# Get target
-			var t = game.control.ship.target
+			var t = game.control.controlled.target
 
 			# Set the icon to the target's sprite
 			if !icon.get_texture():

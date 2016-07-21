@@ -48,68 +48,63 @@ var systems = {
 	}
 
 
+func process(delta, cmd_state):
+	
+	set_thruster_emission(cmd_state)
+	
+	for act in cmd_state:
+		if cmd_state[act] == true:
+			if has_method(act):
+				call(act,delta)
+			else:
+				print("No such thing as Action: "+act)
 #################################################
 # 	CONTROLLER SIGNALS FOR SHIP FLIGHT CONTROL	#
-#												#
-#	(Any actions set in this ship's Controller	#
-#	MUST have a function defined here. The 		#
-#	function name must be identical to the 		#
-#	Controller signal emitted.					#
 #												#
 #################################################
 #	CONTROLLER SIGNAL FUNCTIONS START HERE	#
 #############################################
 
 #	PRIMARY THRUST
-func thrust_pro(delta, rate=1.0):
+func thrust_pro(delta ):
 	if systems['mainThrust']:
-		var lv = get_linear_velocity()
-		lv += (_get_pro_thrust()*delta)/get_total_mass()
-		set_linear_velocity(lv*rate)
+		_thrust(_get_pro_thrust()*delta)
 
-func thrust_retro(delta, rate=1.0):
+
+func thrust_retro(delta ):
 	if systems['mainThrust']:
-		var lv = get_linear_velocity()
-		lv -= (_get_pro_thrust()*delta)/get_total_mass()
-		set_linear_velocity(lv*rate)
+		_thrust(-_get_pro_thrust()*delta)
+
 
 #	REACTION CONTROL THRUST
-func rcs_pro(delta, rate=1.0):
+func rcs_pro(delta ):
 	if systems['RCSThrust']:
-		var lv = get_linear_velocity()
-		lv += (_get_rcs_forward()*delta)/get_total_mass()
-		set_linear_velocity(lv*rate)
+		_thrust(_get_rcs_forward()*delta)
 
-func rcs_retro(delta, rate=1.0):
-	if systems['RCSThrust']:
-		var lv = get_linear_velocity()
-		lv -= (_get_rcs_forward()*delta)/get_total_mass()
-		set_linear_velocity(lv*rate)
 
-func rcs_left(delta, rate=1.0):
+func rcs_retro(delta ):
 	if systems['RCSThrust']:
-		var lv = get_linear_velocity()
-		lv += (_get_rcs_left()*delta)/get_total_mass()
-		set_linear_velocity(lv*rate)
+		_thrust(-_get_rcs_forward()*delta)
 
-func rcs_right(delta, rate=1.0):
+
+func rcs_left(delta ):
 	if systems['RCSThrust']:
-		var lv = get_linear_velocity()
-		lv -= (_get_rcs_left()*delta)/get_total_mass()
-		set_linear_velocity(lv*rate)
+		_thrust(_get_rcs_left()*delta)
+
+
+func rcs_right(delta ):
+	if systems['RCSThrust']:
+		_thrust(-_get_rcs_left()*delta)
 
 #	YAW THRUST
-func yaw_left(delta, rate=1.0):
+func yaw_left(delta ):
 	if systems['RCSThrust']:
-		var lv = get_angular_velocity()
-		lv -= (_get_rcs_yaw()*delta)/get_total_mass()
-		set_angular_velocity(lv*rate)
+		_yaw(-_get_rcs_yaw()*delta)
 
-func yaw_right(delta, rate=1.0):
+
+func yaw_right(delta ):
 	if systems['RCSThrust']:
-		var lv = get_angular_velocity()
-		lv += (_get_rcs_yaw()*delta)/get_total_mass()
-		set_angular_velocity(lv*rate)
+		_yaw(_get_rcs_yaw()*delta)
 
 #	DOCK/UNDOCK
 func dock(delta):
@@ -135,9 +130,59 @@ func _ready():
 	target = world.get_node('Stations').get_child(0)
 
 
+
 func set_camera_zoom( z ):
 	assert cam.is_current()
 	cam.set_zoom(Vector2(z,z))
+
+
+func set_thruster_emission(cmd_state):
+	var thr = {}
+	for i in thrusters.get_children():
+		thr[i.get_name()] = false
+	
+
+	if cmd_state['thrust_pro'] == true:
+		 thr['ProThrustR'] = true
+		 thr['ProThrustL'] = true
+	
+	if cmd_state['thrust_retro'] == true:
+		 thr['RetroThrustR'] = true
+		 thr['RetroThrustL'] = true
+	
+	if cmd_state['rcs_pro'] == true:
+		 thr['RCSProR'] = true
+		 thr['RCSProL'] = true
+	
+	if cmd_state['rcs_retro'] == true:
+		 thr['RCSRetroR'] = true
+		 thr['RCSRetroL'] = true
+
+	if cmd_state['rcs_left'] == true:
+		 thr['RCSRightF'] = true
+		 thr['RCSRightA'] = true
+
+	if cmd_state['rcs_right'] == true:
+		 thr['RCSLeftF'] = true
+		 thr['RCSLeftA'] = true
+
+	if cmd_state['yaw_left'] == true:
+		 thr['RCSRightF'] = true
+		 thr['RCSLeftA'] = true
+
+	if cmd_state['yaw_right'] == true:
+		 thr['RCSLeftF'] = true
+		 thr['RCSRightA'] = true
+
+	for key in  thr:
+		if  thr[key] == true:
+			if not thrusters.get_node(key).is_emitting():
+				thrusters.get_node(key).set_emitting(true)
+
+		else:
+			if thrusters.get_node(key).is_emitting():
+				thrusters.get_node(key).set_emitting(false)
+
 
 # Get thrust vectors
 func _get_forefacing():
@@ -161,9 +206,28 @@ func _get_rcs_yaw():
 
 
 
+func _thrust(vector):
+	var lv = get_linear_velocity()
+	lv += vector / get_total_mass()
+	set_linear_velocity(lv)
+
+func _yaw(force):
+	var av = get_angular_velocity()
+	av += force / get_total_mass()
+	set_angular_velocity(av)
+
+
+
+
+func focus_camera():
+	get_node('Camera').make_current()
+
+
+
 func get_total_mass():
 	var total = get_mass()
 	return total
+
 
 
 
@@ -187,16 +251,19 @@ func undock_from_target():
 	var dock_body = dock_target.get_owner()
 	
 	# Get direction and magnitude of pushoff force
-	var dir = (dock_body.get_linear_velocity()+(get_global_pos() - dock_target.get_global_pos())).normalized()
+	var dir = (dock_body.get_linear_velocity()+(get_node('Dock').get_global_pos() - get_global_pos())).normalized()
+#	var dir = (dock_body.get_linear_velocity()+(get_global_pos() - dock_target.get_global_pos())).normalized()
 	var pushoff = dir * (get_total_mass() * 4.0)
 	
 	# Push off from docked vessel
-	set_linear_velocity(pushoff)
-	set_angular_velocity((dock_body.get_angular_velocity()/dock_body.get_mass()) * get_total_mass())
+	set_linear_velocity(-pushoff)
+	#set_angular_velocity((dock_body.get_angular_velocity()/dock_body.get_mass()) * get_total_mass())
 	
 	dock_target = null
 	# set dock joint to ourself
 	dock_joint.set_node_a(get_path())
+
+
 
 func sync_rot_with_dock():
 	var dock_body = dock_target.get_owner()
@@ -204,6 +271,8 @@ func sync_rot_with_dock():
 	var d_rot = get_node('Dock').get_rot()
 	printt(t_rot,d_rot)
 	set_rot(t_rot-d_rot+PI)
+
+
 
 # Called when we bash into something
 func _on_Ship_body_enter( body ):

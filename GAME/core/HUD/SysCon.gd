@@ -21,8 +21,8 @@ func clear():
 			sys.queue_free()
 
 func init():
-	if game.control.ship:
-		var ship = game.control.ship
+	if game.control.controlled:
+		var ship = game.control.controlled
 		clear()
 		for key in ship.systems:
 			var cont = sys_panel.instance()
@@ -33,14 +33,14 @@ func init():
 
 func _set_control( state, system, origin ):
 	printt(state,system)
-	if game.control.ship:
-		var ship = game.control.ship
+	if game.control.controlled:
+		var ship = game.control.controlled
 		ship.systems[system] = state
 	origin.release_focus()
 	
 func refresh():
-	if game.control.ship:
-		var ship = game.control.ship
+	if game.control.controlled:
+		var ship = game.control.controlled
 		for key in ship.systems:
 			systems.get_node(key).set_pressed(ship.systems[key])
 

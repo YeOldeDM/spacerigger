@@ -14,6 +14,8 @@ func get_stations():
 	return get_node('Stations').get_children()
 
 
+
+
 func add_vessel(vessel, position, is_player=false):
 	get_node('Vessels').add_child(vessel)
 	vessel.set_pos(position)

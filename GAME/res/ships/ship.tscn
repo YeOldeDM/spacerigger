@@ -1,36 +1,30 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://res/ships/ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/ships/tauro.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/smallgun.png" type="Texture" id=3]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -15, 6, -25, -17, -17, -25, -10, -25, -3, -22 )
+points = Vector2Array( -15, 6, -25, -17, -17, -25, -10, -25, 0, -22, 15, 6, 15, 26 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 3, -22, 10, -25, 17, -25, 25, -17, 15, 6, -15, 6 )
+points = Vector2Array( 10, -25, 17, -25, 25, -17, 15, 6, 0, -22 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -15, 6, -3, -22, 3, -22 )
+points = Vector2Array( -15, 26, -15, 6, 15, 26, 3, 36, -3, 36 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -15, 26, -15, 6, 15, 6, 15, 26, 3, 36, -3, 36 )
-
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 3, 1 )
 
-[sub_resource type="ColorRamp" id=6]
+[sub_resource type="ColorRamp" id=5]
 
 offsets = FloatArray( 0, 0.0221914, 0.234397, 0.61165, 1 )
 colors = ColorArray( 0.378906, 0.956329, 1, 1, 0.376099, 0.925781, 0.848482, 1, 0.302307, 0.42627, 0.992188, 0.96774, 0.780964, 0.269586, 0.988886, 0.935286, 0.210938, 0, 0, 0.630621 )
@@ -47,9 +41,6 @@ shapes/1/trigger = false
 shapes/2/shape = SubResource( 3 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 4 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/3/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
@@ -68,9 +59,9 @@ velocity/angular = 0.0
 damp_override/linear = 0.0
 damp_override/angular = 0.0
 script/script = ExtResource( 1 )
-delta_v_main = 50.0
+delta_v_main = 500.0
 delta_v = 8.0
-delta_r = 0.8
+delta_r = 8.0
 
 [node name="Forward" type="Position2D" parent="."]
 
@@ -81,7 +72,7 @@ transform/pos = Vector2( 0, 50 )
 transform/rot = 180.0
 anchor_mode = 1
 rotating = true
-current = true
+current = false
 zoom = Vector2( 1, 1 )
 limit/left = -10000000
 limit/top = -10000000
@@ -105,14 +96,14 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 build_mode = 0
-polygon = Vector2Array( 15, 6, 15, 26, 3, 36, -3, 36, -15, 26, -15, 6, -25, -17, -17, -25, -10, -25, -3, -22, 3, -22, 10, -25, 17, -25, 25, -17 )
-shape_range = Vector2( 0, 3 )
+polygon = Vector2Array( 15, 6, 15, 26, 3, 36, -3, 36, -15, 26, -15, 6, -25, -17, -17, -25, -10, -25, 0, -22, 10, -25, 17, -25, 25, -17 )
+shape_range = Vector2( 0, 2 )
 trigger = false
 
 [node name="Dock" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 37 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -138,13 +129,12 @@ invert/border = 100.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dock"]
 
 transform/pos = Vector2( 0, 37 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
 [node name="DockJoint" type="PinJoint2D" parent="."]
 
-transform/pos = Vector2( 0, 36 )
 node_a = NodePath("..")
 node_b = NodePath("..")
 bias/bias = 0.9
@@ -188,7 +178,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="ProThrustL" type="Particles2D" parent="thrust_emitters"]
 
@@ -218,7 +208,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RetroThrustR" type="Particles2D" parent="thrust_emitters"]
 
@@ -247,7 +237,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RetroThrustL" type="Particles2D" parent="thrust_emitters"]
 
@@ -276,7 +266,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSProR" type="Particles2D" parent="thrust_emitters"]
 
@@ -306,7 +296,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSProL" type="Particles2D" parent="thrust_emitters"]
 
@@ -336,7 +326,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSRetroR" type="Particles2D" parent="thrust_emitters"]
 
@@ -365,7 +355,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSRetroL" type="Particles2D" parent="thrust_emitters"]
 
@@ -394,7 +384,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSRightF" type="Particles2D" parent="thrust_emitters"]
 
@@ -424,7 +414,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSRightA" type="Particles2D" parent="thrust_emitters"]
 
@@ -454,7 +444,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSLeftF" type="Particles2D" parent="thrust_emitters"]
 
@@ -484,7 +474,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="RCSLeftA" type="Particles2D" parent="thrust_emitters"]
 
@@ -514,7 +504,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="Hardpoints" type="Node2D" parent="."]
 

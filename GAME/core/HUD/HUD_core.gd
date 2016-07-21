@@ -53,7 +53,7 @@ func _on_UpdateTime_timeout():
 	process()
 
 func get_player_ship():
-	return game.control.ship
+	return game.control.controlled
 
 func get_player_ship_pos():
 	var ship = get_player_ship()
