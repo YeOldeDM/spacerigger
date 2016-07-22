@@ -290,7 +290,7 @@ func sync_rot_with_dock():
 # Called when we bash into something
 func _on_Ship_body_enter( body ):
 	var impact = (get_linear_velocity() - body.get_linear_velocity()).length()
-	#hud.get_node('Impact').set_text(str(impact).pad_decimals(2))
+
 
 
 

@@ -18,6 +18,11 @@ func _ready():
 	# Initialization here
 	pass
 
+func init():
+	if game.get_world():
+		var world = game.get_world()
+		set_location(world.get_name())
+	
 func process():
 	if game.get_player():
 		var ship = game.get_player()

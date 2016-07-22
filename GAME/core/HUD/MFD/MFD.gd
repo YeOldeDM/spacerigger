@@ -30,7 +30,8 @@ func set_screen( name ):
 		module = name
 	if screen.get('script/script'):
 		screen.mfd = self
-
+		if screen.has_method('init'):
+			screen.call('init')
 	
 
 func _mainFunction( id ):

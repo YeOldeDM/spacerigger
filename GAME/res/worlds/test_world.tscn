@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=2]
 [ext_resource path="res://res/spaceBodies/SpaceBody.tscn" type="PackedScene" id=3]
 
-[node name="World" type="Control"]
+[node name="Test World" type="Control"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true

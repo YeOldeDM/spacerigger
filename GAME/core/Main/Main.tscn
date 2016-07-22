@@ -87,8 +87,6 @@ texture = ExtResource( 5 )
 
 transform/pos = Vector2( 340, 520 )
 texture = ExtResource( 6 )
-flip_h = true
-flip_v = true
 
 [node name="UpdateTime" type="Timer" parent="HUD"]
 
