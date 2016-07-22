@@ -10,7 +10,7 @@ var mfd
 func process():
 	if game.get_player():
 		var ship = game.get_player()
-		var lv = ship.get_linear_velocity().length()*0.1
+		var lv = ship.get_linear_velocity()
 		var av = abs(ship.get_angular_velocity())
 		var hd = ship.get_rotd()+180.0
 		
@@ -18,9 +18,11 @@ func process():
 		var simmain = ship.delta_v_main*0.1
 		var sircs = ship.delta_v*0.1
 		
-		set_value('velocity', 'linear', lv)
-		set_value('velocity', 'angular', av)
+		set_value('velocity', 'linear', lv.length()*0.1)
+		set_value('velocity', 'angular', rad2deg(av))
 		set_value('velocity', 'heading', hd)
+		set_value('velocity', 'LVx', abs(lv.x)*0.1)
+		set_value('velocity', 'LVy', abs(lv.y)*0.1)
 		
 		set_value('info', 'mass', mass)
 		set_value('info', 'main_impulse', simmain)

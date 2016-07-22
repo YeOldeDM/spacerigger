@@ -24,6 +24,8 @@ func _ready():
 	var player_ship = Spawn.ship('Tauro')
 	get_world().add_vessel(player_ship, Vector2(0,0), true)
 
+	# Start maximized
+	OS.set_window_maximized(true)
 
 func _draw():
 	draw_string(preload('res://assets/fonts/hack14.fnt'),\

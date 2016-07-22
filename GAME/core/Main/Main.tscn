@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=5]
 [ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=6]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=7]
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=7]
+[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=8]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=9]
 
 [node name="Game" type="Control"]
 
@@ -77,6 +79,7 @@ margin/left = 512.0
 margin/top = 600.0
 margin/right = 472.0
 margin/bottom = 560.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
@@ -87,6 +90,73 @@ texture = ExtResource( 5 )
 
 transform/pos = Vector2( 340, 520 )
 texture = ExtResource( 6 )
+
+[node name="Autopilot" type="PanelContainer" parent="HUD/box"]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 7 )
+margin/left = 132.0
+margin/top = 80.0
+margin/right = -28.0
+margin/bottom = 32.0
+script/script = ExtResource( 8 )
+
+[node name="box" type="VBoxContainer" parent="HUD/box/Autopilot"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 156.0
+margin/bottom = 44.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/Autopilot/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 152.0
+margin/bottom = 12.0
+text = "Autopilot"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HButtonArray" type="HButtonArray" parent="HUD/box/Autopilot/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 152.0
+margin/bottom = 36.0
+button/count = 3
+button/min_button_size = -1.0
+button/align = 0
+button/0/text = "PRO"
+button/0/icon = null
+button/1/text = "RETRO"
+button/1/icon = null
+button/2/text = "Off"
+button/2/icon = null
+button/selected = 2
 
 [node name="UpdateTime" type="Timer" parent="HUD"]
 
@@ -99,7 +169,7 @@ autostart = true
 
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="Context" type="CanvasLayer" parent="."]
 

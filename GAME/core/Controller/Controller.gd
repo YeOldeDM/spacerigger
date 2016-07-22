@@ -75,16 +75,14 @@ func _fixed_process(delta):
 	# Process ship controls
 	if controlled:
 		controlled.process(delta, cmd_state)
-
 	
-	
-	# If the ship has a target..
-	if controlled.target:
-		var laser = controlled.get_node('Hardpoints').get_child(0)
-		laser.look_at(controlled.target.get_global_pos())
-	
-	# If the controlled is docked..
-	if controlled.dock_target and controlled.docked:
-		controlled.sync_rot_with_dock()
+		# If the ship has a target..
+		if controlled.target:
+			var laser = controlled.get_node('Hardpoints').get_child(0)
+			laser.look_at(controlled.target.get_global_pos())
+		
+		# If the controlled is docked..
+		if controlled.dock_target and controlled.docked:
+			controlled.sync_rot_with_dock()
 
 
