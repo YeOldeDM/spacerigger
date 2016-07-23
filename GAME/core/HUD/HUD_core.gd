@@ -9,10 +9,8 @@ extends CanvasLayer
 onready var game = get_node('/root/Game')
 
 # Shortcuts
-onready var velcon = get_node('VelCon')
-onready var target = get_node('Target')
-onready var colwarn = get_node('CollisionWarning')
-onready var syscon = get_node('SysCon')
+onready var top = get_node('box/TopBar')
+onready var clock = top.get_node('Clock')
 
 onready var mfdleft = get_node('box/MFDPanelLeft')
 onready var mfdright = get_node('box/MFDPanelRight')
@@ -29,6 +27,9 @@ func process():
 #	target.process()
 #	colwarn.process()
 #	syscon.process()
+
+	clock.process()
+	
 	if mfdleft.get_screen().has_method('process'):
 		mfdleft.get_screen().call('process')
 	if mfdright.get_screen().has_method('process'):

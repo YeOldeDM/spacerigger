@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
 [ext_resource path="res://core/HUD/HUD_core.gd" type="Script" id=3]
-[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=5]
-[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=6]
-[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=7]
-[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=8]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=9]
+[ext_resource path="res://core/HUD/GameSpeed.gd" type="Script" id=4]
+[ext_resource path="res://core/HUD/HUD_Clock.gd" type="Script" id=5]
+[ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=6]
+[ext_resource path="res://assets/fonts/LCD14.fnt" type="Font" id=7]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=10]
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=11]
+[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=12]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=13]
 
 [node name="Game" type="Control"]
 
@@ -49,14 +53,181 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 4 )]
+[node name="TopBar" type="Control" parent="HUD/box"]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 64.0
+
+[node name="GameSpeed" type="PanelContainer" parent="HUD/box/TopBar"]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 219.0
+margin/top = 10.0
+margin/right = 20.0
+margin/bottom = 60.0
+script/script = ExtResource( 4 )
+
+[node name="box" type="VBoxContainer" parent="HUD/box/TopBar/GameSpeed"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 195.0
+margin/bottom = 46.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/TopBar/GameSpeed/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 191.0
+margin/bottom = 13.0
+text = "Time Control"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpeedSelector" type="HButtonArray" parent="HUD/box/TopBar/GameSpeed/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 17.0
+margin/right = 191.0
+margin/bottom = 38.0
+custom_constants/button_separator = 0
+button/count = 4
+button/min_button_size = -1.0
+button/align = 4
+button/0/text = "x0.1"
+button/0/icon = null
+button/1/text = "x1"
+button/1/icon = null
+button/2/text = "x5"
+button/2/icon = null
+button/3/text = "x10"
+button/3/icon = null
+button/selected = 1
+
+[node name="Clock" type="PanelContainer" parent="HUD/box/TopBar"]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 404.0
+margin/top = 10.0
+margin/right = 234.0
+margin/bottom = 60.0
+script/script = ExtResource( 5 )
+
+[node name="box" type="VBoxContainer" parent="HUD/box/TopBar/Clock"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 2.0
+margin/right = 2.0
+margin/bottom = 2.0
+custom_constants/separation = 2
+alignment = 0
+
+[node name="Date" type="PanelContainer" parent="HUD/box/TopBar/Clock/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 166.0
+margin/bottom = 22.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Date"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 1.0
+margin/top = 1.0
+margin/right = 165.0
+margin/bottom = 21.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
+text = "Date"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Time" type="PanelContainer" parent="HUD/box/TopBar/Clock/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 24.0
+margin/right = 166.0
+margin/bottom = 46.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Time"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 1.0
+margin/top = 1.0
+margin/right = 165.0
+margin/bottom = 21.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
+text = "Time"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 8 )]
 
 margin/left = 20.0
 margin/top = 250.0
 margin/right = 288.0
 margin/bottom = 33.0
 
-[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 4 )]
+[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 8 )]
 
 anchor/left = 1
 anchor/right = 1
@@ -84,12 +255,12 @@ __meta__ = { "_editor_collapsed":true }
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
 transform/pos = Vector2( 340, 520 )
-texture = ExtResource( 5 )
+texture = ExtResource( 9 )
 
 [node name="Dial" type="Sprite" parent="HUD/box/Compass"]
 
 transform/pos = Vector2( 340, 520 )
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 
 [node name="Autopilot" type="PanelContainer" parent="HUD/box"]
 
@@ -101,12 +272,13 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 7 )
+theme/theme = ExtResource( 11 )
 margin/left = 132.0
 margin/top = 80.0
 margin/right = -28.0
 margin/bottom = 32.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 12 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Autopilot"]
 
@@ -169,7 +341,7 @@ autostart = true
 
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 9 )
+texture = ExtResource( 13 )
 
 [node name="Context" type="CanvasLayer" parent="."]
 
@@ -177,6 +349,8 @@ layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+
+[connection signal="button_selected" from="HUD/box/TopBar/GameSpeed/box/SpeedSelector" to="HUD/box/TopBar/GameSpeed" method="_on_SpeedSelector_button_selected"]
 
 [connection signal="timeout" from="HUD/UpdateTime" to="HUD" method="_on_UpdateTime_timeout"]
 

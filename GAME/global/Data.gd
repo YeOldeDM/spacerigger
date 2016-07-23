@@ -1,6 +1,10 @@
 
 extends Node
 
+
+
+
+
 class Pilot:
 	var ID
 	var name
