@@ -2,4 +2,8 @@ bin/
 .fscache
 *~
 
+<<<<<<< HEAD
 GAME/profiles/
+=======
+GAME/profiles/
+>>>>>>> origin/master
