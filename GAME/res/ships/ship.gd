@@ -38,6 +38,9 @@ export var delta_r = 5.0
 
 export var rcs_config_I = true
 
+export var max_fuel = 4000
+var current_fuel = max_fuel
+
 # Autopilot states
 var auto_prograde = false
 var auto_retrograde = false
@@ -217,12 +220,25 @@ func _get_rcs_yaw():
 	return delta_r
 
 
+func has_fuel(amt):
+	if current_fuel >= amt:
+		return true
+	return false
+
+func _eat_fuel(amt):
+	amt *= 0.1
+	var new_fuel = clamp(current_fuel-amt, 0, max_fuel)
+	current_fuel = new_fuel
+	
 
 
 func _thrust(vector):
-	var lv = get_linear_velocity()
-	lv += vector / get_total_mass()
-	set_linear_velocity(lv)
+	var fuel_amt = vector.length()
+	if has_fuel(fuel_amt):
+		var lv = get_linear_velocity()
+		lv += vector / get_total_mass()
+		set_linear_velocity(lv)
+		_eat_fuel(fuel_amt)
 
 func _yaw(force):
 	var av = get_angular_velocity()

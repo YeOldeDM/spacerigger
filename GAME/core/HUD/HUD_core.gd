@@ -12,6 +12,8 @@ onready var game = get_node('/root/Game')
 onready var top = get_node('box/TopBar')
 onready var clock = top.get_node('Clock')
 
+onready var fuel = get_node('box/Fuel')
+
 onready var mfdleft = get_node('box/MFDPanelLeft')
 onready var mfdright = get_node('box/MFDPanelRight')
 
@@ -29,6 +31,7 @@ func process():
 #	syscon.process()
 
 	clock.process()
+	fuel.process()
 	
 	if mfdleft.get_screen().has_method('process'):
 		mfdleft.get_screen().call('process')

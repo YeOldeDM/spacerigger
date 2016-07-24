@@ -11,6 +11,8 @@ class Profile:
 		self.name = name
 		self.creation_time = creation_time
 
+	func get_package():
+		return inst2dict(self)
 
 	
 
@@ -46,14 +48,7 @@ func get_pilot():
 	return current_pilot
 
 
-func new_profile(name):
-	var path = PROFILE_PATH+'/'+name
-	var dir = Directory.new()
-	if dir.open(path) == OK:
-		return false
-	else:
-		dir.make_dir(path)
-		dir.make_dir(path+'/pilots')
+
 
 func new_pilot(profile, name):
 	var path = PROFILE_PATH +'/'+ profile
@@ -80,8 +75,50 @@ func get_profile_names():
 		return names
 	else:
 		return false
-	
 
+
+#
+#	PROFILE MANAGEMENT
+#
+
+func new_profile(name):
+	var path = PROFILE_PATH+'/'+name
+	var dir = Directory.new()
+	if dir.open(path) == OK:
+		return false
+	else:
+		dir.make_dir(path)
+		dir.make_dir(path+'/pilots')
+
+
+
+func save_profile(profile):
+	var name = profile.name
+	var path = PROFILE_PATH+'/'+name+'/'+name+'.profile'
+	var file = File.new()
+	file.open(path, File.WRITE)
+	var data = profile.get_package()
+	file.store_line(data.to_json())
+	print("Saved Profile to "+path)
+	file.close()
+
+
+
+func load_profile(name):
+	var path = PROFILE_PATH+'/'+name+'/'+name+'.profile'
+	var file = File.new()
+	file.open(path, File.READ)
+	var data = {}
+	while !file.eof_reached():
+		data.parse_json(file.get_line())
+	file.close()
+	return dict2inst(data)
+
+
+
+#
+#	PILOT MANAGEMENT
+#
 
 
 func save_pilot(pilot):
@@ -100,6 +137,6 @@ func load_pilot(id):
 	while not file.eof_reached():
 		data.parse_json(file.get_line())
 	file.close()
-	return data
+	return dict2inst(data)
 
 

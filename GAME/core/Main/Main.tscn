@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=10]
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=11]
 [ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=12]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=13]
+[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=13]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=14]
 
 [node name="Game" type="Control"]
 
@@ -328,6 +329,70 @@ button/2/text = "Off"
 button/2/icon = null
 button/selected = 2
 
+[node name="Fuel" type="PanelContainer" parent="HUD/box"]
+
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 11 )
+margin/left = -48.0
+margin/top = 74.0
+margin/right = -198.0
+margin/bottom = 30.0
+script/script = ExtResource( 13 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 146.0
+margin/bottom = 40.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/Fuel/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 142.0
+margin/bottom = 12.0
+text = "Fuel"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Bar" type="ProgressBar" parent="HUD/box/Fuel/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 142.0
+margin/bottom = 32.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = true
+
 [node name="UpdateTime" type="Timer" parent="HUD"]
 
 process_mode = 1
@@ -339,7 +404,7 @@ autostart = true
 
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
 [node name="Context" type="CanvasLayer" parent="."]
 
