@@ -2,7 +2,6 @@
 extends Control
 
 const GAME_NAME = "Space Rigger Alpha"
-
 const EPOCH = 889963900
 
 var Time = 0
@@ -29,6 +28,7 @@ func _ready():
 	
 	var player_ship = Spawn.ship('Tauro')
 	get_world().add_vessel(player_ship, Vector2(0,0), true)
+	player_ship.refuel()
 
 	# Start maximized
 	OS.set_window_maximized(true)

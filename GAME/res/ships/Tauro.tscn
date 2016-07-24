@@ -62,7 +62,9 @@ delta_v_main = 1260.0
 delta_v = 500.0
 delta_r = 5.0
 rcs_config_I = true
-max_fuel = 4000
+has_main_thrust = true
+has_rcs_thrust = true
+max_fuel = 18.5
 
 [node name="Forward" type="Position2D" parent="."]
 

@@ -64,7 +64,7 @@ delta_v_main = 500.0
 delta_v = 8.0
 delta_r = 8.0
 rcs_config_I = true
-max_fuel = 4000
+max_fuel = 16000
 
 [node name="Forward" type="Position2D" parent="."]
 

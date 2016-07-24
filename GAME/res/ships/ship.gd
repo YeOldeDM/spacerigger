@@ -38,8 +38,11 @@ export var delta_r = 5.0
 
 export var rcs_config_I = true
 
-export var max_fuel = 4000
-var current_fuel = max_fuel
+export var has_main_thrust = true
+export var has_rcs_thrust = true
+
+export var max_fuel = 16.0
+var current_fuel = 0
 
 # Autopilot states
 var auto_prograde = false
@@ -72,44 +75,54 @@ func process(delta, cmd_state):
 
 #	PRIMARY THRUST
 func thrust_pro(delta ):
-	if systems['mainThrust']:
-		_thrust(_get_pro_thrust()*delta)
+	if has_main_thrust:
+		if systems['mainThrust']:
+			_thrust(_get_pro_thrust()*delta)
 
 
 func thrust_retro(delta ):
-	if systems['mainThrust']:
-		_thrust(-_get_pro_thrust()*delta)
+	if has_main_thrust:
+		if systems['mainThrust']:
+			_thrust(-_get_pro_thrust()*delta)
 
 
 #	REACTION CONTROL THRUST
 func rcs_pro(delta ):
-	if systems['RCSThrust']:
-		_thrust(_get_rcs_forward()*delta)
+	if has_rcs_thrust:
+		if systems['RCSThrust']:
+			_thrust(_get_rcs_forward()*delta)
 
 
 func rcs_retro(delta ):
-	if systems['RCSThrust']:
-		_thrust(-_get_rcs_forward()*delta)
+	if has_rcs_thrust:
+		if systems['RCSThrust']:
+			_thrust(-_get_rcs_forward()*delta)
 
 
 func rcs_left(delta ):
-	if systems['RCSThrust']:
-		_thrust(_get_rcs_left()*delta)
+	if has_rcs_thrust:
+		if systems['RCSThrust']:
+			_thrust(_get_rcs_left()*delta)
 
 
 func rcs_right(delta ):
-	if systems['RCSThrust']:
-		_thrust(-_get_rcs_left()*delta)
+	if has_rcs_thrust:
+		if systems['RCSThrust']:
+			_thrust(-_get_rcs_left()*delta)
 
 #	YAW THRUST
 func yaw_left(delta ):
-	if systems['RCSThrust']:
-		_yaw(-_get_rcs_yaw()*delta)
+	if has_rcs_thrust:
+		if systems['RCSThrust']:
+			_yaw(-_get_rcs_yaw()*delta)
 
 
 func yaw_right(delta ):
-	if systems['RCSThrust']:
-		_yaw(_get_rcs_yaw()*delta)
+	if has_rcs_thrust:
+		if systems['RCSThrust']:
+			_yaw(_get_rcs_yaw()*delta)
+
+
 
 #	DOCK/UNDOCK
 func dock(delta):
@@ -219,6 +232,8 @@ func _get_rcs_left():
 func _get_rcs_yaw():
 	return delta_r
 
+func refuel():
+	current_fuel = max_fuel
 
 func has_fuel(amt):
 	if current_fuel >= amt:
@@ -233,7 +248,7 @@ func _eat_fuel(amt):
 
 
 func _thrust(vector):
-	var fuel_amt = vector.length()
+	var fuel_amt = vector.length()/1000.0
 	print(fuel_amt)
 	if has_fuel(fuel_amt):
 		var lv = get_linear_velocity()
@@ -243,7 +258,7 @@ func _thrust(vector):
 		get_node('Camera').apply_shake(fuel_amt*0.45)
 
 func _yaw(force):
-	var fuel_amt = rad2deg(abs(force))*1.75
+	var fuel_amt = (rad2deg(abs(force))*1.75)/1000.0
 	print(fuel_amt)
 	if has_fuel(fuel_amt):
 		var av = get_angular_velocity()
