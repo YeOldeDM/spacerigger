@@ -40,12 +40,12 @@ func time(T):
 	var M = str(minutes)
 	var S = str(seconds)
 	var T = [H,M,S]
-	for i in range(T.size()-1):
+	for i in range(T.size()):
 		if T[i].length() == 1:
 			T[i] = "0"+T[i]
 
 	
-	return T[0]+":"+T[1]+":"+T[2]
+	return T[0]+" : "+T[1]+" : "+T[2]
 
 
 
