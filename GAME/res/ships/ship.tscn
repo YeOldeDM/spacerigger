@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://res/ships/ship.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/ships/tauro.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/smallgun.png" type="Texture" id=3]
+[ext_resource path="res://res/ships/ship_camera.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/ships/tauro.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/smallgun.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -63,6 +64,7 @@ delta_v_main = 500.0
 delta_v = 8.0
 delta_r = 8.0
 rcs_config_I = true
+max_fuel = 4000
 
 [node name="Forward" type="Position2D" parent="."]
 
@@ -87,12 +89,15 @@ drag_margin/left = 0.0
 drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
+script/script = ExtResource( 2 )
+shake_magnitude = 0.5
+shake_falloff = 0.8
 
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -2.78158e-06, 6 )
 transform/rot = 180.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
@@ -513,7 +518,7 @@ __meta__ = { "_editor_collapsed":true }
 [node name="Sprite" type="Sprite" parent="Hardpoints"]
 
 transform/pos = Vector2( -11, 17 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, 2 )
 flip_v = true
 

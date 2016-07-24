@@ -1,23 +1,24 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://res/ships/ship.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/ships/tauro.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/particles/engineflare.png" type="Texture" id=3]
-[ext_resource path="res://ref/ColorRamps/ramp_redfire.res" type="ColorRamp" id=4]
-[ext_resource path="res://ref/ColorRamps/ramp_bluefire.res" type="ColorRamp" id=5]
-[ext_resource path="res://assets/graphics/ships/radiodish.png" type="Texture" id=6]
+[ext_resource path="res://res/ships/ship_camera.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/ships/tauro.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/particles/engineflare.png" type="Texture" id=4]
+[ext_resource path="res://ref/ColorRamps/ramp_redfire.res" type="ColorRamp" id=5]
+[ext_resource path="res://ref/ColorRamps/ramp_bluefire.res" type="ColorRamp" id=6]
+[ext_resource path="res://assets/graphics/ships/radiodish.png" type="Texture" id=7]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -15, 6, -25, -17, -17, -25, -10, -25, 0, -22, 15, 6, 15, 26 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 10, -25, 17, -25, 25, -17, 15, 6, 0, -22 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -15, 26, -15, 6, 15, 26, 5, 36, -5, 36 )
@@ -30,13 +31,13 @@ extents = Vector2( 3, 1 )
 [node name="Ship" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 6 )
+shapes/1/shape = SubResource( 2 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 7 )
+shapes/2/shape = SubResource( 3 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
 collision/layers = 1
@@ -61,6 +62,7 @@ delta_v_main = 1260.0
 delta_v = 500.0
 delta_r = 5.0
 rcs_config_I = true
+max_fuel = 4000
 
 [node name="Forward" type="Position2D" parent="."]
 
@@ -85,12 +87,15 @@ drag_margin/left = 0.0
 drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
+script/script = ExtResource( 2 )
+shake_magnitude = 0.2
+shake_falloff = 0.8
 
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -2.78158e-06, 6 )
 transform/rot = 180.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
@@ -155,7 +160,7 @@ transform/rot = 180.0
 config/amount = 16
 config/lifetime = 1.0
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -175,7 +180,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 4 )
+color/color_ramp = ExtResource( 5 )
 
 [node name="ProThrustL" type="Particles2D" parent="thrust_emitters"]
 
@@ -186,7 +191,7 @@ transform/rot = 180.0
 config/amount = 16
 config/lifetime = 1.0
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -206,7 +211,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 4 )
+color/color_ramp = ExtResource( 5 )
 
 [node name="RetroThrustR" type="Particles2D" parent="thrust_emitters"]
 
@@ -216,7 +221,7 @@ transform/pos = Vector2( -22, -7 )
 config/amount = 16
 config/lifetime = 1.0
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -236,7 +241,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 4 )
+color/color_ramp = ExtResource( 5 )
 
 [node name="RetroThrustL" type="Particles2D" parent="thrust_emitters"]
 
@@ -246,7 +251,7 @@ transform/pos = Vector2( 22, -7 )
 config/amount = 16
 config/lifetime = 1.0
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -266,7 +271,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 4 )
+color/color_ramp = ExtResource( 5 )
 
 [node name="RCSProR" type="Particles2D" parent="thrust_emitters"]
 
@@ -277,7 +282,7 @@ transform/rot = 180.0
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -297,7 +302,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSProL" type="Particles2D" parent="thrust_emitters"]
 
@@ -308,7 +313,7 @@ transform/rot = 180.0
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -328,7 +333,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSRetroR" type="Particles2D" parent="thrust_emitters"]
 
@@ -338,7 +343,7 @@ transform/pos = Vector2( -8, 30 )
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -358,7 +363,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSRetroL" type="Particles2D" parent="thrust_emitters"]
 
@@ -368,7 +373,7 @@ transform/pos = Vector2( 8, 30 )
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -388,7 +393,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSRightF" type="Particles2D" parent="thrust_emitters"]
 
@@ -399,7 +404,7 @@ transform/rot = 270.0
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -419,7 +424,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSRightA" type="Particles2D" parent="thrust_emitters"]
 
@@ -430,7 +435,7 @@ transform/rot = 270.0
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -450,7 +455,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSLeftF" type="Particles2D" parent="thrust_emitters"]
 
@@ -461,7 +466,7 @@ transform/rot = 90.0
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -481,7 +486,7 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="RCSLeftA" type="Particles2D" parent="thrust_emitters"]
 
@@ -492,7 +497,7 @@ transform/rot = 90.0
 config/amount = 24
 config/lifetime = 0.5
 config/time_scale = 3.0
-config/texture = ExtResource( 3 )
+config/texture = ExtResource( 4 )
 params/direction = 0.0
 params/spread = 0.0
 params/linear_velocity = 20.0
@@ -512,14 +517,14 @@ params/anim_initial_pos = 0.0
 randomness/spin_velocity = 1.0
 randomness/initial_angle = 1.0
 randomness/initial_size = 0.5
-color/color_ramp = ExtResource( 5 )
+color/color_ramp = ExtResource( 6 )
 
 [node name="Hardpoints" type="Node2D" parent="."]
 
 [node name="RadioDish" type="Sprite" parent="Hardpoints"]
 
 transform/pos = Vector2( -11, -19 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( 0, 6 )
 flip_v = true
 modulate = Color( 0.992188, 1, 0, 1 )

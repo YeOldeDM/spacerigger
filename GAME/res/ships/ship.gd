@@ -234,16 +234,23 @@ func _eat_fuel(amt):
 
 func _thrust(vector):
 	var fuel_amt = vector.length()
+	print(fuel_amt)
 	if has_fuel(fuel_amt):
 		var lv = get_linear_velocity()
 		lv += vector / get_total_mass()
 		set_linear_velocity(lv)
 		_eat_fuel(fuel_amt)
+		get_node('Camera').apply_shake(fuel_amt*0.45)
 
 func _yaw(force):
-	var av = get_angular_velocity()
-	av += force / get_total_mass()
-	set_angular_velocity(av)
+	var fuel_amt = rad2deg(abs(force))*1.75
+	print(fuel_amt)
+	if has_fuel(fuel_amt):
+		var av = get_angular_velocity()
+		av += force / get_total_mass()
+		set_angular_velocity(av)
+		_eat_fuel(fuel_amt)
+		get_node('Camera').apply_shake(fuel_amt*0.45)
 
 
 
