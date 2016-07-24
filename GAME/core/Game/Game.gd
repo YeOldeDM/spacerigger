@@ -3,7 +3,7 @@ extends Control
 
 const GAME_NAME = "Space Rigger Alpha"
 
-const EPOCH = 883613904
+const EPOCH = 889963904
 
 var Time = 0
 

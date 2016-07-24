@@ -1,15 +1,38 @@
 
 extends Node
 
-# convert timestamp to human-readable hh:mm:ss
+const MONTHS = {
+	-1:	["", 0],
+	0:	["JAN",	31],
+	1:	["FEB",	59],
+	2:	["MAR",	90],
+	3:	["APR",	120],
+	4:	["MAY",	151],
+	5:	["JUN",	181],
+	6:	["JUL",	212],
+	7:	["AUG",	243],
+	8:	["SEP",	273],
+	9:	["OCT",	304],
+	10:	["NOV",	334],
+	11:	["DEC",	365]
+	}
+
+
 func date(T):
 	var year = (T / 31556926) + 1970
-	var month = ((T / 2629743) % 12) + 1
-	var day = ((T / 86400) % 365) % 30
-	return str(month)+"/"+str(day)+"/"+str(year)
+	var days = ((T / 86400) % 364) + 1	#days into the year
+	var month = 0
+	while MONTHS[month][1] < days:
+		month += 1
+	var day = days - MONTHS[month-1][1]
+	return MONTHS[month][0] +" "+ str(day) +", "+ str(year)
+	
+	
+	#return MONTHS[month][0]+" "+str(day)+", "+str(year)
+
 	
 func time(T):
-	var hours = (T / (60*60)) % 24
+	var hours = (T / (3600)) % 24
 	var minutes = (T / 60) % 60
 	var seconds = T % 60
 	
