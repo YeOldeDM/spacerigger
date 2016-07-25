@@ -33,6 +33,8 @@ func _on_Cancel_pressed():
 func _on_OK_pressed():
 	var name = nameline.get_text().strip_edges()
 	var new_pro = Data.new_profile(name)
-	if new_pro != false:
-		get_parent().update_profiles()
-		hide()
+	if new_pro == FAILED:
+		OS.alert("This profile name already exists!")
+		return
+	get_parent().update_profiles()
+	hide()

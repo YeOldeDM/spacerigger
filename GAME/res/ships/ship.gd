@@ -31,6 +31,7 @@ var docked = false
 # Dock zones touching state
 var in_dock_zone = false
 
+export var shipID = "A1A-2"
 # Velocity force vars
 export var delta_v_main = 1260.0
 export var delta_v = 500.0
@@ -40,6 +41,7 @@ export var rcs_config_I = true
 
 export var has_main_thrust = true
 export var has_rcs_thrust = true
+export var has_warp_drive = true
 
 export var max_fuel = 16.0
 var current_fuel = 0
@@ -145,7 +147,7 @@ func undock(delta):
 
 func _ready():
 	dock.set_meta('dock',true)
-	target = world.get_node('Stations').get_child(0)
+	target = world.get_node('WarpNodes').get_child(0)
 
 
 
@@ -249,7 +251,6 @@ func _eat_fuel(amt):
 
 func _thrust(vector):
 	var fuel_amt = vector.length()/1000.0
-	print(fuel_amt)
 	if has_fuel(fuel_amt):
 		var lv = get_linear_velocity()
 		lv += vector / get_total_mass()
@@ -327,8 +328,7 @@ func sync_rot_with_dock():
 
 # Called when we bash into something
 func _on_Ship_body_enter( body ):
-	var impact = (get_linear_velocity() - body.get_linear_velocity()).length()
-
+	pass
 
 
 

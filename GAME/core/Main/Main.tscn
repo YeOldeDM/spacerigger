@@ -7,10 +7,10 @@
 [ext_resource path="res://core/HUD/HUD_Clock.gd" type="Script" id=5]
 [ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=6]
 [ext_resource path="res://assets/fonts/LCD14.fnt" type="Font" id=7]
-[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=9]
-[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=10]
-[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=11]
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=8]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=10]
+[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=11]
 [ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=12]
 [ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=13]
 [ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=14]
@@ -53,6 +53,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="TopBar" type="Control" parent="HUD/box"]
 
@@ -221,14 +222,87 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 8 )]
+[node name="CameraZoom" type="PanelContainer" parent="HUD/box/TopBar"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 8 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 120.0
+margin/bottom = 66.0
+
+[node name="box" type="VBoxContainer" parent="HUD/box/TopBar/CameraZoom"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 116.0
+margin/bottom = 62.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/TopBar/CameraZoom/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 112.0
+margin/bottom = 12.0
+text = "Camera Zoom"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Slider" type="HSlider" parent="HUD/box/TopBar/CameraZoom/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 112.0
+margin/bottom = 32.0
+range/min = 0.25
+range/max = 4.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+
+[node name="1x" type="Button" parent="HUD/box/TopBar/CameraZoom/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 112.0
+margin/bottom = 54.0
+toggle_mode = false
+text = "1x"
+flat = false
+
+[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 9 )]
 
 margin/left = 20.0
 margin/top = 250.0
 margin/right = 288.0
 margin/bottom = 33.0
 
-[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 8 )]
+[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 9 )]
 
 anchor/left = 1
 anchor/right = 1
@@ -255,11 +329,11 @@ __meta__ = { "_editor_collapsed":true }
 
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="Dial" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Autopilot" type="PanelContainer" parent="HUD/box"]
 
@@ -271,7 +345,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 11 )
+theme/theme = ExtResource( 8 )
 margin/left = 132.0
 margin/top = 80.0
 margin/right = -28.0
@@ -339,7 +413,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 11 )
+theme/theme = ExtResource( 8 )
 margin/left = -48.0
 margin/top = 74.0
 margin/right = -198.0
@@ -428,6 +502,8 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 
 [connection signal="button_selected" from="HUD/box/TopBar/GameSpeed/box/SpeedSelector" to="HUD/box/TopBar/GameSpeed" method="_on_SpeedSelector_button_selected"]
+
+[connection signal="value_changed" from="HUD/box/TopBar/CameraZoom/box/Slider" to="HUD" method="set_camera_zoom"]
 
 [connection signal="timeout" from="HUD/UpdateTime" to="HUD" method="_on_UpdateTime_timeout"]
 

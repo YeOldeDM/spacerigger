@@ -3,8 +3,8 @@ extends Camera2D
 
 var shake_amp = 0
 
-export var shake_magnitude = 0.4
-export var shake_falloff = 0.92
+export var shake_magnitude = 200.0
+export var shake_falloff = 0.91
 
 func _process(delta):
 	shake_amp = max(shake_amp*(shake_falloff),0)

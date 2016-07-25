@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
+[ext_resource path="res://core/Menu/ProfilePanel.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/icons/icon_pilot1.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/hack14.fnt" type="Font" id=4]
+
+[node name="ProfilePanel" type="PanelContainer"]
+
+rect/min_size = Vector2( 250, 50 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 60.0
+script/script = ExtResource( 2 )
+
+[node name="box" type="HBoxContainer" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 246.0
+margin/bottom = 56.0
+alignment = 0
+
+[node name="icon" type="TextureFrame" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 48.0
+margin/bottom = 48.0
+texture = ExtResource( 3 )
+
+[node name="info" type="VBoxContainer" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 52.0
+margin/top = 0.0
+margin/right = 242.0
+margin/bottom = 48.0
+alignment = 0
+
+[node name="Name" type="Label" parent="box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 190.0
+margin/bottom = 16.0
+custom_fonts/font = ExtResource( 4 )
+text = "Name"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Playtime" type="Label" parent="box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 190.0
+margin/bottom = 32.0
+text = "Name"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Pilots" type="Label" parent="box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 36.0
+margin/right = 190.0
+margin/bottom = 48.0
+text = "0 Pilots"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Selector" type="Button" parent="."]
+
+visibility/blend_mode = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 246.0
+margin/bottom = 56.0
+toggle_mode = false
+flat = false
+
+[connection signal="pressed" from="Selector" to="." method="_on_Selector_pressed"]
+
+

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=2]
 [ext_resource path="res://res/spaceBodies/SpaceBody.tscn" type="PackedScene" id=3]
+[ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Control"]
 
@@ -41,5 +42,12 @@ can_sleep = false
 velocity/angular = 0.1
 damp_override/linear = 0.0
 damp_override/angular = 0.0
+
+[node name="WarpNodes" type="Node2D" parent="."]
+
+[node name="WarpNode" parent="WarpNodes" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 5975.62, 6095.42 )
+transform/rot = -128.332
 
 

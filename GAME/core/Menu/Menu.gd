@@ -1,21 +1,38 @@
 
 extends Control
 
-# member variables here, example:
-# var a=2
+onready var list = get_node('Profiles/List/scroll/box')
 
-# var b="textvar"
+var profilepanel = preload('res://core/Menu/ProfilePanel.tscn')
+
+var current_profile = null
 
 func update_profiles():
 	var profiles = Data.get_profile_names()
 	if not profiles.empty():
+		for i in list.get_children():
+			i.queue_free()
 		for pro in profiles:
 			print(pro)
+			add_item(pro)
+
+
+
+func add_item(profile):
+	var data = Data.load_profile(profile)
+	if data:
+		var panel = profilepanel.instance()
+		panel.set_meta('name', profile)
+		panel.set_meta('playtime', data.get_value('DATA','play time'))
+		list.add_child(panel)
+		panel.set_data()
+	else:
+		OS.alert("Error while loading profile: "+profile)
+
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	update_profiles()
+
 
 
 

@@ -14,7 +14,8 @@ func get_vessels():
 func get_stations():
 	return get_node('Stations').get_children()
 
-
+func get_warpnodes():
+	return get_node('WarpNodes').get_children()
 
 
 func add_vessel(vessel, position, is_player=false):

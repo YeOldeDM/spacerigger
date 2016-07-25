@@ -12,6 +12,8 @@ onready var world = get_node('World')
 onready var hud = get_node('HUD')
 
 
+#	PUBLIC METHODS
+
 func get_player():
 	if control.controlled:
 		return control.controlled
@@ -19,6 +21,29 @@ func get_player():
 func get_world():
 	if !world.get_children().empty():
 		return world.get_child(0)
+	else:
+		return null
+
+func change_world(world_name, target_node, offset=Vector2(1000,1000)):
+	var new_world = load('res://res/worlds/'+world_name+'.tscn')
+	if new_world:
+		var old_world = get_world()
+		if old_world:
+			old_world.queue_free()
+		new_world = new_world.instance()
+		world.add_child(new_world)
+		var node = new_world.get_warpnodes().find_node(target_node)
+		var player_ship = Spawn.ship(InitShip)
+		new_world.add_vessel(player_ship, node.get_pos()+offset)
+	else:
+		OS.alert("No such world as "+world_name)
+
+
+
+
+#	PRIVATE METHODS
+
+var InitShip = 'Tauro'
 
 func _ready():
 	var init_world = Spawn.world('test_world')
@@ -26,7 +51,7 @@ func _ready():
 	
 	Time = EPOCH
 	
-	var player_ship = Spawn.ship('Tauro')
+	var player_ship = Spawn.ship(InitShip)
 	get_world().add_vessel(player_ship, Vector2(0,0), true)
 	player_ship.refuel()
 
@@ -36,6 +61,7 @@ func _ready():
 
 func _process(delta):
 	Time += delta	# tick forward Time
+
 
 #func _draw():
 #	draw_string(preload('res://assets/fonts/hack14.fnt'),\

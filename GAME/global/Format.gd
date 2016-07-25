@@ -32,7 +32,8 @@ func date(T):
 
 	
 func time(T):
-	var hours = (T / (3600)) % 24
+	T = int(T)
+	var hours = (T / 3600) % 24
 	var minutes = (T / 60) % 60
 	var seconds = T % 60
 	
