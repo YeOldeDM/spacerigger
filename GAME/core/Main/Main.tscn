@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=11]
 [ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=12]
 [ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=13]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=14]
+[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=14]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=15]
 
 [node name="Game" type="Control"]
 
@@ -53,7 +54,6 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="TopBar" type="Control" parent="HUD/box"]
 
@@ -80,7 +80,6 @@ margin/top = 10.0
 margin/right = 20.0
 margin/bottom = 60.0
 script/script = ExtResource( 4 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/GameSpeed"]
 
@@ -130,7 +129,7 @@ button/1/text = "x1"
 button/1/icon = null
 button/2/text = "x5"
 button/2/icon = null
-button/3/text = "x100"
+button/3/text = "x10"
 button/3/icon = null
 button/selected = 1
 
@@ -233,6 +232,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 120.0
 margin/bottom = 66.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/CameraZoom"]
 
@@ -419,6 +419,7 @@ margin/top = 74.0
 margin/right = -198.0
 margin/bottom = 30.0
 script/script = ExtResource( 13 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
 
@@ -481,6 +482,186 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="WarpControl" type="PanelContainer" parent="HUD/box"]
+
+anchor/top = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 8 )
+margin/left = 20.0
+margin/top = 360.0
+margin/right = 280.0
+margin/bottom = 268.0
+script/script = ExtResource( 14 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 8.0
+margin/right = 256.0
+margin/bottom = 88.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/WarpControl/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 252.0
+margin/bottom = 12.0
+text = "Warp Drive"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HSeparator" type="HSeparator" parent="HUD/box/WarpControl/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 252.0
+margin/bottom = 19.0
+
+[node name="info" type="HBoxContainer" parent="HUD/box/WarpControl/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 252.0
+margin/bottom = 51.0
+custom_constants/separation = 12
+alignment = 0
+
+[node name="titles" type="VBoxContainer" parent="HUD/box/WarpControl/box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 66.0
+margin/bottom = 28.0
+alignment = 0
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Zone" type="Label" parent="HUD/box/WarpControl/box/info/titles"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 66.0
+margin/bottom = 12.0
+text = "Warp Zone"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Dest" type="Label" parent="HUD/box/WarpControl/box/info/titles"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 66.0
+margin/bottom = 28.0
+text = "Destination"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="values" type="VBoxContainer" parent="HUD/box/WarpControl/box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 78.0
+margin/top = 0.0
+margin/right = 144.0
+margin/bottom = 28.0
+alignment = 0
+
+[node name="Zone" type="Label" parent="HUD/box/WarpControl/box/info/values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 66.0
+margin/bottom = 12.0
+text = "Warp Zone"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Dest" type="Label" parent="HUD/box/WarpControl/box/info/values"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 16.0
+margin/right = 66.0
+margin/bottom = 28.0
+text = "Destination"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HSeparator1" type="HSeparator" parent="HUD/box/WarpControl/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 55.0
+margin/right = 252.0
+margin/bottom = 58.0
+
+[node name="Warp" type="Button" parent="HUD/box/WarpControl/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 62.0
+margin/right = 252.0
+margin/bottom = 80.0
+toggle_mode = false
+text = "Engage"
+flat = false
+
 [node name="UpdateTime" type="Timer" parent="HUD"]
 
 process_mode = 1
@@ -492,7 +673,7 @@ autostart = true
 
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 
 [node name="Context" type="CanvasLayer" parent="."]
 

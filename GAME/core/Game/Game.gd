@@ -43,7 +43,7 @@ func change_world(world_name, target_node, offset=Vector2(1000,1000)):
 
 #	PRIVATE METHODS
 
-var InitShip = 'Tauro'
+var InitShip = 'EVAsuit'
 
 func _ready():
 	var init_world = Spawn.world('test_world')

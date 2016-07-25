@@ -14,6 +14,8 @@ onready var clock = top.get_node('Clock')
 
 onready var fuel = get_node('box/Fuel')
 
+onready var warp = get_node('box/WarpControl')
+
 onready var mfdleft = get_node('box/MFDPanelLeft')
 onready var mfdright = get_node('box/MFDPanelRight')
 
@@ -28,6 +30,7 @@ func process():
 
 	clock.process()
 	fuel.process()
+	warp.process()
 	
 	if mfdleft.get_screen().has_method('process'):
 		mfdleft.get_screen().call('process')

@@ -50,9 +50,11 @@ damp_override/angular = 0.0
 
 [node name="WarpNodes" type="Node2D" parent="."]
 
-[node name="WarpNode" parent="WarpNodes" instance=ExtResource( 4 )]
+[node name="Node Papa" parent="WarpNodes" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 932.908, 2519.38 )
 transform/rot = 48.9584
+destination = "bacon_world"
+target_node = "Node Wolf"
 
 

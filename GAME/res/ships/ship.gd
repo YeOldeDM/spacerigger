@@ -24,6 +24,9 @@ var controller
 # Current Target
 var target = null
 
+# Current WarpNode zone
+var in_warp_zone = null
+
 # Current Docking Target
 var dock_target = null
 # Docked state
@@ -281,6 +284,11 @@ func get_total_mass():
 	return total
 
 
+func set_warp_zone(target_node):
+	in_warp_zone = target_node
+
+func clear_warp_zone():
+	in_warp_zone = null
 
 
 func dock_with_target(port=0):

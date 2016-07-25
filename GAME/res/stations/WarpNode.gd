@@ -13,6 +13,9 @@ func _ready():
 
 
 func _on_Influence_body_enter( body ):
-	if 'has_warp_drive' in body:
-		if body.has_warp_drive == true:
-			print(body.get_name()+ " "+ body.shipID+ " has entered my warp zone!")
+	if body.has_method('set_warp_zone'):
+		body.set_warp_zone(self)
+
+func _on_Influence_body_exit( body ):
+	if body.has_method('clear_warp_zone'):
+		body.clear_warp_zone()
