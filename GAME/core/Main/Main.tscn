@@ -18,14 +18,16 @@
 
 [node name="Game" type="Control"]
 
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+margin/right = 984.0
+margin/bottom = 560.0
 script/script = ExtResource( 1 )
 
 [node name="Controller" type="Node" parent="."]
@@ -66,6 +68,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 64.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="GameSpeed" type="PanelContainer" parent="HUD/box/TopBar"]
 
@@ -496,7 +499,6 @@ margin/top = 360.0
 margin/right = 280.0
 margin/bottom = 268.0
 script/script = ExtResource( 14 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
 
@@ -685,6 +687,8 @@ scale = Vector2( 1, 1 )
 [connection signal="button_selected" from="HUD/box/TopBar/GameSpeed/box/SpeedSelector" to="HUD/box/TopBar/GameSpeed" method="_on_SpeedSelector_button_selected"]
 
 [connection signal="value_changed" from="HUD/box/TopBar/CameraZoom/box/Slider" to="HUD" method="set_camera_zoom"]
+
+[connection signal="pressed" from="HUD/box/WarpControl/box/Warp" to="." method="_on_Warp_pressed"]
 
 [connection signal="timeout" from="HUD/UpdateTime" to="HUD" method="_on_UpdateTime_timeout"]
 

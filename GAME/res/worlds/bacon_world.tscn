@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=2]
-[ext_resource path="res://res/spaceBodies/SpaceBody.tscn" type="PackedScene" id=3]
-[ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=3]
 
-[node name="Test World" type="Control"]
+[node name="Bacon World" type="Control"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -20,6 +19,7 @@ script/script = ExtResource( 1 )
 [node name="Background" type="Node2D" parent="."]
 
 z/z = -1
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Starplane" type="Polygon2D" parent="Background"]
 
@@ -39,22 +39,13 @@ invert/border = 100.0
 
 [node name="Stations" type="Node2D" parent="."]
 
-[node name="Godot Station" parent="Stations" instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 470.387, 994.818 )
-transform/rot = -151.318
-can_sleep = false
-velocity/angular = 0.1
-damp_override/linear = 0.0
-damp_override/angular = 0.0
-
 [node name="WarpNodes" type="Node2D" parent="."]
 
-[node name="Papa" parent="WarpNodes" instance=ExtResource( 4 )]
+[node name="Wolf" parent="WarpNodes" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 946.68, -850.914 )
-transform/rot = -107.973
-destination = "bacon_world"
-target_node = "Wolf"
+transform/pos = Vector2( -8130.39, -6516.98 )
+transform/rot = 48.4555
+destination = "test_world"
+target_node = "Papa"
 
 

@@ -33,6 +33,8 @@ func process():
 
 		var d = pos.length()
 		set_distance(d)
+	if location.get_text() != game.get_world().get_name():
+		set_location(game.get_world().get_name())
 
 
 func set_location(name):

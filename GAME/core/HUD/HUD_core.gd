@@ -77,11 +77,11 @@ func _ready():
 
 # Actual process. Used for things that update in realtime.
 func _process(delta):
-	var origin = get_player_ship_pos()
-	var vector = get_player_ship_pro_vector()
-	pro_mark.set_pos(origin+vector)
 	
 	if game.get_player():
+		var origin = get_player_ship_pos()
+		var vector = get_player_ship_pro_vector()
+		pro_mark.set_pos(origin+vector)
 		var ship = game.get_player()
 		var rot = ship.get_rot()
 		get_node('box/Compass/Dial').set_rot(-rot)

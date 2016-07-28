@@ -263,7 +263,6 @@ func _thrust(vector):
 
 func _yaw(force):
 	var fuel_amt = (rad2deg(abs(force))*1.75)/1000.0
-	print(fuel_amt)
 	if has_fuel(fuel_amt):
 		var av = get_angular_velocity()
 		av += force / get_total_mass()
