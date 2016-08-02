@@ -11,6 +11,7 @@ onready var game = get_node('/root/Game')
 # Shortcuts
 onready var top = get_node('box/TopBar')
 onready var clock = top.get_node('Clock')
+onready var camzoom = top.get_node('CameraZoom')
 
 onready var fuel = get_node('box/Fuel')
 
@@ -36,6 +37,11 @@ func process():
 		mfdleft.get_screen().call('process')
 	if mfdright.get_screen().has_method('process'):
 		mfdright.get_screen().call('process')
+# Clock for HUD node updates
+func _on_UpdateTime_timeout():
+	# Call dumb process
+	process()
+
 
 
 # Get player ship position on canvas
@@ -75,12 +81,18 @@ func _ready():
 	
 	set_process(true)
 
+	get_node('SamplePlayer').play('radiator')
+	
+
+
+
+
 # Actual process. Used for things that update in realtime.
 func _process(delta):
 	
 	if game.get_player():
 		var origin = get_player_ship_pos()
-		var vector = get_player_ship_pro_vector()
+		var vector = get_player_ship_pro_vector()*2.0
 		pro_mark.set_pos(origin+vector)
 		var ship = game.get_player()
 		var rot = ship.get_rot()
@@ -89,7 +101,3 @@ func _process(delta):
 
 
 
-# Clock for HUD node updates
-func _on_UpdateTime_timeout():
-	# Call dumb process
-	process()

@@ -26,7 +26,9 @@ class Profile:
 		self.creation_time = creation_time
 
 	func get_package():
-		return inst2dict(self)
+		var file = ConfigFile.new()
+		
+		return file
 
 	
 
@@ -107,12 +109,10 @@ func new_profile(name):
 func save_profile(profile):
 	var name = profile.name
 	var path = PROFILE_PATH+'/'+name+'/'+name+'.profile'
-	var file = File.new()
-	file.open(path, File.WRITE)
 	var data = profile.get_package()
-	file.store_line(data.to_json())
+	data.save(path)
 	print("Saved Profile to "+path)
-	file.close()
+
 
 
 
@@ -122,16 +122,7 @@ func load_profile(name):
 	if !file.load(path) == OK:
 		return null
 	return file
-#	if !file.file_exists(path):
-#		print("No such profile")
-#		return null
-#	file.open(path, File.READ)
-#	var data = {}
-#	while !file.eof_reached():
-#		data.parse_json(file.get_line())
-#	file.close()
-#	return data
-	
+
 
 #
 #	PILOT MANAGEMENT

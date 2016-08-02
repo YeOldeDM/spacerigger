@@ -10,12 +10,15 @@ var Time = 0
 onready var control = get_node('Controller')
 onready var world = get_node('World')
 onready var hud = get_node('HUD')
+onready var context = get_node('Context')
+
+var temp_ship
 
 var temp_node
 var temp_offset
+var temp_angle_diff
 var temp_linvel
 var temp_angvel
-var temp_fuel
 var pending_player = false
 
 #	PUBLIC METHODS
@@ -49,7 +52,11 @@ func warp_player(destination):
 	var player_ship = Spawn.ship(InitShip)
 	var pos = node.get_global_pos()
 	destination.add_vessel(player_ship, pos+temp_offset, true)
-	player_ship.current_fuel = temp_fuel
+	var z = hud.camzoom.get_node('box/Slider').get_value()
+	player_ship.set_camera_zoom(z)
+	
+	player_ship.current_fuel = temp_ship['current_fuel']
+	player_ship.set_rot(temp_angle_diff - node.get_rot())
 	player_ship.set_linear_velocity(temp_linvel)
 	player_ship.set_angular_velocity(temp_angvel)
 	pending_player = false
@@ -57,7 +64,8 @@ func warp_player(destination):
 	temp_offset = null
 	temp_linvel = null
 	temp_angvel = null
-	temp_fuel = null
+	temp_angle_diff = null
+	temp_ship = null
 	print(player_ship.has_main_thrust)
 # /Defunct
 
@@ -130,11 +138,16 @@ func _on_Warp_pressed():
 		if dest != "None" and target != "None":
 			temp_node = target
 			temp_offset = offset
+			temp_angle_diff =  ship.get_rot() - warpnode.get_rot()
 			temp_linvel = ship.get_linear_velocity()
 			temp_angvel = ship.get_angular_velocity()
-			temp_fuel = ship.current_fuel
+			temp_ship = inst2dict(ship)
 			pending_player = true
 			change_world(dest)
 			#OS.alert("Your Warp Drive controls are blocked by a mysterious force..",\
 					#"Fire the Programmer!")
 			pass
+
+
+func _on_Pedia_pressed():
+	context.get_node('PediaWindow').popup_centered()

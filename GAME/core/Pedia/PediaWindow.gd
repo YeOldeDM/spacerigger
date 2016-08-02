@@ -1,7 +1,7 @@
 
 extends WindowDialog
 
-onready var entrybox = get_node('box/entry')
+onready var entrybox = get_node('box/panel/entry')
 
 var current_entry
 
