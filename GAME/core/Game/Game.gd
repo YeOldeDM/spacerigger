@@ -5,6 +5,8 @@ const GAME_NAME = "Space Rigger Alpha"
 const EPOCH = 889963900
 
 var Time = 0
+var stopwatch_time = 0
+var stopwatch_running = false
 
 #onready var space = get_node('Space')
 onready var control = get_node('Controller')
@@ -85,7 +87,7 @@ func _ready():
 	Time = EPOCH
 	
 	var player_ship = Spawn.ship(InitShip)
-	get_world().add_vessel(player_ship, Vector2(0,0), true)
+	get_world().add_vessel(player_ship, Vector2(4000,-4000), true)
 	player_ship.refuel()
 
 	# Start maximized
@@ -94,6 +96,9 @@ func _ready():
 
 func _process(delta):
 	Time += delta	# tick forward Time
+	
+	if stopwatch_running:
+		stopwatch_time += delta
 
 
 func _kill_ui_binds():

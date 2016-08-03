@@ -47,12 +47,12 @@ func save_pedia(path=PEDIA_PATH):
 
 
 func ref(entry):
-	#if ref.has_section(entry):
-	prints("keys",ref.get_section_keys(entry))
-	var text = ref.get_value(entry, 'text')
-	return text
-#	else:
-#		print("!! No such entry in Pedia: "+entry+" !!")
-#		return null
+	if ref.has_section(entry):
+		prints("keys",ref.get_section_keys(entry))
+		var text = ref.get_value(entry, 'text')
+		return text
+	else:
+		print("!! No such entry in Pedia: "+entry+" !!")
+		return null
 
 

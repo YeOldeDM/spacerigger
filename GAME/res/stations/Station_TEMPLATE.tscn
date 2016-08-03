@@ -37,8 +37,10 @@ velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = 10.0
 script/script = ExtResource( 1 )
-Name = "Godot Station"
-ID = "GS-A1"
+name = "Godot Station"
+station_class = "Civilian"
+station_type = "Habitat"
+designation = "ST-GOD-A01"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -47,28 +49,29 @@ texture = ExtResource( 2 )
 
 [node name="Dock" type="Area2D" parent="."]
 
-transform/pos = Vector2( -64, 164 )
+transform/pos = Vector2( -60, 130 )
 transform/rot = 180.0
+transform/scale = Vector2( 0.625, 0.625 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 34 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.86102e-06, 1.99999 )
 shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-__meta__ = { "_editor_collapsed":true }
+space_override = 1
+gravity_vec = Vector2( 0, 0 )
+gravity = 50.0
+linear_damp = 0.0
+angular_damp = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dock"]
 
-transform/pos = Vector2( 0, 34 )
+transform/pos = Vector2( 2.86102e-06, 1.99999 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Polygon2D" type="Polygon2D" parent="Dock"]
 
-polygon = Vector2Array( -5, 32, 5, 32, 5, 36, -5, 36 )
+polygon = Vector2Array( -4.79999, 0, 4.80001, 0, 4.80001, 3.2, -4.79999, 3.2 )
 uv = Vector2Array(  )
 color = Color( 1, 1, 1, 1 )
 offset = Vector2( 0, 0 )

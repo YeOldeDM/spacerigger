@@ -49,6 +49,8 @@ export var has_warp_drive = true
 export var max_fuel = 16.0
 var current_fuel = 0
 
+var current_fuel_use = 0.0
+
 # Autopilot states
 var auto_prograde = false
 var auto_retrograde = false
@@ -164,31 +166,43 @@ func set_thruster_emission(cmd_state):
 	for i in thrusters.get_children():
 		thr[i.get_name()] = false
 	
-
-	if cmd_state['thrust_pro'] == true:
-		 thr['ProThrustR'] = true
-		 thr['ProThrustL'] = true
+	current_fuel_use = 0.0
 	
+	if cmd_state['thrust_pro'] == true:
+		thr['ProThrustR'] = true
+		thr['ProThrustL'] = true
+		var f_amt = _get_fuel_used_from_linear(_get_pro_thrust())
+		current_fuel_use += f_amt
+		
 	if cmd_state['thrust_retro'] == true:
-		 thr['RetroThrustR'] = true
-		 thr['RetroThrustL'] = true
-
+		thr['RetroThrustR'] = true
+		thr['RetroThrustL'] = true
+		var f_amt = _get_fuel_used_from_linear(_get_pro_thrust())
+		current_fuel_use += f_amt
 
 	if cmd_state['rcs_pro'] == true:
-		 thr['RCSProR'] = true
-		 thr['RCSProL'] = true
+		thr['RCSProR'] = true
+		thr['RCSProL'] = true
+		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+		current_fuel_use += f_amt
 	
 	if cmd_state['rcs_retro'] == true:
-		 thr['RCSRetroR'] = true
-		 thr['RCSRetroL'] = true
+		thr['RCSRetroR'] = true
+		thr['RCSRetroL'] = true
+		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+		current_fuel_use += f_amt
 
 	if cmd_state['rcs_left'] == true:
-		 thr['RCSRightF'] = true
-		 thr['RCSRightA'] = true
+		thr['RCSRightF'] = true
+		thr['RCSRightA'] = true
+		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+		current_fuel_use += f_amt
 
 	if cmd_state['rcs_right'] == true:
-		 thr['RCSLeftF'] = true
-		 thr['RCSLeftA'] = true
+		thr['RCSLeftF'] = true
+		thr['RCSLeftA'] = true
+		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+		current_fuel_use += f_amt
 
 
 	if cmd_state['yaw_left'] == true:
@@ -198,7 +212,9 @@ func set_thruster_emission(cmd_state):
 		else:
 			thr['RCSProR'] = true
 			thr['RCSRetroL'] = true
-
+		var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
+		current_fuel_use += f_amt
+		
 	if cmd_state['yaw_right'] == true:
 		if rcs_config_I:
 			thr['RCSLeftF'] = true
@@ -206,7 +222,8 @@ func set_thruster_emission(cmd_state):
 		else:
 			thr['RCSProL'] = true
 			thr['RCSRetroR'] = true
-			
+		var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
+		current_fuel_use += f_amt
 
 	for key in  thr:
 		if  thr[key] == true:
@@ -237,6 +254,12 @@ func _get_rcs_left():
 func _get_rcs_yaw():
 	return delta_r
 
+func _get_fuel_used_from_linear(vector):
+	return vector.length()/10000.0
+
+func _get_fuel_used_from_angular(force):
+	return (rad2deg(abs(force))*1.75)/10000.0
+
 func refuel():
 	current_fuel = max_fuel
 
@@ -245,15 +268,15 @@ func has_fuel(amt):
 		return true
 	return false
 
+
 func _eat_fuel(amt):
-	amt *= 0.1
 	var new_fuel = clamp(current_fuel-amt, 0, max_fuel)
 	current_fuel = new_fuel
 	
 
 
 func _thrust(vector):
-	var fuel_amt = vector.length()/1000.0
+	var fuel_amt = _get_fuel_used_from_linear(vector)
 	if has_fuel(fuel_amt):
 		var lv = get_linear_velocity()
 		lv += vector / get_total_mass()
@@ -262,7 +285,7 @@ func _thrust(vector):
 		get_node('Camera').apply_shake(fuel_amt*0.45)
 
 func _yaw(force):
-	var fuel_amt = (rad2deg(abs(force))*1.75)/1000.0
+	var fuel_amt = _get_fuel_used_from_angular(force)
 	if has_fuel(fuel_amt):
 		var av = get_angular_velocity()
 		av += force / get_total_mass()

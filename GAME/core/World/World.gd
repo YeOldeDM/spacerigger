@@ -17,6 +17,10 @@ func get_warpnodes():
 func get_warpnode(name):
 	return get_node('WarpNodes').get_node(name)
 
+func get_warpnode_by_index(idx):
+	if !get_warpnodes().empty():
+		return get_node('Warpnodes').get_child(idx)
+
 func add_vessel(vessel, position, is_player=false):
 	get_node('Vessels').add_child(vessel)
 	vessel.set_pos(position)

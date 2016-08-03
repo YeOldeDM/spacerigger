@@ -1,8 +1,11 @@
 
 extends RigidBody2D
 
-export var Name = "Godot Station"
-export var ID = "GS-A1"
+export var name = "Godot Station"
+export var station_class = "Civilian"
+export var station_type = "Habitat"
+
+export var designation = "ST-GOD-A01"
 
 
 

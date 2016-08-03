@@ -11,6 +11,8 @@ func _goto(entry):
 	if text:
 		entrybox.set_bbcode(text)
 		current_entry = entry
+	else:
+		OS.alert("No 'Pedia entry for subject "+entry)
 
 func _ready():
 	Pedia.load_pedia()

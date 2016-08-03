@@ -1,29 +1,30 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
 [ext_resource path="res://core/HUD/HUD_core.gd" type="Script" id=3]
 [ext_resource path="res://core/HUD/GameSpeed.gd" type="Script" id=4]
 [ext_resource path="res://core/HUD/HUD_Clock.gd" type="Script" id=5]
-[ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=6]
-[ext_resource path="res://assets/fonts/LCD14.fnt" type="Font" id=7]
-[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=8]
-[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=10]
-[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=11]
-[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=12]
-[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=13]
-[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=14]
-[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=15]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=16]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=17]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=18]
-[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=19]
-[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/fonts/04B10.fnt" type="Font" id=6]
+[ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=7]
+[ext_resource path="res://assets/fonts/LCD14.fnt" type="Font" id=8]
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=9]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=11]
+[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=12]
+[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=13]
+[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=14]
+[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=15]
+[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=16]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=17]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=18]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=19]
+[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=20]
+[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=21]
 
 [sub_resource type="SampleLibrary" id=1]
 
-samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 19 ) }
+samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 20 ) }
 
 [node name="Game" type="Control"]
 
@@ -153,10 +154,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 404.0
+margin/left = 449.0
 margin/top = 10.0
 margin/right = 234.0
-margin/bottom = 60.0
+margin/bottom = 79.0
 script/script = ExtResource( 5 )
 __meta__ = { "_editor_collapsed":true }
 
@@ -168,10 +169,30 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
 margin/top = 8.0
-margin/right = 166.0
-margin/bottom = 46.0
+margin/right = 211.0
+margin/bottom = 92.0
 custom_constants/separation = 2
 alignment = 0
+
+[node name="datetitle" type="Label" parent="HUD/box/TopBar/Clock/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 207.0
+margin/bottom = 9.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "GMS Clock"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="Date" type="PanelContainer" parent="HUD/box/TopBar/Clock/box"]
 
@@ -180,10 +201,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.0
-margin/right = 162.0
-margin/bottom = 18.0
-custom_styles/panel = ExtResource( 6 )
+margin/top = 11.0
+margin/right = 207.0
+margin/bottom = 28.0
+custom_styles/panel = ExtResource( 7 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Date"]
 
@@ -193,9 +215,9 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
-margin/right = 161.0
-margin/bottom = 17.0
-custom_fonts/font = ExtResource( 7 )
+margin/right = 206.0
+margin/bottom = 16.0
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Date"
 valign = 1
@@ -210,10 +232,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 20.0
-margin/right = 162.0
-margin/bottom = 38.0
-custom_styles/panel = ExtResource( 6 )
+margin/top = 30.0
+margin/right = 207.0
+margin/bottom = 47.0
+custom_styles/panel = ExtResource( 7 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Time"]
 
@@ -223,9 +246,9 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
-margin/right = 161.0
-margin/bottom = 17.0
-custom_fonts/font = ExtResource( 7 )
+margin/right = 206.0
+margin/bottom = 16.0
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Time"
 valign = 1
@@ -233,18 +256,134 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="HSeparator" type="HSeparator" parent="HUD/box/TopBar/Clock/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 49.0
+margin/right = 207.0
+margin/bottom = 52.0
+
+[node name="stopwatchtitle" type="Label" parent="HUD/box/TopBar/Clock/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 54.0
+margin/right = 207.0
+margin/bottom = 63.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "Aux. Timer"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Stopwatch" type="HBoxContainer" parent="HUD/box/TopBar/Clock/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 65.0
+margin/right = 207.0
+margin/bottom = 84.0
+alignment = 0
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Time" type="PanelContainer" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 19.0
+custom_styles/panel = ExtResource( 7 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Stopwatch/Time"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 1.0
+margin/top = 1.0
+margin/right = 121.0
+margin/bottom = 18.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
+text = "Time"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Start" type="Button" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 126.0
+margin/top = 0.0
+margin/right = 145.0
+margin/bottom = 19.0
+toggle_mode = false
+text = ">"
+flat = false
+
+[node name="Stop" type="Button" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 149.0
+margin/top = 0.0
+margin/right = 167.0
+margin/bottom = 19.0
+toggle_mode = false
+text = "||"
+flat = false
+
+[node name="Reset" type="Button" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 171.0
+margin/top = 0.0
+margin/right = 207.0
+margin/bottom = 19.0
+toggle_mode = false
+text = "CLR"
+flat = false
+
 [node name="CameraZoom" type="PanelContainer" parent="HUD/box/TopBar"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 8 )
+theme/theme = ExtResource( 9 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 120.0
 margin/bottom = 66.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/CameraZoom"]
 
@@ -284,7 +423,7 @@ margin/top = 16.0
 margin/right = 112.0
 margin/bottom = 32.0
 range/min = 0.25
-range/max = 4.0
+range/max = 40.0
 range/step = 1.0
 range/page = 0.0
 range/value = 1.0
@@ -307,14 +446,14 @@ toggle_mode = false
 text = "1x"
 flat = false
 
-[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 9 )]
+[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 10 )]
 
 margin/left = 20.0
 margin/top = 250.0
 margin/right = 288.0
 margin/bottom = 33.0
 
-[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 9 )]
+[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 10 )]
 
 anchor/left = 1
 anchor/right = 1
@@ -341,11 +480,11 @@ __meta__ = { "_editor_collapsed":true }
 
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="Dial" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Autopilot" type="PanelContainer" parent="HUD/box"]
 
@@ -358,12 +497,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 8 )
+theme/theme = ExtResource( 9 )
 margin/left = 132.0
 margin/top = 120.0
 margin/right = -28.0
 margin/bottom = 13.0
-script/script = ExtResource( 12 )
+script/script = ExtResource( 13 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Autopilot"]
@@ -552,12 +691,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 8 )
+theme/theme = ExtResource( 9 )
 margin/left = -48.0
 margin/top = 74.0
 margin/right = -198.0
 margin/bottom = 30.0
-script/script = ExtResource( 13 )
+script/script = ExtResource( 14 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
@@ -569,7 +708,7 @@ size_flags/vertical = 2
 margin/left = 4.0
 margin/top = 8.0
 margin/right = 146.0
-margin/bottom = 56.0
+margin/bottom = 72.0
 alignment = 0
 
 [node name="Label" type="Label" parent="HUD/box/Fuel/box"]
@@ -621,6 +760,21 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Use" type="Label" parent="HUD/box/Fuel/box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 52.0
+margin/right = 142.0
+margin/bottom = 64.0
+text = "Rate: "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="WarpControl" type="PanelContainer" parent="HUD/box"]
 
 visibility/self_opacity = 0.5
@@ -630,12 +784,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 8 )
+theme/theme = ExtResource( 9 )
 margin/left = 20.0
 margin/top = 360.0
 margin/right = 280.0
 margin/bottom = 268.0
-script/script = ExtResource( 14 )
+script/script = ExtResource( 15 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
@@ -647,24 +801,50 @@ size_flags/vertical = 2
 margin/left = 4.0
 margin/top = 8.0
 margin/right = 256.0
-margin/bottom = 88.0
+margin/bottom = 94.0
 alignment = 0
 
-[node name="Label" type="Label" parent="HUD/box/WarpControl/box"]
+[node name="title" type="HBoxContainer" parent="HUD/box/WarpControl/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 252.0
+margin/bottom = 18.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/WarpControl/box/title"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 0.0
-margin/right = 252.0
-margin/bottom = 12.0
+margin/top = 3.0
+margin/right = 230.0
+margin/bottom = 15.0
 text = "Warp Drive"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="?" type="Button" parent="HUD/box/WarpControl/box/title"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 234.0
+margin/top = 0.0
+margin/right = 252.0
+margin/bottom = 18.0
+toggle_mode = false
+text = "\?"
+flat = false
 
 [node name="HSeparator" type="HSeparator" parent="HUD/box/WarpControl/box"]
 
@@ -673,9 +853,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 16.0
+margin/top = 22.0
 margin/right = 252.0
-margin/bottom = 19.0
+margin/bottom = 25.0
 
 [node name="info" type="HBoxContainer" parent="HUD/box/WarpControl/box"]
 
@@ -684,21 +864,36 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 23.0
+margin/top = 29.0
 margin/right = 252.0
-margin/bottom = 51.0
+margin/bottom = 57.0
 custom_constants/separation = 12
 alignment = 0
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Prev" type="Button" parent="HUD/box/WarpControl/box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 18.0
+margin/bottom = 28.0
+toggle_mode = false
+text = "<"
+flat = false
 
 [node name="titles" type="VBoxContainer" parent="HUD/box/WarpControl/box/info"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
+size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 30.0
 margin/top = 0.0
-margin/right = 66.0
+margin/right = 120.0
 margin/bottom = 28.0
 alignment = 0
 __meta__ = { "_editor_collapsed":true }
@@ -711,7 +906,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 66.0
+margin/right = 90.0
 margin/bottom = 12.0
 text = "Warp Zone"
 align = 2
@@ -727,7 +922,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 66.0
+margin/right = 90.0
 margin/bottom = 28.0
 text = "Destination"
 align = 2
@@ -739,11 +934,11 @@ max_lines_visible = -1
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
+size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 78.0
+margin/left = 132.0
 margin/top = 0.0
-margin/right = 144.0
+margin/right = 222.0
 margin/bottom = 28.0
 alignment = 0
 
@@ -755,7 +950,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 66.0
+margin/right = 90.0
 margin/bottom = 12.0
 text = "Warp Zone"
 percent_visible = 1.0
@@ -770,12 +965,26 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 66.0
+margin/right = 90.0
 margin/bottom = 28.0
 text = "Destination"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Next" type="Button" parent="HUD/box/WarpControl/box/info"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 234.0
+margin/top = 0.0
+margin/right = 252.0
+margin/bottom = 28.0
+toggle_mode = false
+text = ">"
+flat = false
 
 [node name="HSeparator1" type="HSeparator" parent="HUD/box/WarpControl/box"]
 
@@ -784,9 +993,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 55.0
+margin/top = 61.0
 margin/right = 252.0
-margin/bottom = 58.0
+margin/bottom = 64.0
 
 [node name="Warp" type="Button" parent="HUD/box/WarpControl/box"]
 
@@ -795,9 +1004,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 62.0
+margin/top = 68.0
 margin/right = 252.0
-margin/bottom = 80.0
+margin/bottom = 86.0
 toggle_mode = false
 click_on_press = true
 text = "Engage"
@@ -809,10 +1018,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 280.0
-margin/top = 90.0
-margin/right = 480.0
-margin/bottom = 180.0
+margin/left = 125.0
+margin/top = 0.0
+margin/right = 325.0
+margin/bottom = 90.0
 __meta__ = { "_editor_collapsed":true }
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
@@ -880,7 +1089,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 15 )
+theme/theme = ExtResource( 16 )
 margin/left = 0.0
 margin/top = 43.0
 margin/right = 37.0
@@ -911,7 +1120,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 15 )
+theme/theme = ExtResource( 16 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 38.0
@@ -1015,7 +1224,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 15 )
+theme/theme = ExtResource( 16 )
 margin/left = 39.0
 margin/top = 0.0
 margin/right = 68.0
@@ -1052,8 +1261,8 @@ margin/left = 60.0
 margin/top = 10.0
 margin/right = 136.0
 margin/bottom = 50.0
-custom_icons/off = ExtResource( 16 )
-custom_icons/on = ExtResource( 17 )
+custom_icons/off = ExtResource( 17 )
+custom_icons/on = ExtResource( 18 )
 toggle_mode = true
 flat = false
 align = 0
@@ -1083,7 +1292,7 @@ autostart = true
 
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 
 [node name="SamplePlayer" type="SamplePlayer" parent="HUD"]
 
@@ -1109,13 +1318,23 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="PediaWindow" parent="Context" instance=ExtResource( 20 )]
+[node name="PediaWindow" parent="Context" instance=ExtResource( 21 )]
 
 visibility/visible = false
 
 [connection signal="button_selected" from="HUD/box/TopBar/GameSpeed/box/SpeedSelector" to="HUD/box/TopBar/GameSpeed" method="_on_SpeedSelector_button_selected"]
 
+[connection signal="pressed" from="HUD/box/TopBar/Clock/box/Stopwatch/Start" to="HUD/box/TopBar/Clock" method="_on_Start_pressed"]
+
+[connection signal="pressed" from="HUD/box/TopBar/Clock/box/Stopwatch/Stop" to="HUD/box/TopBar/Clock" method="_on_Stop_pressed"]
+
+[connection signal="pressed" from="HUD/box/TopBar/Clock/box/Stopwatch/Reset" to="HUD/box/TopBar/Clock" method="_on_Reset_pressed"]
+
 [connection signal="value_changed" from="HUD/box/TopBar/CameraZoom/box/Slider" to="HUD" method="set_camera_zoom"]
+
+[connection signal="pressed" from="HUD/box/WarpControl/box/info/Prev" to="HUD/box/WarpControl" method="_on_Prev_pressed"]
+
+[connection signal="pressed" from="HUD/box/WarpControl/box/info/Next" to="HUD/box/WarpControl" method="_on_Next_pressed"]
 
 [connection signal="pressed" from="HUD/box/WarpControl/box/Warp" to="." method="_on_Warp_pressed"]
 

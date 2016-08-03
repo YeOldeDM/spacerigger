@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=2]
 [ext_resource path="res://res/stations/Station_TEMPLATE.tscn" type="PackedScene" id=3]
 [ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/spaceBodies/Planet.tscn" type="PackedScene" id=5]
 
 [node name="Test World" type="Control"]
 
@@ -39,17 +40,21 @@ invert/border = 100.0
 
 [node name="Stations" type="Node2D" parent="."]
 
-[node name="SpaceBody" parent="Stations" instance=ExtResource( 3 )]
+[node name="Godot Station" parent="Stations" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 793.919, 688.063 )
+transform/pos = Vector2( 3401.47, 5923.25 )
 
 [node name="WarpNodes" type="Node2D" parent="."]
 
 [node name="Papa" parent="WarpNodes" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 6151.68, 3829.34 )
+transform/pos = Vector2( 9450.75, 8723.56 )
 transform/rot = -107.973
 destination = "bacon_world"
 target_node = "Wolf"
+
+[node name="SpaceBodies" type="Node2D" parent="."]
+
+[node name="Planet" parent="SpaceBodies" instance=ExtResource( 5 )]
 
 
