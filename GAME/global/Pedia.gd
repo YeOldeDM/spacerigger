@@ -33,7 +33,7 @@ func load_pedia(path=PEDIA_PATH):
 	print(path)
 	var file = ConfigFile.new()
 	var loaded = file.load(path)
-	if loaded:
+	if loaded==OK:
 		ref = file
 	return loaded
 

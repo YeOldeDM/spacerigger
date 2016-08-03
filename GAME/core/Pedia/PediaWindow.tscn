@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
 [ext_resource path="res://core/Pedia/PediaWindow.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/hack10.fnt" type="Font" id=3]
+[ext_resource path="res://assets/fonts/hack12.fnt" type="Font" id=3]
 
 [node name="PediaWindow" type="WindowDialog"]
 
@@ -36,7 +36,7 @@ alignment = 0
 
 [node name="panel" type="PanelContainer" parent="box"]
 
-visibility/self_opacity = 0.5
+visibility/self_opacity = 0.75
 visibility/blend_mode = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true

@@ -13,7 +13,7 @@ func _goto(entry):
 		current_entry = entry
 
 func _ready():
-	Pedia.make_pedia()
+	Pedia.load_pedia()
 
 
 

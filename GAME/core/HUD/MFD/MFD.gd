@@ -80,16 +80,20 @@ func toggle_powered():
 		set_screen(module)
 
 
-
+func click():
+	SoundMan.play('click')
 
 func _on_ButtonsLeft_button_selected( button_idx ):
+	click()
 	_function(button_idx)
 
 
 func _on_ButtonsRight_button_selected( button_idx ):
+	click()
 	var length = funcbox.get_node('ButtonsLeft').get_button_count()
 	_function(button_idx + length)
 
 
 func _on_ButtonsBottom_button_selected( button_idx ):
+	click()
 	_mainFunction(button_idx)

@@ -65,6 +65,7 @@ func set_camera_zoom( value, from_outside=false ):
 	# if from outside the slider, set the slider to match value
 	if from_outside:
 		top.get_node('CameraZoom/box/Slider').set_value(value)
+		SoundMan.play('click')
 	# get camera and set zoom
 	var ship = game.get_player()
 	if ship:

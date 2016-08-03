@@ -11,6 +11,7 @@ onready var control = get_node('Controller')
 onready var world = get_node('World')
 onready var hud = get_node('HUD')
 onready var context = get_node('Context')
+onready var pedia = context.get_node('PediaWindow')
 
 var temp_ship
 
@@ -101,6 +102,12 @@ func _kill_ui_binds():
 	space.scancode = KEY_SPACE
 	InputMap.action_erase_event('ui_accept', space)
 	InputMap.action_erase_event('ui_select', space)
+
+
+func _show_pedia(entry='welcome'):
+	pedia.current_entry = entry
+	pedia.popup_centered()
+
 #func _draw():
 #	draw_string(preload('res://assets/fonts/hack14.fnt'),\
 #			Vector2(16,8), GAME_NAME)
@@ -122,10 +129,11 @@ func _kill_ui_binds():
 #
 
 
-
-
+func click():
+	SoundMan.play('click')
 
 func _on_Warp_pressed():
+	click()
 	var ship = get_player()
 	if !ship:
 		return null
@@ -150,4 +158,5 @@ func _on_Warp_pressed():
 
 
 func _on_Pedia_pressed():
+	click()
 	context.get_node('PediaWindow').popup_centered()
