@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -15,16 +15,17 @@
 [ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=13]
 [ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=14]
 [ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=15]
-[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=16]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=17]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=18]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=19]
-[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=20]
-[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=21]
+[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=16]
+[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=17]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=18]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=19]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=20]
+[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=21]
+[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=22]
 
 [sub_resource type="SampleLibrary" id=1]
 
-samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 20 ) }
+samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 21 ) }
 
 [node name="Game" type="Control"]
 
@@ -205,7 +206,6 @@ margin/top = 11.0
 margin/right = 207.0
 margin/bottom = 28.0
 custom_styles/panel = ExtResource( 7 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Date"]
 
@@ -236,7 +236,6 @@ margin/top = 30.0
 margin/right = 207.0
 margin/bottom = 47.0
 custom_styles/panel = ExtResource( 7 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Time"]
 
@@ -298,7 +297,6 @@ margin/top = 65.0
 margin/right = 207.0
 margin/bottom = 84.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Time" type="PanelContainer" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
 
@@ -311,7 +309,6 @@ margin/top = 0.0
 margin/right = 122.0
 margin/bottom = 19.0
 custom_styles/panel = ExtResource( 7 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Stopwatch/Time"]
 
@@ -384,6 +381,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 120.0
 margin/bottom = 66.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/CameraZoom"]
 
@@ -869,7 +867,6 @@ margin/right = 252.0
 margin/bottom = 57.0
 custom_constants/separation = 12
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Prev" type="Button" parent="HUD/box/WarpControl/box/info"]
 
@@ -896,7 +893,6 @@ margin/top = 0.0
 margin/right = 120.0
 margin/bottom = 28.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Zone" type="Label" parent="HUD/box/WarpControl/box/info/titles"]
 
@@ -1022,7 +1018,7 @@ margin/left = 125.0
 margin/top = 0.0
 margin/right = 325.0
 margin/bottom = 90.0
-__meta__ = { "_editor_collapsed":true }
+script/script = ExtResource( 16 )
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
@@ -1035,7 +1031,6 @@ margin/top = 10.0
 margin/right = 192.0
 margin/bottom = 66.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Switch" type="Button" parent="HUD/box/PowerControl/APU"]
 
@@ -1048,6 +1043,7 @@ margin/top = 0.0
 margin/right = 37.0
 margin/bottom = 19.0
 toggle_mode = true
+click_on_press = true
 text = "APU"
 flat = false
 
@@ -1075,10 +1071,10 @@ margin/top = 23.0
 margin/right = 37.0
 margin/bottom = 39.0
 range/min = 0.0
-range/max = 100.0
+range/max = 1.0
 range/step = 1.0
 range/page = 0.0
-range/value = 100.0
+range/value = 1.0
 range/exp_edit = false
 range/rounded = false
 percent/visible = true
@@ -1089,7 +1085,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 16 )
+theme/theme = ExtResource( 17 )
 margin/left = 0.0
 margin/top = 43.0
 margin/right = 37.0
@@ -1112,7 +1108,6 @@ margin/top = 5.0
 margin/right = 53.0
 margin/bottom = 57.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Output" type="Label" parent="HUD/box/PowerControl/GEN"]
 
@@ -1120,7 +1115,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 16 )
+theme/theme = ExtResource( 17 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 38.0
@@ -1143,10 +1138,10 @@ margin/top = 13.0
 margin/right = 38.0
 margin/bottom = 29.0
 range/min = 0.0
-range/max = 100.0
+range/max = 1.0
 range/step = 1.0
 range/page = 0.0
-range/value = 100.0
+range/value = 0.0
 range/exp_edit = false
 range/rounded = false
 percent/visible = true
@@ -1175,6 +1170,7 @@ margin/top = 33.0
 margin/right = 38.0
 margin/bottom = 52.0
 toggle_mode = true
+click_on_press = true
 text = "GEN"
 flat = false
 
@@ -1189,7 +1185,6 @@ margin/top = 65.0
 margin/right = 188.0
 margin/bottom = 84.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Switch" type="Button" parent="HUD/box/PowerControl/EXT"]
 
@@ -1202,6 +1197,7 @@ margin/top = 0.0
 margin/right = 35.0
 margin/bottom = 19.0
 toggle_mode = true
+click_on_press = true
 text = "Ext."
 flat = false
 
@@ -1224,7 +1220,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 16 )
+theme/theme = ExtResource( 17 )
 margin/left = 39.0
 margin/top = 0.0
 margin/right = 68.0
@@ -1261,8 +1257,8 @@ margin/left = 60.0
 margin/top = 10.0
 margin/right = 136.0
 margin/bottom = 50.0
-custom_icons/off = ExtResource( 17 )
-custom_icons/on = ExtResource( 18 )
+custom_icons/off = ExtResource( 18 )
+custom_icons/on = ExtResource( 19 )
 toggle_mode = true
 flat = false
 align = 0
@@ -1292,7 +1288,7 @@ autostart = true
 
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 
 [node name="SamplePlayer" type="SamplePlayer" parent="HUD"]
 
@@ -1318,7 +1314,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="PediaWindow" parent="Context" instance=ExtResource( 21 )]
+[node name="PediaWindow" parent="Context" instance=ExtResource( 22 )]
 
 visibility/visible = false
 
@@ -1337,6 +1333,12 @@ visibility/visible = false
 [connection signal="pressed" from="HUD/box/WarpControl/box/info/Next" to="HUD/box/WarpControl" method="_on_Next_pressed"]
 
 [connection signal="pressed" from="HUD/box/WarpControl/box/Warp" to="." method="_on_Warp_pressed"]
+
+[connection signal="pressed" from="HUD/box/PowerControl/APU/Switch" to="HUD/box/PowerControl" method="is_apu_on"]
+
+[connection signal="pressed" from="HUD/box/PowerControl/GEN/Switch" to="HUD/box/PowerControl" method="is_gen_on"]
+
+[connection signal="pressed" from="HUD/box/PowerControl/EXT/Switch" to="HUD/box/PowerControl" method="is_ext_on"]
 
 [connection signal="pressed" from="HUD/box/Pedia" to="." method="_on_Pedia_pressed"]
 

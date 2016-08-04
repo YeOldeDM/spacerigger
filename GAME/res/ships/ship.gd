@@ -291,7 +291,7 @@ func _yaw(force):
 		av += force / get_total_mass()
 		set_angular_velocity(av)
 		_eat_fuel(fuel_amt)
-		get_node('Camera').apply_shake(fuel_amt*0.45)
+		get_node('Camera').apply_shake(fuel_amt)
 
 
 

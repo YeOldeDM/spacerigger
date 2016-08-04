@@ -66,6 +66,11 @@ func _ready():
 
 #	CONTROL PROCESS LOOP
 func _fixed_process(delta):
+	
+	var para = game.get_world().get_node('Background/para/layer')
+	var bg = game.get_world().get_node('Background/Starplane')
+	var bg2 = game.get_world().get_node('Background/Starplane1')
+	
 	# Construct cmdState dick
 	for act in cmd_state:
 		cmd_state[act] = false
@@ -75,7 +80,12 @@ func _fixed_process(delta):
 	# Process ship controls
 	if controlled:
 		controlled.process(delta, cmd_state)
-	
+#		para.edit_set_pivot(controlled.get_pos())
+#		para.set_rot(-controlled.get_rot())
+		bg.set_pos(controlled.get_pos()*0.92)
+		bg2.set_pos(controlled.get_pos()*0.9)
+		
+		
 		# If the ship has a target..
 		if controlled.target:
 			var laser = controlled.get_node('Hardpoints').get_child(0)
