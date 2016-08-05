@@ -690,10 +690,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 9 )
-margin/left = -48.0
-margin/top = 74.0
-margin/right = -198.0
-margin/bottom = 30.0
+margin/left = -38.0
+margin/top = 120.0
+margin/right = -188.0
+margin/bottom = 44.0
 script/script = ExtResource( 14 )
 __meta__ = { "_editor_collapsed":true }
 

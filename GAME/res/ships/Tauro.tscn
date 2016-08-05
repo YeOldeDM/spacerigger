@@ -103,6 +103,7 @@ texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
+visibility/visible = false
 build_mode = 0
 polygon = Vector2Array( 15, 6, 15, 26, 5, 36, -5, 36, -15, 26, -15, 6, -25, -17, -17, -25, -10, -25, 0, -22, 10, -25, 17, -25, 25, -17 )
 shape_range = Vector2( 0, 2 )
