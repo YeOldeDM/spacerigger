@@ -37,4 +37,5 @@ func _on_OK_pressed():
 		OS.alert("This profile name already exists!")
 		return
 	get_parent().update_profiles()
+	OS.alert("New Profile created: "+name, "Success!")
 	hide()

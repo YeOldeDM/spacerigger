@@ -1,18 +1,14 @@
 [gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://res/stations/Station.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://res/stations/StationDocks.gd" type="Script" id=3]
+[ext_resource path="res://res/stations/StationDocks.gd" type="Script" id=2]
+[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -96, 128, -128, 96 )
-
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 5, 2 )
 
 [node name="SpaceBody" type="RigidBody2D"]
 
@@ -43,10 +39,18 @@ station_class = "Civilian"
 station_type = "Habitat"
 designation = "ST-GOD-A01"
 
+[node name="Docks" type="Node2D" parent="."]
+
+script/script = ExtResource( 2 )
+
+[node name="StationDock" parent="Docks" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -77, 130 )
+
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
@@ -54,44 +58,5 @@ build_mode = 0
 polygon = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -96, 128, -128, 96 )
 shape_range = Vector2( 0, 0 )
 trigger = false
-
-[node name="Docks" type="Node2D" parent="."]
-
-script/script = ExtResource( 3 )
-
-[node name="Dock" type="Area2D" parent="Docks"]
-
-transform/pos = Vector2( -60, 130 )
-transform/rot = -180.0
-transform/scale = Vector2( 0.625, 0.625 )
-input/pickable = true
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 2.86102e-06, 1.99999 )
-shapes/0/trigger = false
-space_override = 1
-gravity_vec = Vector2( 0, 0 )
-gravity = 50.0
-linear_damp = 0.0
-angular_damp = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Docks/Dock"]
-
-transform/pos = Vector2( 2.86102e-06, 1.99999 )
-shape = SubResource( 2 )
-trigger = false
-_update_shape_index = 0
-
-[node name="Polygon2D" type="Polygon2D" parent="Docks/Dock"]
-
-polygon = Vector2Array( -4.79999, 0, 4.80001, 0, 4.80001, 3.2, -4.79999, 3.2 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
 
 

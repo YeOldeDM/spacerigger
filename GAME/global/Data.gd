@@ -3,9 +3,10 @@ extends Node
 
 
 var DEFAULT_PROFILE = {
-	'DATA':	{
-	'creation time':	OS.get_unix_time(),
-	'play time':		0,
+	'CREATION':	{
+	'timestamp':	OS.get_unix_time(),
+	'date':			OS.get_date(),
+	'time':			OS.get_time(),
 		},
 	'SETTINGS':	{
 	'start_maximized':	true,
@@ -14,21 +15,7 @@ var DEFAULT_PROFILE = {
 
 
 
-class Profile:
-	var name
-	var creation_time
-	var settings
-	
-	var playtime = 0
-	
-	func _init(name, creation_time=OS.get_unix_time()):
-		self.name = name
-		self.creation_time = creation_time
 
-	func get_package():
-		var file = ConfigFile.new()
-		
-		return file
 
 	
 
@@ -55,6 +42,7 @@ const PILOT_PATH = 'res://pilots/'
 const PROFILE_PATH = 'res://profiles'
 
 var current_profile
+
 var current_pilot
 
 func get_profile():
@@ -88,12 +76,12 @@ func get_profile_names():
 #
 
 func new_profile(name):
-	var path = PROFILE_PATH+'/'+name
+	var path = PROFILE_PATH+'/'+name+'/'
 	var data = ConfigFile.new()
 	for key in DEFAULT_PROFILE:
 		for set in DEFAULT_PROFILE[key]:
 			data.set_value(key,set,DEFAULT_PROFILE[key][set])
-	
+	data.set_value('CREATION', 'profile_name', name)
 	
 	var dir = Directory.new()
 	if dir.open(path) == OK:
@@ -123,6 +111,36 @@ func load_profile(name):
 		return null
 	return file
 
+func delete_profile(name):
+	var path = PROFILE_PATH+'/'+name
+	print(path)
+	return _delete_data(path)
+	
+
+
+
+func _delete_data(path):
+	var dir = Directory.new()
+	var opened = dir.change_dir(path)
+	if opened != OK:
+		OS.alert("Error "+str(opened)+" opening path: "+path)
+		
+	dir.list_dir_begin()
+	var current = dir.get_next()
+	print(current)
+	while not current.empty():
+		if dir.current_is_dir():
+			if !current.begins_with('.'):
+				_delete_data(path+'/'+current)
+		else:
+			var removed = dir.remove(path+'/'+current)
+			if !removed==OK:
+				OS.alert("Error "+str(removed)+" deleting: "+current)
+		current = dir.get_next()
+	var deleted = dir.remove(path)
+	if !deleted==OK:
+		OS.alert("Error "+str(deleted)+" deleting: "+path)
+	return deleted
 
 #
 #	PILOT MANAGEMENT

@@ -16,7 +16,7 @@ var touchin = { 0:false, 1:false }
 export var dock_name = "Alpha"
 
 
-		
+
 func get_direction_vector():
 	var V = get_node('Forward').get_global_pos() - get_global_pos()
 	return V.normalized()

@@ -6,5 +6,5 @@ extends Node2D
 # var b="textvar"
 
 func _ready():
-
+	pass
 

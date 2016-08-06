@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://assets/fonts/conthrax14.fnt" type="Font" id=1]
+
+[node name="Button" type="Button"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 110.0
+margin/bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_disabled = Color( 0.519531, 0.519531, 0.519531, 1 )
+custom_colors/font_color = Color( 0.309577, 0.742188, 0.188446, 1 )
+custom_colors/font_color_hover = Color( 0.410231, 0.980469, 0.252777, 1 )
+custom_colors/font_color_pressed = Color( 0.972656, 0.466856, 0.163376, 1 )
+toggle_mode = false
+click_on_press = true
+text = "Something"
+flat = false
+
+

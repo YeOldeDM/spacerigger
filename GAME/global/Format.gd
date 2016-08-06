@@ -49,4 +49,14 @@ func time(T):
 	return T[0]+" : "+T[1]+" : "+T[2]
 
 
+func dict2time(D):
+	var hr = str(D['hour'])
+	var mn = str(D['minute'])
+	var sc = str(D['second'])
+	return hr+":"+mn+":"+sc
 
+func dict2date(D):
+	var month = str(D['month'])
+	var day = str(D['day'])
+	var year = str(D['year'])
+	return month+'/'+day+'/'+year
