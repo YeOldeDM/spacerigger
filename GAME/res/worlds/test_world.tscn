@@ -26,8 +26,8 @@ z/z = -1
 [node name="Starplane" type="Polygon2D" parent="Background"]
 
 visibility/behind_parent = true
-polygon = Vector2Array( -6.5536e+06, -6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06 )
-uv = Vector2Array( 0, 0, 6.5536e+06, 0, 6.5536e+06, 6.5536e+06, 0, 6.5536e+06 )
+polygon = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
+uv = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
 color = Color( 1, 1, 1, 1 )
 offset = Vector2( 0, 0 )
 texture/texture = ExtResource( 2 )
@@ -39,13 +39,13 @@ invert/border = 100.0
 
 [node name="Starplane1" type="Polygon2D" parent="Background"]
 
-visibility/opacity = 0.2
+visibility/self_opacity = 0.5
 visibility/behind_parent = true
 visibility/blend_mode = 1
-transform/scale = Vector2( 2, 2 )
+transform/scale = Vector2( 4, 4 )
 z/z = 1
-polygon = Vector2Array( -6.5536e+06, -6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06 )
-uv = Vector2Array( 0, 0, 6.5536e+06, 0, 6.5536e+06, 6.5536e+06, 0, 6.5536e+06 )
+polygon = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
+uv = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
 color = Color( 1, 1, 1, 1 )
 offset = Vector2( 0, 0 )
 texture/texture = ExtResource( 3 )

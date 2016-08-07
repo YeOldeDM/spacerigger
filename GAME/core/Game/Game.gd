@@ -4,6 +4,9 @@ extends Control
 const GAME_NAME = "Space Rigger Alpha"
 const EPOCH = 889963900
 
+export var start_engines = true
+
+
 var Time = 0
 var stopwatch_time = 0
 var stopwatch_running = false
@@ -91,7 +94,7 @@ func _ready():
 	player_ship.refuel()
 
 	# Start maximized
-	OS.set_window_maximized(true)
+	#OS.set_window_maximized(true)
 	set_process(true)
 
 func _process(delta):

@@ -44,6 +44,8 @@ export var rcs_config_I = true
 
 export var has_main_thrust = true
 export var has_rcs_thrust = true
+var thrusters_live = true
+
 export var has_warp_drive = true
 
 export var max_fuel = 16.0
@@ -82,50 +84,50 @@ func process(delta, cmd_state):
 
 #	PRIMARY THRUST
 func thrust_pro(delta ):
-	if has_main_thrust:
+	if has_main_thrust and thrusters_live:
 		if systems['mainThrust']:
 			_thrust(_get_pro_thrust()*delta)
 
 
 func thrust_retro(delta ):
-	if has_main_thrust:
+	if has_main_thrust and thrusters_live:
 		if systems['mainThrust']:
 			_thrust(-_get_pro_thrust()*delta)
 
 
 #	REACTION CONTROL THRUST
 func rcs_pro(delta ):
-	if has_rcs_thrust:
+	if has_rcs_thrust and thrusters_live:
 		if systems['RCSThrust']:
 			_thrust(_get_rcs_forward()*delta)
 
 
 func rcs_retro(delta ):
-	if has_rcs_thrust:
+	if has_rcs_thrust and thrusters_live:
 		if systems['RCSThrust']:
 			_thrust(-_get_rcs_forward()*delta)
 
 
 func rcs_left(delta ):
-	if has_rcs_thrust:
+	if has_rcs_thrust and thrusters_live:
 		if systems['RCSThrust']:
 			_thrust(_get_rcs_left()*delta)
 
 
 func rcs_right(delta ):
-	if has_rcs_thrust:
+	if has_rcs_thrust and thrusters_live:
 		if systems['RCSThrust']:
 			_thrust(-_get_rcs_left()*delta)
 
 #	YAW THRUST
 func yaw_left(delta ):
-	if has_rcs_thrust:
+	if has_rcs_thrust and thrusters_live:
 		if systems['RCSThrust']:
 			_yaw(-_get_rcs_yaw()*delta)
 
 
 func yaw_right(delta ):
-	if has_rcs_thrust:
+	if has_rcs_thrust and thrusters_live:
 		if systems['RCSThrust']:
 			_yaw(_get_rcs_yaw()*delta)
 
@@ -167,61 +169,61 @@ func set_thruster_emission(cmd_state):
 		thr[i.get_name()] = false
 	
 	current_fuel_use = 0.0
+	if thrusters_live:
+		if cmd_state['thrust_pro'] == true:
+			thr['ProThrustR'] = true
+			thr['ProThrustL'] = true
+			var f_amt = _get_fuel_used_from_linear(_get_pro_thrust())
+			current_fuel_use += f_amt
+			
+		if cmd_state['thrust_retro'] == true:
+			thr['RetroThrustR'] = true
+			thr['RetroThrustL'] = true
+			var f_amt = _get_fuel_used_from_linear(_get_pro_thrust())
+			current_fuel_use += f_amt
 	
-	if cmd_state['thrust_pro'] == true:
-		thr['ProThrustR'] = true
-		thr['ProThrustL'] = true
-		var f_amt = _get_fuel_used_from_linear(_get_pro_thrust())
-		current_fuel_use += f_amt
-		
-	if cmd_state['thrust_retro'] == true:
-		thr['RetroThrustR'] = true
-		thr['RetroThrustL'] = true
-		var f_amt = _get_fuel_used_from_linear(_get_pro_thrust())
-		current_fuel_use += f_amt
-
-	if cmd_state['rcs_pro'] == true:
-		thr['RCSProR'] = true
-		thr['RCSProL'] = true
-		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
-		current_fuel_use += f_amt
-	
-	if cmd_state['rcs_retro'] == true:
-		thr['RCSRetroR'] = true
-		thr['RCSRetroL'] = true
-		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
-		current_fuel_use += f_amt
-
-	if cmd_state['rcs_left'] == true:
-		thr['RCSRightF'] = true
-		thr['RCSRightA'] = true
-		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
-		current_fuel_use += f_amt
-
-	if cmd_state['rcs_right'] == true:
-		thr['RCSLeftF'] = true
-		thr['RCSLeftA'] = true
-		var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
-		current_fuel_use += f_amt
-
-
-	if cmd_state['yaw_left'] == true:
-		if rcs_config_I:
-			thr['RCSRightF'] = true
-			thr['RCSLeftA'] = true
-		else:
+		if cmd_state['rcs_pro'] == true:
 			thr['RCSProR'] = true
-			thr['RCSRetroL'] = true
-		var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
-		current_fuel_use += f_amt
-		
-	if cmd_state['yaw_right'] == true:
-		if rcs_config_I:
-			thr['RCSLeftF'] = true
-			thr['RCSRightA'] = true
-		else:
 			thr['RCSProL'] = true
+			var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+			current_fuel_use += f_amt
+		
+		if cmd_state['rcs_retro'] == true:
 			thr['RCSRetroR'] = true
+			thr['RCSRetroL'] = true
+			var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+			current_fuel_use += f_amt
+	
+		if cmd_state['rcs_left'] == true:
+			thr['RCSRightF'] = true
+			thr['RCSRightA'] = true
+			var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+			current_fuel_use += f_amt
+	
+		if cmd_state['rcs_right'] == true:
+			thr['RCSLeftF'] = true
+			thr['RCSLeftA'] = true
+			var f_amt = _get_fuel_used_from_linear(_get_rcs_forward())
+			current_fuel_use += f_amt
+	
+	
+		if cmd_state['yaw_left'] == true:
+			if rcs_config_I:
+				thr['RCSRightF'] = true
+				thr['RCSLeftA'] = true
+			else:
+				thr['RCSProR'] = true
+				thr['RCSRetroL'] = true
+			var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
+			current_fuel_use += f_amt
+			
+		if cmd_state['yaw_right'] == true:
+			if rcs_config_I:
+				thr['RCSLeftF'] = true
+				thr['RCSRightA'] = true
+			else:
+				thr['RCSProL'] = true
+				thr['RCSRetroR'] = true
 		var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
 		current_fuel_use += f_amt
 

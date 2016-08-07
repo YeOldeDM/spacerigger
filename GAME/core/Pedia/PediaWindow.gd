@@ -6,6 +6,8 @@ onready var entrybox = get_node('box/panel/entry')
 var current_entry
 
 func _goto(entry):
+	var subject = entry.replace('_',':')
+	set_title("Pedia -- "+subject)
 	prints("entry",entry)
 	var text = Pedia.ref(entry)
 	if text:
@@ -24,6 +26,8 @@ func _ready():
 
 func _on_PediaWindow_about_to_show():
 	if current_entry:
+		var subject = current_entry.replace('_',':')
+		set_title("Pedia -- "+subject)
 		_goto(current_entry)
 	else:
 		_goto('welcome')

@@ -82,8 +82,8 @@ func _fixed_process(delta):
 		controlled.process(delta, cmd_state)
 #		para.edit_set_pivot(controlled.get_pos())
 #		para.set_rot(-controlled.get_rot())
-		bg.set_pos(controlled.get_pos()*0.92)
-		bg2.set_pos(controlled.get_pos()*0.9)
+		bg.set_pos(controlled.get_pos()*0.992)
+		bg2.set_pos(controlled.get_pos()*0.92)
 		
 		
 		# If the ship has a target..

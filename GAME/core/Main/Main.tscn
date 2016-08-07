@@ -40,6 +40,7 @@ margin/top = 0.0
 margin/right = 984.0
 margin/bottom = 560.0
 script/script = ExtResource( 1 )
+start_engines = true
 
 [node name="Controller" type="Node" parent="."]
 
@@ -1017,7 +1018,7 @@ size_flags/vertical = 2
 margin/left = 125.0
 margin/top = 0.0
 margin/right = 325.0
-margin/bottom = 90.0
+margin/bottom = 105.0
 script/script = ExtResource( 16 )
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
@@ -1031,6 +1032,7 @@ margin/top = 10.0
 margin/right = 192.0
 margin/bottom = 66.0
 alignment = 0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Switch" type="Button" parent="HUD/box/PowerControl/APU"]
 
@@ -1185,6 +1187,7 @@ margin/top = 65.0
 margin/right = 188.0
 margin/bottom = 84.0
 alignment = 0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Switch" type="Button" parent="HUD/box/PowerControl/EXT"]
 
@@ -1243,8 +1246,23 @@ margin/top = 65.0
 margin/right = 55.0
 margin/bottom = 84.0
 toggle_mode = false
+click_on_press = true
 text = "Ignite"
 flat = false
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Light" type="Polygon2D" parent="HUD/box/PowerControl/Ignite"]
+
+polygon = Vector2Array( 0, 0, -10, 0, -10, 20, 0, 20 )
+uv = Vector2Array(  )
+color = Color( 1, 0, 0, 1 )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
 
 [node name="Source" type="CheckButton" parent="HUD/box/PowerControl"]
 
@@ -1262,6 +1280,20 @@ custom_icons/on = ExtResource( 19 )
 toggle_mode = true
 flat = false
 align = 0
+
+[node name="Help" type="Button" parent="HUD/box/PowerControl"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 85.0
+margin/right = 198.0
+margin/bottom = 104.0
+toggle_mode = false
+text = "\?"
+flat = false
 
 [node name="Pedia" type="Button" parent="HUD/box"]
 
@@ -1339,6 +1371,10 @@ visibility/visible = false
 [connection signal="pressed" from="HUD/box/PowerControl/GEN/Switch" to="HUD/box/PowerControl" method="is_gen_on"]
 
 [connection signal="pressed" from="HUD/box/PowerControl/EXT/Switch" to="HUD/box/PowerControl" method="is_ext_on"]
+
+[connection signal="pressed" from="HUD/box/PowerControl/Ignite" to="HUD/box/PowerControl" method="_on_Ignite_pressed"]
+
+[connection signal="pressed" from="HUD/box/PowerControl/Help" to="HUD/box/PowerControl" method="_on_Help_pressed"]
 
 [connection signal="pressed" from="HUD/box/Pedia" to="." method="_on_Pedia_pressed"]
 
