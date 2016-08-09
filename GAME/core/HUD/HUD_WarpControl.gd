@@ -20,9 +20,6 @@ func process():
 		zone.set_text(zone_txt)
 		dest.set_text(dest_txt)
 
-func _ready():
-	var ped_button = get_node('box/title/?')
-	ped_button.connect("pressed", game, "_show_pedia",['control_warpdrive'])
 
 func _on_Prev_pressed():
 	SoundMan.play('click')

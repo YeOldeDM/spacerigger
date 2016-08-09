@@ -224,8 +224,8 @@ func set_thruster_emission(cmd_state):
 			else:
 				thr['RCSProL'] = true
 				thr['RCSRetroR'] = true
-		var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
-		current_fuel_use += f_amt
+			var f_amt = _get_fuel_used_from_angular(_get_rcs_yaw())
+			current_fuel_use += f_amt
 
 	for key in  thr:
 		if  thr[key] == true:

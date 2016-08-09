@@ -12,6 +12,7 @@ onready var game = get_node('/root/Game')
 onready var top = get_node('box/TopBar')
 onready var clock = top.get_node('Clock')
 onready var camzoom = top.get_node('CameraZoom')
+onready var power_control = get_node('box/PowerControl')
 
 onready var fuel = get_node('box/Fuel')
 
@@ -19,6 +20,7 @@ onready var warp = get_node('box/WarpControl')
 
 onready var mfdleft = get_node('box/MFDPanelLeft')
 onready var mfdright = get_node('box/MFDPanelRight')
+var default_mfd_programs = ['loc', 'linang']
 
 onready var pro_mark = get_node('ProMark')
 
@@ -79,6 +81,9 @@ func _ready():
 	if top.has_node('CameraZoom'):
 		top.get_node('CameraZoom/box/Slider').connect("changed",self,"set_camera_zoom")
 		top.get_node('CameraZoom/box/1x').connect("pressed",self,"set_camera_zoom",[1.0, true])
+	
+	mfdleft.set_screen(default_mfd_programs[0])
+	mfdright.set_screen(default_mfd_programs[1])
 	
 	set_process(true)
 

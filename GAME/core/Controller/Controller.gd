@@ -80,8 +80,8 @@ func _fixed_process(delta):
 	# Process ship controls
 	if controlled:
 		controlled.process(delta, cmd_state)
-#		para.edit_set_pivot(controlled.get_pos())
-#		para.set_rot(-controlled.get_rot())
+		
+		# Sneak parallax scrolling in here..
 		bg.set_pos(controlled.get_pos()*0.992)
 		bg2.set_pos(controlled.get_pos()*0.92)
 		

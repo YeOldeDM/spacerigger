@@ -34,12 +34,12 @@ func get_player():
 		return control.controlled
 
 func get_world():
-	if !world.get_children().empty():
+	if world and !world.get_children().empty():
 		return world.get_child(0)
 	else:
 		return null
 
-# Defunct! Write a new function!
+
 func change_world(world_name):
 	var new_world = load('res://res/worlds/'+world_name+'.tscn')
 	if new_world:
@@ -73,7 +73,9 @@ func warp_player(destination):
 	temp_angle_diff = null
 	temp_ship = null
 	print(player_ship.has_main_thrust)
-# /Defunct
+
+func pedia(entry=null):
+	_show_pedia(entry)
 
 
 

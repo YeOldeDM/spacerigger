@@ -1,6 +1,10 @@
 
 extends Panel
 
+const POWER_OFF = 0
+const POWER_ON = 1
+const POWER_ERR = 2
+
 const RED = Color(1,0,0)
 const GREEN = Color(0,1,1)
 
@@ -10,6 +14,7 @@ onready var source = get_node('Source')
 onready var gen_button = get_node('GEN/Switch')
 onready var apu_button = get_node('APU/Switch')
 onready var ext_button = get_node('EXT/Switch')
+onready var switchbox = get_node('Switchbox/box')
 
 var thrusters_on = false
 
@@ -28,6 +33,7 @@ var ext_output = 0.02
 
 var gen_output_to_apu = 0.125
 
+var switch_route = {}
 
 func Start():
 	# Magically Sets everything to running conditions
@@ -163,6 +169,22 @@ func _ready():
 	if game.start_engines:
 		Start()
 	set_process(true)
+	for sw in switchbox.get_children():
+		var state = POWER_OFF
+		if sw.on:
+			state = POWER_ON
+			if sw.error:
+				state = POWER_ERR
+		switch_route[sw.label] = state
+		sw.button.connect("toggled", self, "_on_Switch_toggled", [sw])
+
+func _on_Switch_toggled( pressed, source ):
+	var state = POWER_OFF
+	if pressed:
+		state = POWER_ON
+		if source.error:
+			state = POWER_ERR
+	switch_route[source.label] = state
 
 func _process(delta):
 	var charging = is_gen_on()
@@ -189,7 +211,6 @@ func _process(delta):
 		if apu_charge < apu_capacity:
 			drain_apu(-gen_output_to_apu*delta)
 	# Discharge generator power if not running and not charging
-	prints(charging, is_gen_running())
 	if not charging:
 		if gen_power > 0.0:
 			var new_pwr = gen_power - (1.0*delta)
@@ -213,5 +234,4 @@ func _on_Ignite_pressed():
 		ignite_engines()
 
 
-func _on_Help_pressed():
-	game._show_pedia('checklist_startup')
+

@@ -48,5 +48,5 @@ func add_station(station, position):
 
 func _ready():
 	if game.pending_player:
-		print("GO")
+		#print("GO")
 		game.warp_player(self)

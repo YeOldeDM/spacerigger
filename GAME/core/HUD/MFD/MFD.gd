@@ -62,7 +62,7 @@ func _function( id ):
 		if screen.get('script/script'):
 			if screen.has_method(sig):
 				screen.call(sig)
-				print(sig)
+				#print(sig)
 			else:
 				print("No such "+sig)
 

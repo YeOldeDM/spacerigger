@@ -8,7 +8,7 @@ var current_entry
 func _goto(entry):
 	var subject = entry.replace('_',':')
 	set_title("Pedia -- "+subject)
-	prints("entry",entry)
+	prints("Pedia entry selected--",entry)
 	var text = Pedia.ref(entry)
 	if text:
 		entrybox.set_bbcode(text)

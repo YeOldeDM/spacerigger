@@ -30,7 +30,7 @@ func make_pedia():
 
 
 func load_pedia(path=PEDIA_PATH):
-	print(path)
+	prints('Loading Pedia file', path)
 	var file = ConfigFile.new()
 	var loaded = file.load(path)
 	if loaded==OK:
@@ -48,7 +48,6 @@ func save_pedia(path=PEDIA_PATH):
 
 func ref(entry):
 	if ref.has_section(entry):
-		prints("keys",ref.get_section_keys(entry))
 		var text = ref.get_value(entry, 'text')
 		return text
 	else:
