@@ -34,7 +34,9 @@ var docked = false
 # Dock zones touching state
 var in_dock_zone = false
 
-export var shipID = "A1A-2"
+export var Chassis = "Tauro"
+export var Model = "Runner"
+export var Designation = "A1A-2"
 # Velocity force vars
 export var delta_v_main = 1260.0
 export var delta_v = 500.0
@@ -49,6 +51,9 @@ var thrusters_live = true
 export var has_warp_drive = true
 
 export var max_fuel = 16.0
+
+export var RID_power = 1.0
+
 var current_fuel = 0
 
 var current_fuel_use = 0.0
@@ -151,6 +156,40 @@ func undock(delta):
 #########################################
 #	END OF CONTROLLER SIGNAL FUNCTIONS	#
 #########################################
+
+
+#	AUTOPILOT FUNCTIONS
+
+func enable_AFA( mode ):
+	pass
+
+func disable_AFA():
+	pass
+
+
+func dampen_angular_motion():
+	if abs(get_angular_velocity()) > 0.001:
+		if get_angular_damp() <= 0:
+			set_angular_damp(RID_power)
+	else:
+		set_angular_damp(0)
+
+func disable_angular_dampen():
+	if get_angular_damp() > 0:
+		set_angular_damp(0)
+
+func dampen_linear_motion():
+	if get_linear_velocity().length() > 0.001:
+		if get_linear_damp() <= 0:
+			set_linear_damp(RID_power)
+	else:
+		set_linear_damp(0)
+
+func disable_linear_dampen():
+	if get_linear_damp() > 0:
+		set_linear_damp(0)
+
+
 
 func _ready():
 	dock.set_meta('dock',true)

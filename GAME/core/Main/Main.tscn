@@ -21,7 +21,7 @@
 [ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=19]
 [ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=20]
 [ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=22]
+[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=22]
 [ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=23]
 [ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=24]
 
@@ -527,7 +527,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 152.0
-margin/bottom = 42.0
+margin/bottom = 40.0
 alignment = 0
 
 [node name="title" type="HBoxContainer" parent="HUD/box/Autopilot/box/AFA"]
@@ -539,7 +539,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 152.0
-margin/bottom = 18.0
+margin/bottom = 16.0
 alignment = 0
 
 [node name="Label" type="Label" parent="HUD/box/Autopilot/box/AFA/title"]
@@ -549,9 +549,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 3.0
+margin/top = 2.0
 margin/right = 132.0
-margin/bottom = 15.0
+margin/bottom = 14.0
 text = "A.F.A."
 align = 1
 valign = 1
@@ -563,7 +563,6 @@ max_lines_visible = -1
 
 margin/left = 136.0
 margin/right = 152.0
-margin/bottom = 18.0
 go_to_entry = "autopilot_AFA"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/AFA"]
@@ -573,9 +572,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 22.0
+margin/top = 20.0
 margin/right = 152.0
-margin/bottom = 42.0
+margin/bottom = 40.0
 button/count = 3
 button/min_button_size = -1.0
 button/align = 4
@@ -594,9 +593,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 46.0
+margin/top = 44.0
 margin/right = 152.0
-margin/bottom = 49.0
+margin/bottom = 47.0
 
 [node name="RID" type="VBoxContainer" parent="HUD/box/Autopilot/box"]
 
@@ -605,9 +604,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 53.0
+margin/top = 51.0
 margin/right = 152.0
-margin/bottom = 95.0
+margin/bottom = 91.0
 alignment = 0
 
 [node name="title" type="HBoxContainer" parent="HUD/box/Autopilot/box/RID"]
@@ -619,7 +618,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 152.0
-margin/bottom = 18.0
+margin/bottom = 16.0
 alignment = 0
 
 [node name="Label" type="Label" parent="HUD/box/Autopilot/box/RID/title"]
@@ -629,9 +628,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 3.0
+margin/top = 2.0
 margin/right = 132.0
-margin/bottom = 15.0
+margin/bottom = 14.0
 text = "R.I.D."
 align = 1
 valign = 1
@@ -643,19 +642,18 @@ max_lines_visible = -1
 
 margin/left = 136.0
 margin/right = 152.0
-margin/bottom = 18.0
 go_to_entry = "autopilot_RID"
 
-[node name="HButtonArray" type="HButtonArray" parent="HUD/box/Autopilot/box/RID"]
+[node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/RID"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 22.0
+margin/top = 20.0
 margin/right = 152.0
-margin/bottom = 42.0
+margin/bottom = 40.0
 button/count = 3
 button/min_button_size = -1.0
 button/align = 4
@@ -1351,27 +1349,50 @@ wait_time = 0.1
 one_shot = false
 autostart = true
 
-[node name="ProMark" type="Sprite" parent="HUD"]
+[node name="ProMark" type="Node2D" parent="HUD"]
 
 visibility/blend_mode = 1
-transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="Arrow" type="Sprite" parent="HUD/ProMark"]
+
 texture = ExtResource( 22 )
+flip_v = true
+
+[node name="Velocity" type="Label" parent="HUD/ProMark"]
+
+visibility/blend_mode = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -10.0
+margin/top = -30.0
+margin/right = 30.0
+margin/bottom = -15.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.886719, 0.00692749, 0.00692749, 1 )
+text = "linvel"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="SamplePlayer" type="SamplePlayer" parent="HUD"]
 
-config/polyphony = 1
+config/polyphony = 2
 config/samples = SubResource( 1 )
-default/volume_db = -25.0
+default/volume_db = -38.4
 default/pitch_scale = 1.0
 default/pan = 0.1
 default/depth = 0.0
 default/height = 0.0
 default/filter/type = 1
-default/filter/cutoff = 1298.44
+default/filter/cutoff = 173.413
 default/filter/resonance = 0.3125
 default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
+default/reverb_room = 0
+default/reverb_send = 0.2
 default/chorus_send = 0.0
 
 [node name="Context" type="CanvasLayer" parent="."]
@@ -1380,6 +1401,7 @@ layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="PediaWindow" parent="Context" instance=ExtResource( 24 )]
 
@@ -1394,6 +1416,10 @@ visibility/visible = false
 [connection signal="pressed" from="HUD/box/TopBar/Clock/box/Stopwatch/Reset" to="HUD/box/TopBar/Clock" method="_on_Reset_pressed"]
 
 [connection signal="value_changed" from="HUD/box/TopBar/CameraZoom/box/Slider" to="HUD" method="set_camera_zoom"]
+
+[connection signal="button_selected" from="HUD/box/Autopilot/box/AFA/Buttons" to="HUD/box/Autopilot" method="_on_AFA_buttons_selected"]
+
+[connection signal="button_selected" from="HUD/box/Autopilot/box/RID/Buttons" to="HUD/box/Autopilot" method="_on_RID_buttons_selected"]
 
 [connection signal="pressed" from="HUD/box/WarpControl/box/info/Prev" to="HUD/box/WarpControl" method="_on_Prev_pressed"]
 

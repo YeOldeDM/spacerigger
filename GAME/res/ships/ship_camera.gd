@@ -24,5 +24,6 @@ func _shake():
 	var amt = shake_amp * shake_magnitude
 	var Rx = rand_range(-amt,amt)
 	var Ry = rand_range(-amt,amt)
-	set_offset(Vector2(Rx,Ry))
+	var z = get_zoom().x
+	set_offset(Vector2(Rx*z,Ry*z))
 

@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 points = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -96, 128, -128, 96 )
 
-[node name="SpaceBody" type="RigidBody2D"]
+[node name="Station" type="RigidBody2D"]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )

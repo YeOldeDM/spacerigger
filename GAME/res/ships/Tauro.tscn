@@ -58,7 +58,9 @@ velocity/angular = 0.0
 damp_override/linear = 0.0
 damp_override/angular = 0.0
 script/script = ExtResource( 1 )
-shipID = "A1A-2"
+Chassis = "Tauro"
+Model = "Runner"
+Designation = "A1A-2"
 delta_v_main = 1260.0
 delta_v = 500.0
 delta_r = 5.0
@@ -66,7 +68,8 @@ rcs_config_I = true
 has_main_thrust = true
 has_rcs_thrust = true
 has_warp_drive = true
-max_fuel = 16.0
+max_fuel = 24.0
+RID_power = 0.4
 
 [node name="Forward" type="Position2D" parent="."]
 
@@ -92,8 +95,8 @@ drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 script/script = ExtResource( 2 )
-shake_magnitude = 200.0
-shake_falloff = 0.91
+shake_magnitude = 800.0
+shake_falloff = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]
 

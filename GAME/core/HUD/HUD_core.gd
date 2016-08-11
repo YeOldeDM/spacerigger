@@ -97,13 +97,19 @@ func _ready():
 func _process(delta):
 	
 	if game.get_player():
-		var origin = get_player_ship_pos()
-		var vector = get_player_ship_pro_vector()*2.0
-		pro_mark.set_pos(origin+vector)
+		place_prograde_marker()
 		var ship = game.get_player()
 		var rot = ship.get_rot()
 		get_node('box/Compass/Dial').set_rot(-rot)
 
 
-
+func place_prograde_marker():
+	var origin = get_player_ship_pos()
+	var vector = get_player_ship_pro_vector()
+	var vl = vector.length()
+	vector = vector.normalized()*min(vl,200)
+	pro_mark.set_pos(origin+vector)
+	pro_mark.get_node('Arrow').look_at(origin)
+	pro_mark.get_node('Velocity').set_text(str(vl*0.1).pad_decimals(2)+" m/s")
+	
 
