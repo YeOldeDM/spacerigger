@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://assets/graphics/test_bg2.png" type="Texture" id=1]
+[ext_resource path="res://res/worlds/background/Background_Layer.gd" type="Script" id=2]
+
+[node name="Starplane" type="Polygon2D"]
+
+visibility/behind_parent = true
+polygon = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
+uv = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = ExtResource( 1 )
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 2, 2 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+script/script = ExtResource( 2 )
+scale = 0.998
+
+

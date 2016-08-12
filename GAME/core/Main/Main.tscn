@@ -5,9 +5,9 @@
 [ext_resource path="res://core/HUD/HUD_core.gd" type="Script" id=3]
 [ext_resource path="res://core/HUD/GameSpeed.gd" type="Script" id=4]
 [ext_resource path="res://core/HUD/HUD_Clock.gd" type="Script" id=5]
-[ext_resource path="res://assets/fonts/04B10.fnt" type="Font" id=6]
+[ext_resource path="res://assets/fonts/04B10.fnt" type="BitmapFont" id=6]
 [ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=7]
-[ext_resource path="res://assets/fonts/LCD14.fnt" type="Font" id=8]
+[ext_resource path="res://assets/fonts/LCD14.fnt" type="BitmapFont" id=8]
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=9]
 [ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=11]
@@ -73,6 +73,7 @@ margin/bottom = 0.0
 
 [node name="TopBar" type="Control" parent="HUD/box"]
 
+editor/display_folded = true
 anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -82,7 +83,6 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 64.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="GameSpeed" type="PanelContainer" parent="HUD/box/TopBar"]
 
@@ -100,16 +100,16 @@ script/script = ExtResource( 4 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/GameSpeed"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 195.0
-margin/bottom = 46.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 192.0
+margin/bottom = 47.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/GameSpeed/box"]
 
@@ -119,8 +119,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 191.0
-margin/bottom = 13.0
+margin/right = 185.0
+margin/bottom = 14.0
 text = "Time Control"
 align = 2
 percent_visible = 1.0
@@ -134,9 +134,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 17.0
-margin/right = 191.0
-margin/bottom = 38.0
+margin/top = 18.0
+margin/right = 185.0
+margin/bottom = 40.0
 custom_constants/button_separator = 0
 button/count = 4
 button/min_button_size = -1.0
@@ -153,6 +153,7 @@ button/selected = 1
 
 [node name="Clock" type="PanelContainer" parent="HUD/box/TopBar"]
 
+editor/display_folded = true
 anchor/left = 1
 anchor/right = 1
 focus/ignore_mouse = false
@@ -164,7 +165,6 @@ margin/top = 10.0
 margin/right = 234.0
 margin/bottom = 79.0
 script/script = ExtResource( 5 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/Clock"]
 
@@ -172,9 +172,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 211.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 208.0
 margin/bottom = 92.0
 custom_constants/separation = 2
 alignment = 0
@@ -187,7 +187,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 207.0
+margin/right = 201.0
 margin/bottom = 9.0
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -207,7 +207,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 11.0
-margin/right = 207.0
+margin/right = 201.0
 margin/bottom = 28.0
 custom_styles/panel = ExtResource( 7 )
 
@@ -219,7 +219,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
-margin/right = 206.0
+margin/right = 200.0
 margin/bottom = 16.0
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
@@ -237,7 +237,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 30.0
-margin/right = 207.0
+margin/right = 201.0
 margin/bottom = 47.0
 custom_styles/panel = ExtResource( 7 )
 
@@ -249,7 +249,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
-margin/right = 206.0
+margin/right = 200.0
 margin/bottom = 16.0
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
@@ -267,7 +267,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 49.0
-margin/right = 207.0
+margin/right = 201.0
 margin/bottom = 52.0
 
 [node name="stopwatchtitle" type="Label" parent="HUD/box/TopBar/Clock/box"]
@@ -278,7 +278,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 54.0
-margin/right = 207.0
+margin/right = 201.0
 margin/bottom = 63.0
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -298,8 +298,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 65.0
-margin/right = 207.0
-margin/bottom = 84.0
+margin/right = 201.0
+margin/bottom = 85.0
 alignment = 0
 
 [node name="Time" type="PanelContainer" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
@@ -310,8 +310,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 122.0
-margin/bottom = 19.0
+margin/right = 108.0
+margin/bottom = 20.0
 custom_styles/panel = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Stopwatch/Time"]
@@ -322,8 +322,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
-margin/right = 121.0
-margin/bottom = 18.0
+margin/right = 107.0
+margin/bottom = 19.0
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Time"
@@ -338,11 +338,13 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 126.0
+margin/left = 112.0
 margin/top = 0.0
-margin/right = 145.0
-margin/bottom = 19.0
+margin/right = 132.0
+margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = ">"
 flat = false
 
@@ -352,11 +354,13 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 149.0
+margin/left = 136.0
 margin/top = 0.0
-margin/right = 167.0
-margin/bottom = 19.0
+margin/right = 162.0
+margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "||"
 flat = false
 
@@ -366,16 +370,19 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 171.0
+margin/left = 166.0
 margin/top = 0.0
-margin/right = 207.0
-margin/bottom = 19.0
+margin/right = 201.0
+margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "CLR"
 flat = false
 
 [node name="CameraZoom" type="PanelContainer" parent="HUD/box/TopBar"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -385,7 +392,6 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 120.0
 margin/bottom = 66.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/CameraZoom"]
 
@@ -393,10 +399,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 116.0
-margin/bottom = 62.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 113.0
+margin/bottom = 61.0
 alignment = 0
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/CameraZoom/box"]
@@ -407,7 +413,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 112.0
+margin/right = 106.0
 margin/bottom = 12.0
 text = "Camera Zoom"
 percent_visible = 1.0
@@ -422,7 +428,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 112.0
+margin/right = 106.0
 margin/bottom = 32.0
 range/min = 0.25
 range/max = 40.0
@@ -433,6 +439,7 @@ range/exp_edit = false
 range/rounded = false
 tick_count = 0
 ticks_on_borders = true
+focus_mode = 2
 
 [node name="1x" type="Button" parent="HUD/box/TopBar/CameraZoom/box"]
 
@@ -442,9 +449,11 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 36.0
-margin/right = 112.0
+margin/right = 106.0
 margin/bottom = 54.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "1x"
 flat = false
 
@@ -466,6 +475,7 @@ margin/bottom = 33.0
 
 [node name="Compass" type="Control" parent="HUD/box"]
 
+editor/display_folded = true
 anchor/left = 3
 anchor/top = 1
 anchor/right = 3
@@ -478,7 +488,6 @@ margin/left = 172.0
 margin/top = 50.0
 margin/right = 132.0
 margin/bottom = 10.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
@@ -512,10 +521,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 156.0
-margin/bottom = 103.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 155.0
+margin/bottom = 100.0
 alignment = 0
 
 [node name="AFA" type="VBoxContainer" parent="HUD/box/Autopilot/box"]
@@ -526,7 +535,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 40.0
 alignment = 0
 
@@ -538,7 +547,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 16.0
 alignment = 0
 
@@ -550,7 +559,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 2.0
-margin/right = 132.0
+margin/right = 128.0
 margin/bottom = 14.0
 text = "A.F.A."
 align = 1
@@ -561,8 +570,10 @@ max_lines_visible = -1
 
 [node name="Help" parent="HUD/box/Autopilot/box/AFA/title" instance=ExtResource( 14 )]
 
-margin/left = 136.0
-margin/right = 152.0
+margin/left = 132.0
+margin/right = 148.0
+enabled_focus_mode = 2
+shortcut = null
 go_to_entry = "autopilot_AFA"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/AFA"]
@@ -573,7 +584,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 20.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 40.0
 button/count = 3
 button/min_button_size = -1.0
@@ -594,7 +605,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 44.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 47.0
 
 [node name="RID" type="VBoxContainer" parent="HUD/box/Autopilot/box"]
@@ -605,7 +616,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 51.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 91.0
 alignment = 0
 
@@ -617,7 +628,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 16.0
 alignment = 0
 
@@ -629,7 +640,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 2.0
-margin/right = 132.0
+margin/right = 128.0
 margin/bottom = 14.0
 text = "R.I.D."
 align = 1
@@ -640,8 +651,10 @@ max_lines_visible = -1
 
 [node name="Help" parent="HUD/box/Autopilot/box/RID/title" instance=ExtResource( 14 )]
 
-margin/left = 136.0
-margin/right = 152.0
+margin/left = 132.0
+margin/right = 148.0
+enabled_focus_mode = 2
+shortcut = null
 go_to_entry = "autopilot_RID"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/RID"]
@@ -652,7 +665,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 20.0
-margin/right = 152.0
+margin/right = 148.0
 margin/bottom = 40.0
 button/count = 3
 button/min_button_size = -1.0
@@ -667,6 +680,7 @@ button/selected = 2
 
 [node name="Fuel" type="PanelContainer" parent="HUD/box"]
 
+editor/display_folded = true
 visibility/self_opacity = 0.5
 anchor/left = 3
 anchor/top = 1
@@ -682,7 +696,6 @@ margin/top = 120.0
 margin/right = -188.0
 margin/bottom = 44.0
 script/script = ExtResource( 15 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
 
@@ -690,10 +703,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 146.0
-margin/bottom = 72.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 143.0
+margin/bottom = 71.0
 alignment = 0
 
 [node name="Label" type="Label" parent="HUD/box/Fuel/box"]
@@ -704,7 +717,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 142.0
+margin/right = 136.0
 margin/bottom = 12.0
 text = "Fuel"
 percent_visible = 1.0
@@ -719,7 +732,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 142.0
+margin/right = 136.0
 margin/bottom = 32.0
 range/min = 0.0
 range/max = 100.0
@@ -738,7 +751,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 36.0
-margin/right = 142.0
+margin/right = 136.0
 margin/bottom = 48.0
 text = "Volume: "
 percent_visible = 1.0
@@ -753,7 +766,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 52.0
-margin/right = 142.0
+margin/right = 136.0
 margin/bottom = 64.0
 text = "Rate: "
 percent_visible = 1.0
@@ -778,16 +791,16 @@ script/script = ExtResource( 16 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 256.0
-margin/bottom = 92.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 253.0
+margin/bottom = 91.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="title" type="HBoxContainer" parent="HUD/box/WarpControl/box"]
 
@@ -797,7 +810,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 252.0
+margin/right = 246.0
 margin/bottom = 16.0
 alignment = 0
 
@@ -809,7 +822,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 2.0
-margin/right = 232.0
+margin/right = 226.0
 margin/bottom = 14.0
 text = "Warp Drive"
 align = 1
@@ -819,8 +832,10 @@ max_lines_visible = -1
 
 [node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 14 )]
 
-margin/left = 236.0
-margin/right = 252.0
+margin/left = 230.0
+margin/right = 246.0
+enabled_focus_mode = 2
+shortcut = null
 go_to_entry = "control_warpdrive"
 
 [node name="HSeparator" type="HSeparator" parent="HUD/box/WarpControl/box"]
@@ -831,7 +846,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 20.0
-margin/right = 252.0
+margin/right = 246.0
 margin/bottom = 23.0
 
 [node name="info" type="HBoxContainer" parent="HUD/box/WarpControl/box"]
@@ -842,7 +857,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 27.0
-margin/right = 252.0
+margin/right = 246.0
 margin/bottom = 55.0
 custom_constants/separation = 12
 alignment = 0
@@ -858,6 +873,8 @@ margin/top = 0.0
 margin/right = 18.0
 margin/bottom = 28.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "<"
 flat = false
 
@@ -869,7 +886,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 30.0
 margin/top = 0.0
-margin/right = 120.0
+margin/right = 117.0
 margin/bottom = 28.0
 alignment = 0
 
@@ -881,7 +898,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 90.0
+margin/right = 87.0
 margin/bottom = 12.0
 text = "Warp Zone"
 align = 2
@@ -897,7 +914,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 90.0
+margin/right = 87.0
 margin/bottom = 28.0
 text = "Destination"
 align = 2
@@ -911,9 +928,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 132.0
+margin/left = 129.0
 margin/top = 0.0
-margin/right = 222.0
+margin/right = 216.0
 margin/bottom = 28.0
 alignment = 0
 
@@ -925,7 +942,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 90.0
+margin/right = 87.0
 margin/bottom = 12.0
 text = "Warp Zone"
 percent_visible = 1.0
@@ -940,7 +957,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 90.0
+margin/right = 87.0
 margin/bottom = 28.0
 text = "Destination"
 percent_visible = 1.0
@@ -953,11 +970,13 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 234.0
+margin/left = 228.0
 margin/top = 0.0
-margin/right = 252.0
+margin/right = 246.0
 margin/bottom = 28.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = ">"
 flat = false
 
@@ -969,7 +988,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 59.0
-margin/right = 252.0
+margin/right = 246.0
 margin/bottom = 62.0
 
 [node name="Warp" type="Button" parent="HUD/box/WarpControl/box"]
@@ -980,15 +999,18 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 66.0
-margin/right = 252.0
+margin/right = 246.0
 margin/bottom = 84.0
 toggle_mode = false
 click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
 text = "Engage"
 flat = false
 
 [node name="PowerControl" type="Panel" parent="HUD/box"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -998,10 +1020,10 @@ margin/top = 0.0
 margin/right = 325.0
 margin/bottom = 105.0
 script/script = ExtResource( 17 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -1011,7 +1033,6 @@ margin/top = 10.0
 margin/right = 192.0
 margin/bottom = 66.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Switch" type="Button" parent="HUD/box/PowerControl/APU"]
 
@@ -1021,10 +1042,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 37.0
-margin/bottom = 19.0
+margin/right = 39.0
+margin/bottom = 20.0
 toggle_mode = true
 click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
 text = "APU"
 flat = false
 
@@ -1033,6 +1056,7 @@ flat = false
 polygon = Vector2Array( 10, 20, 30, 20, 30, 25, 10, 25 )
 uv = Vector2Array(  )
 color = Color( 1, 0, 0, 1 )
+vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null
 texture/offset = Vector2( 0, 0 )
@@ -1048,9 +1072,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 23.0
-margin/right = 37.0
-margin/bottom = 39.0
+margin/top = 24.0
+margin/right = 39.0
+margin/bottom = 40.0
 range/min = 0.0
 range/max = 1.0
 range/step = 1.0
@@ -1068,8 +1092,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 theme/theme = ExtResource( 18 )
 margin/left = 0.0
-margin/top = 43.0
-margin/right = 37.0
+margin/top = 44.0
+margin/right = 39.0
 margin/bottom = 56.0
 text = "0.00w"
 align = 1
@@ -1080,6 +1104,7 @@ max_lines_visible = -1
 
 [node name="GEN" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -1089,7 +1114,6 @@ margin/top = 5.0
 margin/right = 53.0
 margin/bottom = 57.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Output" type="Label" parent="HUD/box/PowerControl/GEN"]
 
@@ -1100,7 +1124,7 @@ size_flags/vertical = 3
 theme/theme = ExtResource( 18 )
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 38.0
+margin/right = 39.0
 margin/bottom = 9.0
 text = "0.00w"
 align = 1
@@ -1117,7 +1141,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 13.0
-margin/right = 38.0
+margin/right = 39.0
 margin/bottom = 29.0
 range/min = 0.0
 range/max = 1.0
@@ -1133,6 +1157,7 @@ percent/visible = true
 polygon = Vector2Array( 10, 30, 30, 30, 30, 35, 10, 35 )
 uv = Vector2Array(  )
 color = Color( 1, 0, 0, 1 )
+vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null
 texture/offset = Vector2( 0, 0 )
@@ -1149,15 +1174,18 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 33.0
-margin/right = 38.0
-margin/bottom = 52.0
+margin/right = 39.0
+margin/bottom = 53.0
 toggle_mode = true
 click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
 text = "GEN"
 flat = false
 
 [node name="EXT" type="HBoxContainer" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -1167,7 +1195,6 @@ margin/top = 65.0
 margin/right = 188.0
 margin/bottom = 84.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Switch" type="Button" parent="HUD/box/PowerControl/EXT"]
 
@@ -1178,9 +1205,11 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 35.0
-margin/bottom = 19.0
+margin/bottom = 20.0
 toggle_mode = true
 click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
 text = "Ext."
 flat = false
 
@@ -1189,6 +1218,7 @@ flat = false
 polygon = Vector2Array( 30, 5, 35, 5, 35, 15, 30, 15 )
 uv = Vector2Array(  )
 color = Color( 1, 0, 0, 1 )
+vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null
 texture/offset = Vector2( 0, 0 )
@@ -1207,7 +1237,7 @@ theme/theme = ExtResource( 18 )
 margin/left = 39.0
 margin/top = 0.0
 margin/right = 68.0
-margin/bottom = 19.0
+margin/bottom = 20.0
 text = "0.00w"
 align = 1
 valign = 1
@@ -1217,6 +1247,7 @@ max_lines_visible = -1
 
 [node name="Ignite" type="Button" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -1227,15 +1258,17 @@ margin/right = 55.0
 margin/bottom = 84.0
 toggle_mode = false
 click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
 text = "Ignite"
 flat = false
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Light" type="Polygon2D" parent="HUD/box/PowerControl/Ignite"]
 
 polygon = Vector2Array( 0, 0, -10, 0, -10, 20, 0, 20 )
 uv = Vector2Array(  )
 color = Color( 1, 0, 0, 1 )
+vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null
 texture/offset = Vector2( 0, 0 )
@@ -1258,11 +1291,14 @@ margin/bottom = 50.0
 custom_icons/off = ExtResource( 19 )
 custom_icons/on = ExtResource( 20 )
 toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
 
 [node name="Switchbox" type="PanelContainer" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -1272,20 +1308,19 @@ margin/left = 200.0
 margin/top = 0.0
 margin/right = 385.0
 margin/bottom = 70.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="box" type="HBoxContainer" parent="HUD/box/PowerControl/Switchbox"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 181.0
-margin/bottom = 66.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 183.0
+margin/bottom = 65.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 21 )]
 
@@ -1326,6 +1361,8 @@ margin/left = 180.0
 margin/top = 85.0
 margin/right = 196.0
 margin/bottom = 101.0
+enabled_focus_mode = 2
+shortcut = null
 go_to_entry = "checklist_startup"
 
 [node name="Pedia" type="Button" parent="HUD/box"]
@@ -1339,6 +1376,8 @@ margin/top = 70.0
 margin/right = 49.0
 margin/bottom = 89.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Pedia"
 flat = false
 
@@ -1397,11 +1436,11 @@ default/chorus_send = 0.0
 
 [node name="Context" type="CanvasLayer" parent="."]
 
+editor/display_folded = true
 layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="PediaWindow" parent="Context" instance=ExtResource( 24 )]
 

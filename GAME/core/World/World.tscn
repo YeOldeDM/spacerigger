@@ -23,6 +23,7 @@ visibility/behind_parent = true
 polygon = Vector2Array( -6.5536e+06, -6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06, 6.5536e+06, -6.5536e+06, 6.5536e+06 )
 uv = Vector2Array( 0, 0, 6.5536e+06, 0, 6.5536e+06, 6.5536e+06, 0, 6.5536e+06 )
 color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = ExtResource( 2 )
 texture/offset = Vector2( 0, 0 )

@@ -67,9 +67,8 @@ func _ready():
 #	CONTROL PROCESS LOOP
 func _fixed_process(delta):
 	
-	var para = game.get_world().get_node('Background/para/layer')
-	var bg = game.get_world().get_node('Background/Starplane')
-	var bg2 = game.get_world().get_node('Background/Starplane1')
+	var bg = game.get_world().get_node('Background')
+
 	
 	# Construct cmdState dick
 	for act in cmd_state:
@@ -82,8 +81,7 @@ func _fixed_process(delta):
 		controlled.process(delta, cmd_state)
 		
 		# Sneak parallax scrolling in here..
-		bg.set_pos(controlled.get_pos()*0.992)
-		bg2.set_pos(controlled.get_pos()*0.92)
+		bg.parallax(controlled.get_pos())
 		
 		
 		# If the ship has a target..

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/test_bg2.png" type="Texture" id=2]
-[ext_resource path="res://assets/graphics/test_bg2_clouds.png" type="Texture" id=3]
-[ext_resource path="res://assets/graphics/test_bg.png" type="Texture" id=4]
-[ext_resource path="res://res/stations/Station_TEMPLATE.tscn" type="PackedScene" id=5]
-[ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=6]
+[ext_resource path="res://res/stations/Station_TEMPLATE.tscn" type="PackedScene" id=2]
+[ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=3]
+[ext_resource path="res://res/worlds/background/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/worlds/background/Background_Layer.tscn" type="PackedScene" id=5]
 
 [node name="Test World" type="Control"]
 
@@ -19,76 +18,17 @@ margin/right = 40.0
 margin/bottom = 40.0
 script/script = ExtResource( 1 )
 
-[node name="Background" type="Node2D" parent="."]
-
-z/z = -1
-
-[node name="Starplane" type="Polygon2D" parent="Background"]
-
-visibility/behind_parent = true
-polygon = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
-uv = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
-color = Color( 1, 1, 1, 1 )
-offset = Vector2( 0, 0 )
-texture/texture = ExtResource( 2 )
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 2, 2 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
-[node name="Starplane1" type="Polygon2D" parent="Background"]
-
-visibility/self_opacity = 0.5
-visibility/behind_parent = true
-visibility/blend_mode = 1
-transform/scale = Vector2( 4, 4 )
-z/z = 1
-polygon = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
-uv = Vector2Array( -100000, -100000, 100000, -100000, 100000, 100000, -100000, 100000 )
-color = Color( 1, 1, 1, 1 )
-offset = Vector2( 0, 0 )
-texture/texture = ExtResource( 3 )
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
-[node name="para" type="ParallaxBackground" parent="Background"]
-
-layer = -1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-scroll/offset = Vector2( 0, 0 )
-scroll/base_offset = Vector2( 0, 0 )
-scroll/base_scale = Vector2( 1, 1 )
-scroll/limit_begin = Vector2( 0, 0 )
-scroll/limit_end = Vector2( 0, 0 )
-scroll/ignore_camera_zoom = false
-
-[node name="layer" type="ParallaxLayer" parent="Background/para"]
-
-visibility/visible = false
-motion/scale = Vector2( 0.5, 0.5 )
-motion/mirroring = Vector2( 1024, 1024 )
-
-[node name="Sprite" type="Sprite" parent="Background/para/layer"]
-
-texture = ExtResource( 4 )
-
 [node name="Vessels" type="Node2D" parent="."]
 
 [node name="Stations" type="Node2D" parent="."]
 
-[node name="Godot Station" parent="Stations" instance=ExtResource( 5 )]
+[node name="Godot Station" parent="Stations" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 3401.47, 5923.25 )
 
 [node name="WarpNodes" type="Node2D" parent="."]
 
-[node name="Papa" parent="WarpNodes" instance=ExtResource( 6 )]
+[node name="Papa" parent="WarpNodes" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 9450.75, 8723.56 )
 transform/rot = -107.973
@@ -96,5 +36,9 @@ destination = "bacon_world"
 target_node = "Wolf"
 
 [node name="SpaceBodies" type="Node2D" parent="."]
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="Starplane" parent="Background" instance=ExtResource( 5 )]
 
 
