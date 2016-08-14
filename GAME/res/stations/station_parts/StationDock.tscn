@@ -62,7 +62,7 @@ trigger = false
 
 [node name="Forward" type="Position2D" parent="."]
 
-transform/pos = Vector2( 0, 16 )
+transform/pos = Vector2( 0, 7 )
 
 [node name="SteamLeft" type="Particles2D" parent="."]
 

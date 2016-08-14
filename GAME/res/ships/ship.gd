@@ -192,7 +192,7 @@ func disable_linear_dampen():
 
 
 func _ready():
-	dock.set_meta('dock',true)
+	#dock.set_meta('dock',true)
 	target = world.get_node('WarpNodes').get_child(0)
 
 
