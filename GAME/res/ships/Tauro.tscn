@@ -543,6 +543,7 @@ visibility/behind_parent = true
 
 [node name="StationDock" parent="Docks" instance=ExtResource( 8 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 31 )
 
 [connection signal="body_enter" from="." to="." method="_on_Ship_body_enter"]

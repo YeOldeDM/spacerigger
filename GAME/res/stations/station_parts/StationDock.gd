@@ -42,6 +42,9 @@ func _shoot_steam():
 	get_node('SteamLeft').set_emitting(true)
 	get_node('SteamRight').set_emitting(true)
 
+func _stop_steam():
+	get_node('SteamLeft').set_emitting(false)
+	get_node('SteamRight').set_emitting(false)
 
 func _on_Point_area_enter(area, dockpoint):
 	if area.has_meta('dockpoint'):
@@ -57,8 +60,10 @@ func _on_Point_area_exit(area, dockpoint):
 
 func _check_for_touchin():
 	if touchin[0]==true and touchin[1]==true:
-		touched_in = true
-		_shoot_steam()
+		if not touched_in:
+			touched_in = true
+			_shoot_steam()
 
-	else:	touched_in = false
-
+	else:	
+		touched_in = false
+		_stop_steam()
