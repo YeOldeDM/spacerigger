@@ -15,3 +15,7 @@ func function0():
 func function1():
 	mfd.set_screen('linang')
 	mfd.selecting = false
+
+func function2():
+	mfd.set_screen('docking')
+	mfd.selecting = false

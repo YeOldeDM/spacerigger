@@ -61,7 +61,7 @@ script/script = ExtResource( 1 )
 name = "Godot Station"
 station_class = "Civilian"
 station_type = "Habitat"
-designation = "ST-GOD-A01"
+Designation = "ST-GOD-A01"
 
 [node name="Docks" type="Node2D" parent="."]
 

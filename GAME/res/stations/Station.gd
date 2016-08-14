@@ -7,7 +7,7 @@ export var name = "Godot Station"
 export var station_class = "Civilian"
 export var station_type = "Habitat"
 
-export var designation = "ST-GOD-A01"
+export var Designation = "ST-GOD-A01"
 
 
 

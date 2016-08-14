@@ -128,6 +128,4 @@ randomness/initial_angle = 1.0
 randomness/final_size = 0.5
 color/color_ramp = ExtResource( 4 )
 
-[connection signal="area_exit" from="PointA" to="." method="_on_PointA_area_exit"]
-
 

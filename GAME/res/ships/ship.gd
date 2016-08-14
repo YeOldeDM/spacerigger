@@ -12,7 +12,7 @@ onready var world = get_node('../../')
 # Shortcuts
 onready var thrusters = get_node('thrust_emitters')
 onready var dock_joint = get_node('DockJoint')
-onready var dock = get_node('Dock')
+onready var docks = get_node('Docks')
 onready var forward = get_node('Forward')
 onready var left = get_node('Left')
 onready var cam = get_node('Camera')
@@ -193,7 +193,9 @@ func disable_linear_dampen():
 
 func _ready():
 	#dock.set_meta('dock',true)
-	target = world.get_node('WarpNodes').get_child(0)
+	for d in docks.get_children():
+		d.owner = self
+	target = world.get_node('Stations').get_child(0)
 
 
 
@@ -407,10 +409,10 @@ func _on_Ship_body_enter( body ):
 func _set_dock_viz(state=false):
 	if state == true:
 		# Greenlight!
-		dock.get_node('Light').set_color(Color(0,1,0))
+		docks.get_node('Light').set_color(Color(0,1,0))
 	else:
 		# Redlight!
-		dock.get_node('Light').set_color(Color(1,0,0))
+		docks.get_node('Light').set_color(Color(1,0,0))
 
 
 

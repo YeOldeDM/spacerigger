@@ -545,6 +545,7 @@ visibility/behind_parent = true
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 31 )
+dock_name = "A"
 
 [connection signal="body_enter" from="." to="." method="_on_Ship_body_enter"]
 
