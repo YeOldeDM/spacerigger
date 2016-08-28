@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+
+onready var label_ob = get_node('Label')
 export var label = "ABC"
 
 var on = false
@@ -11,12 +13,12 @@ var texture_on = preload('res://assets/graphics/hud/common/switch_on.png')
 var texture_error = preload('res://assets/graphics/hud/common/switch_err.png')
 
 func _ready():
-	set_label(label)
+	_set_label(label)
 
 
-func set_label( string ):
+func _set_label( string ):
 	label = string
-	get_node('Label').set_text(label)
+	label_ob.set_text(label)
 
 
 func _set_error( is_error ):

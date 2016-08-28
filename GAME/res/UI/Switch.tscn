@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
 [ext_resource path="res://res/UI/Switch.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/vetica14.fnt" type="Font" id=3]
+[ext_resource path="res://assets/fonts/vetica14.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://assets/graphics/hud/common/switch_off.png" type="Texture" id=4]
 [ext_resource path="res://assets/graphics/hud/common/switch_on.png" type="Texture" id=5]
 
@@ -19,6 +19,7 @@ margin/right = 32.0
 margin/bottom = 58.0
 alignment = 0
 script/script = ExtResource( 2 )
+label = "ABC"
 
 [node name="Label" type="Label" parent="."]
 
@@ -54,6 +55,8 @@ margin/right = 32.0
 margin/bottom = 58.0
 toggle_mode = true
 click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
 textures/normal = ExtResource( 4 )
 textures/pressed = ExtResource( 5 )
 

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
 [ext_resource path="res://core/Pedia/PediaWindow.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/hack12.fnt" type="Font" id=3]
+[ext_resource path="res://assets/fonts/hack12.fnt" type="BitmapFont" id=3]
 
 [node name="PediaWindow" type="WindowDialog"]
 
@@ -53,16 +53,18 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 376.0
-margin/bottom = 266.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 373.0
+margin/bottom = 263.0
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode/enabled = true
 bbcode/bbcode = ""
 visible_characters = -1
 
 [connection signal="about_to_show" from="." to="." method="_on_PediaWindow_about_to_show"]
+
+[connection signal="popup_hide" from="." to="." method="_on_hide"]
 
 [connection signal="meta_clicked" from="box/panel/entry" to="." method="_goto"]
 

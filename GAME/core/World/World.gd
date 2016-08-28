@@ -50,3 +50,8 @@ func _ready():
 	if game.pending_player:
 		#print("GO")
 		game.warp_player(self)
+	set_fixed_process(true)
+
+func _fixed_process(delta):
+	if game.get_player():
+		find_node('Background').parallax(game.get_player().get_global_pos())

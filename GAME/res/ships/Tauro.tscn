@@ -130,7 +130,6 @@ transform/pos = Vector2( 50, 0 )
 
 [node name="thrust_emitters" type="Node2D" parent="."]
 
-editor/display_folded = true
 visibility/behind_parent = true
 
 [node name="ProThrustR" type="Particles2D" parent="thrust_emitters"]
@@ -539,17 +538,15 @@ modulate = Color( 0.992188, 1, 0, 1 )
 
 [node name="Docks" type="Node2D" parent="."]
 
+editor/display_folded = true
 visibility/behind_parent = true
 
 [node name="StationDock" parent="Docks" instance=ExtResource( 8 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 31 )
 dock_name = "A"
 
 [connection signal="body_enter" from="." to="." method="_on_Ship_body_enter"]
-
-[connection signal="area_exit" from="Docks/StationDock/PointA" to="Docks/StationDock" method="_on_PointA_area_exit"]
 
 
 [editable path="Docks/StationDock"]

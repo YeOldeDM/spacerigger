@@ -54,7 +54,7 @@ func _draw_docking_info():
 		var O = ship.docks.get_child(current_own_dock)
 		var T = ship.target.docks.get_child(current_target_dock)
 		var D = (T.get_global_pos() - O.get_global_pos()).length()
-		var devA = O.get_direction_deviation(T)
+		var devA = rad2deg(abs(O.get_direction_deviation(T)))
 		var devP = O.get_positional_deviation(T)
 		var Atxt = "DevA: "+str(devA).pad_decimals(2)
 		var Ptxt = "DevP: "+str(devP).pad_decimals(2)

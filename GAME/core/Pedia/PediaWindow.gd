@@ -6,6 +6,7 @@ onready var entrybox = get_node('box/panel/entry')
 var current_entry
 
 func _goto(entry):
+	SoundMan.play('beep')
 	var subject = entry.replace('_',':')
 	set_title("Pedia -- "+subject)
 	prints("Pedia entry selected--",entry)
@@ -36,3 +37,7 @@ func _on_PediaWindow_about_to_show():
 func _on_Show_pressed():
 	if !is_visible():
 		popup_centered()
+
+
+func _on_hide():
+	SoundMan.play('beep')

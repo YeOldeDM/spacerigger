@@ -52,6 +52,7 @@ script/script = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -60,7 +61,6 @@ script/script = ExtResource( 3 )
 
 [node name="box" type="Control" parent="HUD"]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -500,6 +500,7 @@ texture = ExtResource( 12 )
 
 [node name="Autopilot" type="PanelContainer" parent="HUD/box"]
 
+editor/display_folded = true
 visibility/self_opacity = 0.5
 anchor/left = 3
 anchor/top = 1
@@ -1298,7 +1299,6 @@ align = 0
 
 [node name="Switchbox" type="PanelContainer" parent="HUD/box/PowerControl"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

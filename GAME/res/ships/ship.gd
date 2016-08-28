@@ -36,7 +36,7 @@ var in_dock_zone = false
 
 export var Chassis = "Tauro"
 export var Model = "Runner"
-export var Designation = "A1A-2"
+export var Designation = "A1A-212"
 # Velocity force vars
 export var delta_v_main = 1260.0
 export var delta_v = 500.0

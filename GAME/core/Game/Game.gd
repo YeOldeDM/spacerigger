@@ -81,7 +81,7 @@ func pedia(entry=null):
 
 #	PRIVATE METHODS
 
-var InitShip = 'Tauro'
+var InitShip = 'NewShip'
 
 func _ready():
 	_kill_ui_binds()
