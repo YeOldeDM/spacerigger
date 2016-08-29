@@ -64,15 +64,19 @@ func _integrate_forces(state):
 		var cmd = controller.cmd_state
 		if cmd.thrust_pro:
 			lv += (_get_forward_vector()*delta_v_main*delta) / get_mass()
-			
+
+		
 		if cmd.thrust_retro and has_retro_thrust:
 			lv -= (_get_forward_vector()*delta_v_main*delta) / get_mass()
-			
+
+
 		if cmd.rcs_pro:
 			lv += (_get_forward_vector()*delta_v*delta) / get_mass()
-			
+
+
 		if cmd.rcs_retro:
 			lv -= (_get_forward_vector()*delta_v*delta) / get_mass()
+
 			
 		if cmd.rcs_left:
 			lv += (_get_left_vector()*delta_v*delta) / get_mass()

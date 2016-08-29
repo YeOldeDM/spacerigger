@@ -184,46 +184,42 @@ thrust_type = 0
 thrust_direction = 0
 thrust_placement = 0
 
-[node name="RightRCSPro" parent="Thrusters" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -22, -5 )
-params/initial_size = 1.5
-thrust_type = 1
-thrust_direction = 0
-thrust_placement = 2
-
-[node name="LeftRCSPro" parent="Thrusters" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 22, -5 )
-params/initial_size = 1.5
-thrust_type = 1
-thrust_direction = 0
-thrust_placement = 1
-
-[node name="LeftRCSRetro" parent="Thrusters" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 22, 18 )
-params/direction = 180.0
-params/initial_size = 1.5
-thrust_type = 1
-thrust_direction = 1
-thrust_placement = 1
-
-[node name="RightRCSRetro" parent="Thrusters" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -22, 18 )
-params/direction = 180.0
-params/initial_size = 1.5
-thrust_type = 1
-thrust_direction = 1
-thrust_placement = 2
-
 [node name="RCSRightFore" parent="Thrusters" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( -9, 34 )
 params/direction = 90.0
 thrust_type = 1
 thrust_direction = 3
+thrust_placement = 1
+
+[node name="RCSRightRetro" parent="Thrusters" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( -22, 18 )
+params/direction = 180.0
+thrust_type = 1
+thrust_direction = 1
+thrust_placement = 2
+
+[node name="RCSRightPro" parent="Thrusters" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( -22, -4.99999 )
+thrust_type = 1
+thrust_direction = 0
+thrust_placement = 2
+
+[node name="RCSLeftPro" parent="Thrusters" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 22, -4.99999 )
+thrust_type = 1
+thrust_direction = 0
+thrust_placement = 1
+
+[node name="RCSLeftRetro" parent="Thrusters" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 22, 18 )
+params/direction = 180.0
+thrust_type = 1
+thrust_direction = 1
 thrust_placement = 1
 
 [node name="RCSRightAft" parent="Thrusters" instance=ExtResource( 6 )]

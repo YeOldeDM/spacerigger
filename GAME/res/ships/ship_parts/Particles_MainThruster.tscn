@@ -39,7 +39,7 @@ color/color_ramp = ExtResource( 2 )
 script/script = ExtResource( 3 )
 max_parts = 16
 max_life = 1.0
-thruster_type = null
+thrust_type = null
 thrust_direction = null
 thrust_placement = null
 

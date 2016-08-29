@@ -16,20 +16,23 @@ var ThrustBlock = {
 	}
 
 func set_emission(action, state):
+#	if state:	print(action)
 	if ThrustBlock.has(action):
 		for t in ThrustBlock[action]:
 			if state:	
 				t.turn_on()
-				print(t.get_name())
-			else:
-				t.turn_off()
 
-func _process(delta):
+
+func _fixed_process(delta):
+	for c in get_children():
+		c.turn_off()
 	for action in ship.controller.cmd_state:
-		set_emission(action, ship.controller.cmd_state[action])
+		var state = ship.controller.cmd_state[action]
+		#if state:	print(state)
+		set_emission(action, state)
 
 func _ready():
-	set_process(true)
+	set_fixed_process(true)
 	for t in get_children():
 		if t.thrust_type == t.TYPE_MAIN:
 			if t.thrust_direction == t.DIRECTION_PROGRADE:
@@ -44,7 +47,7 @@ func _ready():
 				if ship.rcs_config == 1:	# H configuration
 					if t.thrust_placement == t.PLACEMENT_STARBOARD:
 						ThrustBlock.yaw_left.append(t)
-					elif t.thrust_placement == t.PLACEMENT_PORT:
+					if t.thrust_placement == t.PLACEMENT_PORT:
 						ThrustBlock.yaw_right.append(t)
 
 
@@ -54,7 +57,7 @@ func _ready():
 				if ship.rcs_config == 1:	# H configuration
 					if t.thrust_placement == t.PLACEMENT_PORT:
 						ThrustBlock.yaw_left.append(t)
-					elif t.thrust_placement == t.PLACEMENT_STARBOARD:
+					if t.thrust_placement == t.PLACEMENT_STARBOARD:
 						ThrustBlock.yaw_right.append(t)
 
 
@@ -64,7 +67,7 @@ func _ready():
 				if ship.rcs_config == 0:	# I configuration
 					if t.thrust_placement == t.PLACEMENT_AFT:
 						ThrustBlock.yaw_left.append(t)
-					elif t.thrust_placement == t.PLACEMENT_FORE:
+					if t.thrust_placement == t.PLACEMENT_FORE:
 						ThrustBlock.yaw_right.append(t)
 
 			elif t.thrust_direction == t.DIRECTION_STARBOARD:
@@ -72,14 +75,10 @@ func _ready():
 				if ship.rcs_config == 0:	# I configuration
 					if t.thrust_placement == t.PLACEMENT_FORE:
 						ThrustBlock.yaw_left.append(t)
-					elif t.thrust_placement == t.PLACEMENT_AFT:
+					if t.thrust_placement == t.PLACEMENT_AFT:
 						ThrustBlock.yaw_right.append(t)
 			
-	for key in ThrustBlock:
-		print(key+'\n')
-		for i in ThrustBlock[key]:
-			print(i.get_name())
-		print('\n\n')
+
 
 
 

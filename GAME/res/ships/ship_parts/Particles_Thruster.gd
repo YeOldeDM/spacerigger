@@ -20,7 +20,7 @@ export(int, "Main", "Reaction") var thrust_type
 export(int, "Prograde", "Retrograde", "Port", "Starboard") var thrust_direction
 export(int, "Nil", "Fore/Port", "Aft/Starboard") var thrust_placement
 
-const ACCEL = 5
+const ACCEL = 8
 
 var rate = 1		#1= rising, -1=falling
 
@@ -28,10 +28,12 @@ var power = 0.0 setget _set_power
 
 func turn_on():
 	rate = 1
+	#set_emitting(true)
 
 
 func turn_off():
 	rate = -1
+	#set_emitting(false)
 
 
 func _set_power( per ):
@@ -45,6 +47,7 @@ func _set_power( per ):
 	else:
 		if not is_emitting():
 			set_emitting(true)
+		#print(get_name())
 
 
 func _ready():
@@ -55,4 +58,5 @@ func _fixed_process(delta):
 	P += delta*ACCEL*rate
 
 	set('power', P)
+
 	
