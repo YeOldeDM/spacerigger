@@ -34,12 +34,13 @@ func _on_AFA_buttons_selected( button_idx ):
 
 func _on_RID_buttons_selected( button_idx ):
 	var ship = game.get_player()
-	if !ship:	return
+	if !ship:	print("NO");return
 	if button_idx == RID_ANGULAR:
-		ship.dampen_angular_motion()
+		print("ANG")
+		ship.enable_angular_dampen()
 		ship.disable_linear_dampen()
 	elif button_idx == RID_LINEAR:
-		ship.dampen_linear_motion()
+		ship.enable_linear_dampen()
 		ship.disable_angular_dampen()
 	elif button_idx == RID_OFF:
 		ship.disable_linear_dampen()

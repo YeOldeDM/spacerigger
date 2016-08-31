@@ -21,6 +21,8 @@ func set_emission(action, state):
 		for t in ThrustBlock[action]:
 			if state:	
 				t.turn_on()
+				var shake = ship.delta_v*0.001
+				ship.cam.apply_shake(shake)
 
 
 func _fixed_process(delta):

@@ -76,6 +76,7 @@ func warp_player(destination):
 
 func pedia(entry=null):
 	_show_pedia(entry)
+	SoundMan.play('beep')
 
 
 
@@ -92,7 +93,7 @@ func _ready():
 	Time = EPOCH
 	
 	var player_ship = Spawn.ship(InitShip)
-	get_world().add_vessel(player_ship, Vector2(4000,-4000), true)
+	get_world().add_vessel(player_ship, Vector2(0,0), true)
 	player_ship.refuel()
 
 	# Start maximized

@@ -11,6 +11,7 @@ var cleared_for = null
 var open = true
 
 var touched_in = false
+var touching = null
 
 var touchin = { 0:false, 1:false }
 
@@ -62,11 +63,15 @@ func _on_Point_area_enter(area, dockpoint):
 		if area.get_meta('dockpoint') == abs(dockpoint-1):
 			touchin[dockpoint] = true
 			_check_for_touchin()
+	if touching != area:
+		touching = area
 
 func _on_Point_area_exit(area, dockpoint):
 	if area.has_meta('dockpoint'):
 		touchin[dockpoint] = false
 		_check_for_touchin()
+	if touching == area:
+		touching = null
 
 
 func _check_for_touchin():

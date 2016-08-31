@@ -41,7 +41,7 @@ func _set_power( per ):
 	set_lifetime(lerp(0.0, max_life, per))
 	set_amount(lerp(1, max_parts, per))
 	power = per
-	if per <= 0.0:
+	if per <= 0.1:
 		if is_emitting():
 			set_emitting(false)
 	else:
@@ -56,7 +56,7 @@ func _ready():
 func _fixed_process(delta):
 	var P = power
 	P += delta*ACCEL*rate
-
+	
 	set('power', P)
 
 	

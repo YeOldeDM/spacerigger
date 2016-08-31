@@ -3,7 +3,7 @@ extends Camera2D
 
 var shake_amp = 0
 
-export var shake_magnitude = 200.0
+export var shake_magnitude = 5.0
 export var shake_falloff = 0.91
 
 func _process(delta):

@@ -1,11 +1,12 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://res/ships/NewShip.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/ships/stragos.png" type="Texture" id=2]
-[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=3]
-[ext_resource path="res://res/ships/ShipThrusters.gd" type="Script" id=4]
-[ext_resource path="res://res/ships/ship_parts/Particles_MainThruster.tscn" type="PackedScene" id=5]
-[ext_resource path="res://res/ships/ship_parts/Particles_ReactionThruster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://res/ships/ship_camera.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphics/ships/stragos.png" type="Texture" id=3]
+[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/ships/ShipThrusters.gd" type="Script" id=5]
+[ext_resource path="res://res/ships/ship_parts/Particles_MainThruster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://res/ships/ship_parts/Particles_ReactionThruster.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -130,12 +131,12 @@ Designation = "A1A-212"
 delta_v_main = 1260.0
 delta_v = 500.0
 delta_r = 5.0
+damp_power = 2.0
 rcs_config = 1
 has_retro_thrust = false
 has_rcs_thrust = true
 has_warp_drive = true
 max_fuel = 16.0
-RID_power = 1.0
 
 [node name="Camera" type="Camera2D" parent="."]
 
@@ -156,35 +157,40 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+script/script = ExtResource( 2 )
+shake_magnitude = 1.0
+shake_falloff = 0.91
 
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0, 8 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 flip_v = true
 
 [node name="Docks" type="Node2D" parent="."]
 
 visibility/behind_parent = true
 
-[node name="StationDock" parent="Docks" instance=ExtResource( 3 )]
+[node name="StationDock" parent="Docks" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 visibility/behind_parent = true
 transform/pos = Vector2( 0, 42 )
 
 [node name="Thrusters" type="Node2D" parent="."]
 
+editor/display_folded = true
 visibility/behind_parent = true
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
-[node name="MainPro" parent="Thrusters" instance=ExtResource( 5 )]
+[node name="MainPro" parent="Thrusters" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 0, -30 )
 thrust_type = 0
 thrust_direction = 0
 thrust_placement = 0
 
-[node name="RCSRightFore" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSRightFore" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -9, 34 )
 params/direction = 90.0
@@ -192,7 +198,7 @@ thrust_type = 1
 thrust_direction = 3
 thrust_placement = 1
 
-[node name="RCSRightRetro" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSRightRetro" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -22, 18 )
 params/direction = 180.0
@@ -200,21 +206,21 @@ thrust_type = 1
 thrust_direction = 1
 thrust_placement = 2
 
-[node name="RCSRightPro" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSRightPro" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -22, -4.99999 )
 thrust_type = 1
 thrust_direction = 0
 thrust_placement = 2
 
-[node name="RCSLeftPro" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSLeftPro" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 22, -4.99999 )
 thrust_type = 1
 thrust_direction = 0
 thrust_placement = 1
 
-[node name="RCSLeftRetro" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSLeftRetro" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 22, 18 )
 params/direction = 180.0
@@ -222,7 +228,7 @@ thrust_type = 1
 thrust_direction = 1
 thrust_placement = 1
 
-[node name="RCSRightAft" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSRightAft" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -12, -21 )
 params/direction = 90.0
@@ -230,15 +236,15 @@ thrust_type = 1
 thrust_direction = 3
 thrust_placement = 2
 
-[node name="RCSLeftFore" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSLeftFore" parent="Thrusters" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 8, 34 )
+transform/pos = Vector2( 2, 32 )
 params/direction = 270.0
 thrust_type = 1
 thrust_direction = 2
 thrust_placement = 1
 
-[node name="RCSLeftAft" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="RCSLeftAft" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 12, -21 )
 params/direction = 270.0
@@ -254,4 +260,13 @@ polygon = Vector2Array( -6, -38, -12, -32, -13, -16, -11, -7, -17, -7, -19, -13,
 shape_range = Vector2( 0, 11 )
 trigger = false
 
+[node name="DockJoint" type="PinJoint2D" parent="."]
 
+node_a = NodePath("..")
+node_b = NodePath("..")
+bias/bias = 0.9
+collision/exclude_nodes = false
+softness = 0.0
+
+
+[editable path="Docks/StationDock"]

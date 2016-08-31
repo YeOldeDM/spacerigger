@@ -24,7 +24,8 @@ dock_name = "Alpha"
 
 [node name="PointA" type="Area2D" parent="."]
 
-transform/pos = Vector2( -7, 7 )
+editor/display_folded = true
+transform/pos = Vector2( -7, 6.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -43,7 +44,8 @@ trigger = false
 
 [node name="PointB" type="Area2D" parent="."]
 
-transform/pos = Vector2( 7, 7 )
+editor/display_folded = true
+transform/pos = Vector2( 7, 6.2 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )

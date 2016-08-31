@@ -130,6 +130,7 @@ transform/pos = Vector2( 50, 0 )
 
 [node name="thrust_emitters" type="Node2D" parent="."]
 
+editor/display_folded = true
 visibility/behind_parent = true
 
 [node name="ProThrustR" type="Particles2D" parent="thrust_emitters"]

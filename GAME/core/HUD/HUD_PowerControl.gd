@@ -6,6 +6,7 @@ const POWER_ON = 1
 const POWER_ERR = 2
 
 const RED = Color(1,0,0)
+const YELLOW = Color(1,0.8,0)
 const GREEN = Color(0,1,1)
 
 onready var game = get_node('/root/Game')
@@ -195,6 +196,9 @@ func _process(delta):
 		
 		if pwr > 0:
 			if is_gen_on():
+				var light = get_element('GEN', 'Light')
+				if light.get_color() != YELLOW:
+					light.set_color(YELLOW)
 				gen_power += pwr*delta
 				charging = true
 			if !is_on_ext_power():

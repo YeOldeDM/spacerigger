@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -13,21 +13,26 @@
 [ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=11]
 [ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=12]
 [ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=13]
-[ext_resource path="res://res/UI/pedia_button.tscn" type="PackedScene" id=14]
-[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=15]
-[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=16]
-[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=17]
-[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=18]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=19]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=20]
-[ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=22]
-[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=23]
-[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=24]
+[ext_resource path="res://assets/graphics/hud/common/help_button_normal.png" type="Texture" id=14]
+[ext_resource path="res://assets/graphics/hud/common/help_button_pressed.png" type="Texture" id=15]
+[ext_resource path="res://assets/graphics/hud/common/help_button_hover.png" type="Texture" id=16]
+[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.gd" type="Script" id=17]
+[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.png" type="Texture" id=18]
+[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=19]
+[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=20]
+[ext_resource path="res://res/UI/pedia_button.tscn" type="PackedScene" id=21]
+[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=22]
+[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=23]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=24]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=25]
+[ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=26]
+[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=27]
+[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=28]
+[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=29]
 
 [sub_resource type="SampleLibrary" id=1]
 
-samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 23 ) }
+samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 28 ) }
 
 [node name="Game" type="Control"]
 
@@ -570,13 +575,25 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Help" parent="HUD/box/Autopilot/box/AFA/title" instance=ExtResource( 14 )]
+[node name="Pedia Button" type="TextureButton" parent="HUD/box/Autopilot/box/AFA/title"]
 
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
 margin/left = 132.0
+margin/top = 0.0
 margin/right = 148.0
+margin/bottom = 16.0
+toggle_mode = false
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-go_to_entry = "autopilot_AFA"
+textures/normal = ExtResource( 14 )
+textures/pressed = ExtResource( 15 )
+textures/hover = ExtResource( 16 )
+script/script = ExtResource( 17 )
+Subject = "autopilot_AFA"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/AFA"]
 
@@ -651,13 +668,26 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Help" parent="HUD/box/Autopilot/box/RID/title" instance=ExtResource( 14 )]
+[node name="Pedia Button" type="TextureButton" parent="HUD/box/Autopilot/box/RID/title"]
 
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
 margin/left = 132.0
+margin/top = 0.0
 margin/right = 148.0
+margin/bottom = 16.0
+toggle_mode = false
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-go_to_entry = "autopilot_RID"
+textures/normal = ExtResource( 14 )
+textures/pressed = ExtResource( 15 )
+textures/hover = ExtResource( 16 )
+script/script = ExtResource( 17 )
+__meta__ = { "_editor_icon":ExtResource( 18 ) }
+Subject = "autopilot_RID"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/RID"]
 
@@ -697,7 +727,7 @@ margin/left = -38.0
 margin/top = 120.0
 margin/right = -188.0
 margin/bottom = 44.0
-script/script = ExtResource( 15 )
+script/script = ExtResource( 19 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
 
@@ -789,7 +819,7 @@ margin/left = 20.0
 margin/top = 360.0
 margin/right = 280.0
 margin/bottom = 268.0
-script/script = ExtResource( 16 )
+script/script = ExtResource( 20 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
 
@@ -832,7 +862,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 14 )]
+[node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 21 )]
 
 margin/left = 230.0
 margin/right = 246.0
@@ -1020,11 +1050,10 @@ margin/left = 125.0
 margin/top = 0.0
 margin/right = 325.0
 margin/bottom = 105.0
-script/script = ExtResource( 17 )
+script/script = ExtResource( 22 )
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -1091,7 +1120,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 18 )
+theme/theme = ExtResource( 23 )
 margin/left = 0.0
 margin/top = 44.0
 margin/right = 39.0
@@ -1122,7 +1151,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 18 )
+theme/theme = ExtResource( 23 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 39.0
@@ -1234,7 +1263,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 18 )
+theme/theme = ExtResource( 23 )
 margin/left = 39.0
 margin/top = 0.0
 margin/right = 68.0
@@ -1289,8 +1318,8 @@ margin/left = 60.0
 margin/top = 10.0
 margin/right = 136.0
 margin/bottom = 50.0
-custom_icons/off = ExtResource( 19 )
-custom_icons/on = ExtResource( 20 )
+custom_icons/off = ExtResource( 24 )
+custom_icons/on = ExtResource( 25 )
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
@@ -1299,6 +1328,7 @@ align = 0
 
 [node name="Switchbox" type="PanelContainer" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -1321,48 +1351,59 @@ margin/right = 183.0
 margin/bottom = 65.0
 alignment = 0
 
-[node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 21 )]
+[node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
 
 hint/tooltip = "Life Support Systems"
 label = "LIFE"
 
-[node name="Engine" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 21 )]
+[node name="Engine" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
 
 hint/tooltip = "Engine Main Thrusters"
 margin/left = 36.0
 margin/right = 68.0
 label = "ENG"
 
-[node name="RCS" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 21 )]
+[node name="RCS" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
 
 hint/tooltip = "RCS Thrusters"
 margin/left = 72.0
 margin/right = 104.0
 label = "RCS"
 
-[node name="MFD" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 21 )]
+[node name="MFD" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
 
 hint/tooltip = "Multi-Function Display(s)"
 margin/left = 108.0
 margin/right = 140.0
 label = "MFD"
 
-[node name="Dock" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 21 )]
+[node name="Dock" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
 
 hint/tooltip = "Docking Systems"
 margin/left = 144.0
 margin/right = 176.0
 label = "DOCK"
 
-[node name="Help" parent="HUD/box/PowerControl" instance=ExtResource( 14 )]
+[node name="Pedia Button" type="TextureButton" parent="HUD/box/PowerControl"]
 
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
 margin/left = 180.0
 margin/top = 85.0
 margin/right = 196.0
 margin/bottom = 101.0
+toggle_mode = false
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-go_to_entry = "checklist_startup"
+textures/normal = ExtResource( 14 )
+textures/pressed = ExtResource( 15 )
+textures/hover = ExtResource( 16 )
+script/script = ExtResource( 17 )
+__meta__ = { "_editor_icon":ExtResource( 18 ) }
+Subject = "checklist_startup"
 
 [node name="Pedia" type="Button" parent="HUD/box"]
 
@@ -1393,7 +1434,7 @@ visibility/blend_mode = 1
 
 [node name="Arrow" type="Sprite" parent="HUD/ProMark"]
 
-texture = ExtResource( 22 )
+texture = ExtResource( 27 )
 flip_v = true
 
 [node name="Velocity" type="Label" parent="HUD/ProMark"]
@@ -1441,7 +1482,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="PediaWindow" parent="Context" instance=ExtResource( 24 )]
+[node name="PediaWindow" parent="Context" instance=ExtResource( 29 )]
 
 visibility/visible = false
 
