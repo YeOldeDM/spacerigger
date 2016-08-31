@@ -32,7 +32,7 @@ func process():
 
 
 	clock.process()
-	#fuel.process()
+	fuel.process()
 	#warp.process()
 	
 	if mfdleft.get_screen().has_method('process'):

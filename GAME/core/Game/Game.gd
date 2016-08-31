@@ -95,6 +95,8 @@ func _ready():
 	var player_ship = Spawn.ship(InitShip)
 	get_world().add_vessel(player_ship, Vector2(0,0), true)
 	player_ship.refuel()
+	var T = get_world().get_node('Stations/Godot Station')
+	player_ship.target = T
 
 	# Start maximized
 	#OS.set_window_maximized(true)
