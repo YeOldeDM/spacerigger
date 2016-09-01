@@ -24,7 +24,7 @@ margin/right = 844.0
 margin/bottom = 420.0
 script/script = ExtResource( 2 )
 
-[node name="box" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -34,103 +34,119 @@ margin/left = 7.0
 margin/top = 7.0
 margin/right = 173.0
 margin/bottom = 173.0
-alignment = 0
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="box"]
+[node name="box" type="HBoxContainer" parent="VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
-size_flags/vertical = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 41.0
+margin/right = 166.0
+margin/bottom = 125.0
+alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/box"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 81.0
-margin/bottom = 166.0
+margin/bottom = 84.0
+custom_constants/separation = 18
 alignment = 2
 
-[node name="Label" type="Label" parent="box/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/box/VBoxContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 14.0
+margin/top = 0.0
 margin/right = 81.0
-margin/bottom = 23.0
+margin/bottom = 9.0
 text = "--LOC"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label1" type="Label" parent="box/VBoxContainer"]
+[node name="Label1" type="Label" parent="VBoxContainer/box/VBoxContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 56.0
+margin/top = 27.0
 margin/right = 81.0
-margin/bottom = 65.0
+margin/bottom = 36.0
 text = "--VelAng"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="box/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/box/VBoxContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 98.0
+margin/top = 54.0
 margin/right = 81.0
-margin/bottom = 107.0
+margin/bottom = 63.0
 text = "--Docking"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label3" type="Label" parent="box/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/box/VBoxContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 141.0
+margin/top = 78.0
 margin/right = 81.0
-margin/bottom = 150.0
+margin/bottom = 87.0
 text = "--"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="VBoxContainer1" type="VBoxContainer" parent="box"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="VBoxContainer/box"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
-size_flags/vertical = 3
+size_flags/vertical = 2
 margin/left = 85.0
 margin/top = 0.0
 margin/right = 166.0
-margin/bottom = 166.0
+margin/bottom = 84.0
+custom_constants/separation = 18
 alignment = 1
 
-[node name="Label" type="Label" parent="box/VBoxContainer1"]
+[node name="Label" type="Label" parent="VBoxContainer/box/VBoxContainer1"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 14.0
+margin/top = 0.0
 margin/right = 81.0
-margin/bottom = 23.0
+margin/bottom = 9.0
 text = "--"
 align = 2
 valign = 1
@@ -138,16 +154,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label1" type="Label" parent="box/VBoxContainer1"]
+[node name="Label1" type="Label" parent="VBoxContainer/box/VBoxContainer1"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 56.0
+margin/top = 27.0
 margin/right = 81.0
-margin/bottom = 65.0
+margin/bottom = 36.0
 text = "--"
 align = 2
 valign = 1
@@ -155,16 +171,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="box/VBoxContainer1"]
+[node name="Label2" type="Label" parent="VBoxContainer/box/VBoxContainer1"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 98.0
+margin/top = 54.0
 margin/right = 81.0
-margin/bottom = 107.0
+margin/bottom = 63.0
 text = "--"
 align = 2
 valign = 1
@@ -172,16 +188,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label3" type="Label" parent="box/VBoxContainer1"]
+[node name="Label3" type="Label" parent="VBoxContainer/box/VBoxContainer1"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 1
 margin/left = 0.0
-margin/top = 141.0
+margin/top = 78.0
 margin/right = 81.0
-margin/bottom = 150.0
+margin/bottom = 87.0
 text = "--"
 align = 2
 valign = 1

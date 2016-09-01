@@ -27,6 +27,7 @@ var temp_linvel
 var temp_angvel
 var pending_player = false
 
+
 #	PUBLIC METHODS
 
 func get_player():

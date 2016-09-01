@@ -38,6 +38,7 @@ var current_thrust_force = 0.0
 var target = null
 var active_dock = 0
 var docked = false
+var pending_pushoff = false
 
 func focus_camera():
 	cam.make_current()
@@ -92,11 +93,11 @@ func _set_current_fuel(value):
 func _ready():
 	pass
 
-func _get_forward_vector():
+func get_forward_vector():
 	var tr = get_global_transform()
 	return tr.basis_xform(Vector2(0,1))
 
-func _get_left_vector():
+func get_left_vector():
 	var tr = get_global_transform()
 	return tr.basis_xform(Vector2(1,0))
 
@@ -109,8 +110,7 @@ func _undock_from(target):
 	if docked:
 		get_node('DockJoint').set_node_b(get_path())
 		docked = false
-		var pushoff = get_total_mass() * -_get_forward_vector() * 100.0
-		set_linear_velocity(pushoff)
+		pending_pushoff = true
 
 func _sync_rotation_with(target):
 	var dock_body = target.get_owner()
@@ -124,9 +124,9 @@ func _integrate_forces(state):
 	var lv = state.get_linear_velocity()
 	var av = state.get_angular_velocity()
 	
-	var main_fore_vect = _get_forward_vector()*delta_v_main*delta
-	var rcs_fore_vect = _get_forward_vector()*delta_v*delta
-	var rcs_left_vect = _get_left_vector()*delta_v*delta
+	var main_fore_vect = get_forward_vector()*delta_v_main*delta
+	var rcs_fore_vect = get_forward_vector()*delta_v*delta
+	var rcs_left_vect = get_left_vector()*delta_v*delta
 	var yaw_rate = delta_r * delta
 	
 	var ct = current_thrust_force
@@ -183,6 +183,11 @@ func _integrate_forces(state):
 			_undock_from(target)
 	current_thrust_force = ct
 	current_fuel_use = ct*delta
+	
+	if pending_pushoff:
+		pending_pushoff = false
+		var pushoff = get_total_mass() * -get_forward_vector() * 0.1
+		lv += pushoff
 	# Apply Damping
 	if get_linear_damp() > 0:
 		lv *= 1.0-(get_linear_damp() / get_total_mass())

@@ -1,7 +1,12 @@
 
 extends WindowDialog
 
-onready var entrybox = get_node('box/panel/entry')
+onready var show = get_node('box/panel/Show')
+onready var entry_box = show.get_node('Entry')
+onready var edit = get_node('box/panel/Edit')
+onready var edit_box = edit.get_node('Entry')
+
+
 
 var current_entry
 
@@ -11,14 +16,17 @@ func _goto(entry):
 	set_title("Pedia -- "+subject)
 	prints("Pedia entry selected--",entry)
 	var text = Pedia.ref(entry)
-	if text:
-		entrybox.set_bbcode(text)
-		current_entry = entry
+	current_entry = entry
+	if Pedia.ref.has_section(entry):
+		entry_box.set_bbcode(text)
 	else:
-		OS.alert("No 'Pedia entry for subject "+entry)
+		Pedia.add_entry(current_entry, "[color=red]THIS PAGE HAS NOT BEEN CREATED YET![/color]")
+		_on_Edit_pressed()
+	
 
 func _ready():
 	Pedia.load_pedia()
+	edit_box.set_wrap(true)
 
 
 
@@ -41,3 +49,23 @@ func _on_Show_pressed():
 
 func _on_hide():
 	SoundMan.play('beep')
+
+
+func _on_Edit_pressed():
+	edit_box.set_text(Pedia.ref(current_entry))
+	show.hide()
+	edit.show()
+	
+
+
+func _on_Cancel_pressed():
+	edit.hide()
+	show.show()
+
+
+func _on_Submit_pressed():
+	Pedia.add_entry(current_entry, edit_box.get_text())
+	Pedia.save_pedia()
+	edit.hide()
+	show.show()
+	_goto(current_entry)

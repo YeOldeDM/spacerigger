@@ -9,6 +9,7 @@ const PEDIA_PATH = 'res://ref/pedia.ini'
 
 var ref = null
 
+# Called once on game's first run to generate a new Pedia file.
 func make_pedia():
 	var file = ConfigFile.new()
 	var data = {'welcome':
@@ -55,3 +56,6 @@ func ref(entry):
 		return null
 
 
+func add_entry(entry, text):
+	ref.set_value(entry, 'text', text)
+	save_pedia()

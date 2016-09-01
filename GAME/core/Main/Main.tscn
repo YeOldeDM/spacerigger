@@ -57,7 +57,6 @@ script/script = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -738,23 +737,56 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 143.0
-margin/bottom = 71.0
+margin/bottom = 75.0
 alignment = 0
 
-[node name="Label" type="Label" parent="HUD/box/Fuel/box"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/box/Fuel/box"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
 size_flags/horizontal = 2
-size_flags/vertical = 0
+size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 136.0
-margin/bottom = 12.0
+margin/bottom = 16.0
+alignment = 0
+
+[node name="Label" type="Label" parent="HUD/box/Fuel/box/HBoxContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 2.0
+margin/right = 116.0
+margin/bottom = 14.0
 text = "Fuel"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Pedia Button" type="TextureButton" parent="HUD/box/Fuel/box/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 0.0
+margin/right = 136.0
+margin/bottom = 16.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 14 )
+textures/pressed = ExtResource( 15 )
+textures/hover = ExtResource( 16 )
+script/script = ExtResource( 17 )
+__meta__ = { "_editor_icon":ExtResource( 18 ) }
+Subject = "system_fuel"
 
 [node name="Bar" type="ProgressBar" parent="HUD/box/Fuel/box"]
 
@@ -763,9 +795,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 16.0
+margin/top = 20.0
 margin/right = 136.0
-margin/bottom = 32.0
+margin/bottom = 36.0
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -782,9 +814,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 36.0
+margin/top = 40.0
 margin/right = 136.0
-margin/bottom = 48.0
+margin/bottom = 52.0
 text = "Volume: "
 percent_visible = 1.0
 lines_skipped = 0
@@ -797,9 +829,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 52.0
+margin/top = 56.0
 margin/right = 136.0
-margin/bottom = 64.0
+margin/bottom = 68.0
 text = "Rate: "
 percent_visible = 1.0
 lines_skipped = 0
@@ -1042,6 +1074,7 @@ flat = false
 
 [node name="PowerControl" type="Panel" parent="HUD/box"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -1430,6 +1463,7 @@ autostart = true
 
 [node name="ProMark" type="Node2D" parent="HUD"]
 
+editor/display_folded = true
 visibility/blend_mode = 1
 
 [node name="Arrow" type="Sprite" parent="HUD/ProMark"]
@@ -1476,7 +1510,6 @@ default/chorus_send = 0.0
 
 [node name="Context" type="CanvasLayer" parent="."]
 
-editor/display_folded = true
 layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0

@@ -17,10 +17,13 @@ var touchin = { 0:false, 1:false }
 
 export var dock_name = "Alpha"
 
+func get_forward_vector():
+	var trans = get_global_transform()
+	return trans.basis_xform(Vector2(0,1))
 
 func get_direction_deviation(target):
-	var t_dir = target.get_direction_vector().rotated(deg2rad(180))
-	return get_direction_vector().angle_to(t_dir)
+	var t_dir = target.get_forward_vector().rotated(deg2rad(180))
+	return get_forward_vector().angle_to(t_dir)
 	
 func get_positional_deviation(target):
 	var t_pos = target.get_positional_vectors()
@@ -28,9 +31,6 @@ func get_positional_deviation(target):
 	var out = abs((o_pos[0]-t_pos[1]).length() - (o_pos[1]-t_pos[0]).length())
 	return out
 
-func get_direction_vector():
-	var V = get_node('Forward').get_global_pos() - get_global_pos()
-	return V.normalized()
 
 func get_positional_vectors():
 	var V = [point_a.get_global_pos(), point_b.get_global_pos()]
