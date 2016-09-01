@@ -54,7 +54,14 @@ func add_fuel(amt=0):
 	var new_fuel = current_fuel + amt
 	print(amt)
 	set('current_fuel', new_fuel)
-	
+
+# Flight Assist Autopilot Functions
+func enable_AFA(mode):
+	pass
+
+func disable_AFA():
+	pass
+
 # Inertial Damping Autopilot Functions
 
 # Enable ANG RID

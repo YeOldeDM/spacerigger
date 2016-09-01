@@ -28,7 +28,7 @@ func get_direction_deviation(target):
 func get_positional_deviation(target):
 	var t_pos = target.get_positional_vectors()
 	var o_pos = get_positional_vectors()
-	var out = abs((o_pos[0]-t_pos[1]).length() - (o_pos[1]-t_pos[0]).length())
+	var out = [(o_pos[0]-t_pos[1]).length(), (o_pos[1]-t_pos[0]).length()]
 	return out
 
 

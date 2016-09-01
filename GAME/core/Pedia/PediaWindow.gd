@@ -49,9 +49,12 @@ func _on_Show_pressed():
 
 func _on_hide():
 	SoundMan.play('beep')
+	if get_tree().is_paused():
+		get_tree().set_pause(false)
 
 
 func _on_Edit_pressed():
+	get_tree().set_pause(true)
 	edit_box.set_text(Pedia.ref(current_entry))
 	show.hide()
 	edit.show()
@@ -61,6 +64,7 @@ func _on_Edit_pressed():
 func _on_Cancel_pressed():
 	edit.hide()
 	show.show()
+	get_tree().set_pause(false)
 
 
 func _on_Submit_pressed():
@@ -69,3 +73,4 @@ func _on_Submit_pressed():
 	edit.hide()
 	show.show()
 	_goto(current_entry)
+	get_tree().set_pause(false)

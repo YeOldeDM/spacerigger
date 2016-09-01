@@ -179,7 +179,6 @@ transform/pos = Vector2( 0, 42 )
 
 [node name="Thrusters" type="Node2D" parent="."]
 
-editor/display_folded = true
 visibility/behind_parent = true
 script/script = ExtResource( 5 )
 
@@ -238,7 +237,7 @@ thrust_placement = 2
 
 [node name="RCSLeftFore" parent="Thrusters" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 2, 32 )
+transform/pos = Vector2( 9, 34 )
 params/direction = 270.0
 thrust_type = 1
 thrust_direction = 2
