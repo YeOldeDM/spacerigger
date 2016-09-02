@@ -28,6 +28,8 @@ export var has_rcs_thrust = true
 var thrusters_live = true
 export var has_warp_drive = true
 
+var in_warp_zone = null
+
 export var max_fuel = 16.0
 
 
@@ -40,8 +42,7 @@ var active_dock = 0
 var docked = false
 var pending_pushoff = false
 
-func focus_camera():
-	cam.make_current()
+
 
 func refuel():
 	current_fuel = max_fuel
@@ -54,6 +55,19 @@ func add_fuel(amt=0):
 	var new_fuel = current_fuel + amt
 	print(amt)
 	set('current_fuel', new_fuel)
+
+func set_warp_zone(target_node):
+	in_warp_zone = target_node
+
+func clear_warp_zone():
+	in_warp_zone = null
+
+func set_camera_zoom( z ):
+	assert cam.is_current()
+	cam.set_zoom(Vector2(z,z))
+
+func focus_camera():
+	cam.make_current()
 
 # Flight Assist Autopilot Functions
 func enable_AFA(mode):

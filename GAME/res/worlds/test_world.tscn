@@ -31,7 +31,7 @@ transform/rot = -159.073
 
 [node name="Papa" parent="WarpNodes" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 9450.75, 8723.56 )
+transform/pos = Vector2( -2256.98, -1269.29 )
 transform/rot = -107.973
 destination = "bacon_world"
 target_node = "Wolf"

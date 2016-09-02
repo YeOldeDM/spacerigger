@@ -28,10 +28,11 @@ func set_emission(action, state):
 func _fixed_process(delta):
 	for c in get_children():
 		c.turn_off()
-	for action in ship.controller.cmd_state:
-		var state = ship.controller.cmd_state[action]
-		#if state:	print(state)
-		set_emission(action, state)
+	if ship.controller:
+		for action in ship.controller.cmd_state:
+			var state = ship.controller.cmd_state[action]
+			#if state:	print(state)
+			set_emission(action, state)
 
 func _ready():
 	set_fixed_process(true)

@@ -73,7 +73,7 @@ func warp_player(destination):
 	temp_angvel = null
 	temp_angle_diff = null
 	temp_ship = null
-	print(player_ship.has_main_thrust)
+	#print(player_ship.has_main_thrust)
 
 func pedia(entry=null):
 	_show_pedia(entry)
