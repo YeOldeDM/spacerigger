@@ -1,38 +1,83 @@
-[gd_scene load_steps=31 format=1]
+[gd_scene load_steps=33 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
 [ext_resource path="res://core/HUD/HUD_core.gd" type="Script" id=3]
-[ext_resource path="res://core/HUD/GameSpeed.gd" type="Script" id=4]
-[ext_resource path="res://core/HUD/HUD_Clock.gd" type="Script" id=5]
-[ext_resource path="res://assets/fonts/04B10.fnt" type="BitmapFont" id=6]
-[ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=7]
-[ext_resource path="res://assets/fonts/LCD14.fnt" type="BitmapFont" id=8]
-[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=9]
-[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=11]
-[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=12]
-[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=13]
-[ext_resource path="res://assets/graphics/hud/common/help_button_normal.png" type="Texture" id=14]
-[ext_resource path="res://assets/graphics/hud/common/help_button_pressed.png" type="Texture" id=15]
-[ext_resource path="res://assets/graphics/hud/common/help_button_hover.png" type="Texture" id=16]
-[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.gd" type="Script" id=17]
-[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.png" type="Texture" id=18]
-[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=19]
-[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=20]
-[ext_resource path="res://res/UI/pedia_button.tscn" type="PackedScene" id=21]
-[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=22]
-[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=23]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=24]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=25]
-[ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=26]
-[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=27]
-[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=28]
-[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=29]
+[ext_resource path="res://assets/graphics/hud/vignette.png" type="Texture" id=4]
+[ext_resource path="res://core/HUD/GameSpeed.gd" type="Script" id=5]
+[ext_resource path="res://core/HUD/HUD_Clock.gd" type="Script" id=6]
+[ext_resource path="res://assets/fonts/04B10.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=8]
+[ext_resource path="res://assets/fonts/LCD14.fnt" type="BitmapFont" id=9]
+[ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=10]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=12]
+[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=13]
+[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=14]
+[ext_resource path="res://assets/graphics/hud/common/help_button_normal.png" type="Texture" id=15]
+[ext_resource path="res://assets/graphics/hud/common/help_button_pressed.png" type="Texture" id=16]
+[ext_resource path="res://assets/graphics/hud/common/help_button_hover.png" type="Texture" id=17]
+[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.gd" type="Script" id=18]
+[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.png" type="Texture" id=19]
+[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=20]
+[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=21]
+[ext_resource path="res://res/UI/pedia_button.tscn" type="PackedScene" id=22]
+[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=23]
+[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=24]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=25]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=26]
+[ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=28]
+[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=29]
+[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=30]
 
-[sub_resource type="SampleLibrary" id=1]
+[sub_resource type="Environment" id=1]
 
-samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 28 ) }
+ambient_light/enabled = false
+ambient_light/color = Color( 0, 0, 0, 1 )
+ambient_light/energy = 1.0
+fxaa/enabled = false
+background/mode = 5
+background/color = Color( 0, 0, 0, 1 )
+background/energy = 1.0
+background/scale = 1.0
+background/glow = 0.0
+background/canvas_max_layer = null
+glow/enabled = true
+glow/blur_passes = 3
+glow/blur_scale = 2.0
+glow/blur_strength = 1.0
+glow/blur_blend_mode = null
+glow/bloom = 50.0
+glow/bloom_treshold = 0.95
+dof_blur/enabled = false
+dof_blur/blur_passes = 1
+dof_blur/begin = 100.0
+dof_blur/range = 10.0
+hdr/enabled = true
+hdr/tonemapper = 0
+hdr/exposure = 0.5
+hdr/white = 1.0
+hdr/glow_treshold = 0.95
+hdr/glow_scale = 0.5
+hdr/min_luminance = 0.4
+hdr/max_luminance = 8.0
+hdr/exposure_adj_speed = 0.5
+fog/enabled = false
+fog/begin = 100.0
+fog/begin_color = Color( 0, 0, 0, 1 )
+fog/end_color = Color( 0, 0, 0, 1 )
+fog/attenuation = 1.0
+fog/bg = true
+bcs/enabled = false
+bcs/brightness = 1.0
+bcs/contrast = 1.0
+bcs/saturation = 1.0
+srgb/enabled = false
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 29 ) }
 
 [node name="Game" type="Control"]
 
@@ -49,6 +94,11 @@ margin/bottom = 560.0
 script/script = ExtResource( 1 )
 start_engines = true
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = SubResource( 1 )
+
 [node name="Controller" type="Node" parent="."]
 
 script/script = ExtResource( 2 )
@@ -63,8 +113,28 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 3 )
 
+[node name="TextureFrame" type="TextureFrame" parent="HUD"]
+
+visibility/self_opacity = 0.25
+visibility/behind_parent = true
+visibility/blend_mode = 4
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 0
+
 [node name="box" type="Control" parent="HUD"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -101,7 +171,7 @@ margin/left = 219.0
 margin/top = 10.0
 margin/right = 20.0
 margin/bottom = 60.0
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/GameSpeed"]
 
@@ -169,7 +239,7 @@ margin/left = 449.0
 margin/top = 10.0
 margin/right = 234.0
 margin/bottom = 79.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/Clock"]
 
@@ -193,8 +263,8 @@ size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 201.0
-margin/bottom = 9.0
-custom_fonts/font = ExtResource( 6 )
+margin/bottom = 7.0
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
 text = "GMS Clock"
@@ -211,10 +281,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 11.0
+margin/top = 9.0
 margin/right = 201.0
 margin/bottom = 28.0
-custom_styles/panel = ExtResource( 7 )
+custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Date"]
 
@@ -225,8 +295,8 @@ size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
 margin/right = 200.0
-margin/bottom = 16.0
-custom_fonts/font = ExtResource( 8 )
+margin/bottom = 18.0
+custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Date"
 valign = 1
@@ -243,8 +313,8 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 30.0
 margin/right = 201.0
-margin/bottom = 47.0
-custom_styles/panel = ExtResource( 7 )
+margin/bottom = 49.0
+custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Time"]
 
@@ -255,8 +325,8 @@ size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
 margin/right = 200.0
-margin/bottom = 16.0
-custom_fonts/font = ExtResource( 8 )
+margin/bottom = 18.0
+custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Time"
 valign = 1
@@ -271,9 +341,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 49.0
+margin/top = 51.0
 margin/right = 201.0
-margin/bottom = 52.0
+margin/bottom = 54.0
 
 [node name="stopwatchtitle" type="Label" parent="HUD/box/TopBar/Clock/box"]
 
@@ -282,10 +352,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 54.0
+margin/top = 56.0
 margin/right = 201.0
 margin/bottom = 63.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
 text = "Aux. Timer"
@@ -317,7 +387,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 108.0
 margin/bottom = 20.0
-custom_styles/panel = ExtResource( 7 )
+custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Stopwatch/Time"]
 
@@ -329,7 +399,7 @@ margin/left = 1.0
 margin/top = 1.0
 margin/right = 107.0
 margin/bottom = 19.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Time"
 valign = 1
@@ -392,7 +462,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
+theme/theme = ExtResource( 10 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 120.0
@@ -462,14 +532,14 @@ shortcut = null
 text = "1x"
 flat = false
 
-[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 10 )]
+[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 11 )]
 
 margin/left = 20.0
 margin/top = 250.0
 margin/right = 288.0
 margin/bottom = 33.0
 
-[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 10 )]
+[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 11 )]
 
 anchor/left = 1
 anchor/right = 1
@@ -496,11 +566,11 @@ margin/bottom = 10.0
 
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Dial" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="Autopilot" type="PanelContainer" parent="HUD/box"]
 
@@ -514,12 +584,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
+theme/theme = ExtResource( 10 )
 margin/left = 132.0
 margin/top = 120.0
 margin/right = -28.0
 margin/bottom = 13.0
-script/script = ExtResource( 13 )
+script/script = ExtResource( 14 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Autopilot"]
 
@@ -588,10 +658,10 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
-textures/pressed = ExtResource( 15 )
-textures/hover = ExtResource( 16 )
-script/script = ExtResource( 17 )
+textures/normal = ExtResource( 15 )
+textures/pressed = ExtResource( 16 )
+textures/hover = ExtResource( 17 )
+script/script = ExtResource( 18 )
 Subject = "autopilot_AFA"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/AFA"]
@@ -681,11 +751,11 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
-textures/pressed = ExtResource( 15 )
-textures/hover = ExtResource( 16 )
-script/script = ExtResource( 17 )
-__meta__ = { "_editor_icon":ExtResource( 18 ) }
+textures/normal = ExtResource( 15 )
+textures/pressed = ExtResource( 16 )
+textures/hover = ExtResource( 17 )
+script/script = ExtResource( 18 )
+__meta__ = { "_editor_icon":ExtResource( 19 ) }
 Subject = "autopilot_RID"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/RID"]
@@ -721,12 +791,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
+theme/theme = ExtResource( 10 )
 margin/left = -38.0
 margin/top = 120.0
 margin/right = -188.0
 margin/bottom = 44.0
-script/script = ExtResource( 19 )
+script/script = ExtResource( 20 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
 
@@ -781,11 +851,11 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
-textures/pressed = ExtResource( 15 )
-textures/hover = ExtResource( 16 )
-script/script = ExtResource( 17 )
-__meta__ = { "_editor_icon":ExtResource( 18 ) }
+textures/normal = ExtResource( 15 )
+textures/pressed = ExtResource( 16 )
+textures/hover = ExtResource( 17 )
+script/script = ExtResource( 18 )
+__meta__ = { "_editor_icon":ExtResource( 19 ) }
 Subject = "system_fuel"
 
 [node name="Bar" type="ProgressBar" parent="HUD/box/Fuel/box"]
@@ -846,12 +916,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
+theme/theme = ExtResource( 10 )
 margin/left = 20.0
 margin/top = 360.0
 margin/right = 280.0
 margin/bottom = 268.0
-script/script = ExtResource( 20 )
+script/script = ExtResource( 21 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
 
@@ -893,7 +963,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 21 )]
+[node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 22 )]
 
 margin/left = 230.0
 margin/right = 246.0
@@ -1082,7 +1152,7 @@ margin/left = 125.0
 margin/top = 0.0
 margin/right = 325.0
 margin/bottom = 105.0
-script/script = ExtResource( 22 )
+script/script = ExtResource( 23 )
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
@@ -1152,7 +1222,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 23 )
+theme/theme = ExtResource( 24 )
 margin/left = 0.0
 margin/top = 44.0
 margin/right = 39.0
@@ -1183,7 +1253,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 23 )
+theme/theme = ExtResource( 24 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 39.0
@@ -1295,7 +1365,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 23 )
+theme/theme = ExtResource( 24 )
 margin/left = 39.0
 margin/top = 0.0
 margin/right = 68.0
@@ -1350,8 +1420,8 @@ margin/left = 60.0
 margin/top = 10.0
 margin/right = 136.0
 margin/bottom = 50.0
-custom_icons/off = ExtResource( 24 )
-custom_icons/on = ExtResource( 25 )
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 26 )
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
@@ -1365,7 +1435,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
+theme/theme = ExtResource( 10 )
 margin/left = 200.0
 margin/top = 0.0
 margin/right = 385.0
@@ -1383,33 +1453,33 @@ margin/right = 183.0
 margin/bottom = 65.0
 alignment = 0
 
-[node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
+[node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
 
 hint/tooltip = "Life Support Systems"
 label = "LIFE"
 
-[node name="Engine" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
+[node name="Engine" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
 
 hint/tooltip = "Engine Main Thrusters"
 margin/left = 36.0
 margin/right = 68.0
 label = "ENG"
 
-[node name="RCS" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
+[node name="RCS" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
 
 hint/tooltip = "RCS Thrusters"
 margin/left = 72.0
 margin/right = 104.0
 label = "RCS"
 
-[node name="MFD" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
+[node name="MFD" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
 
 hint/tooltip = "Multi-Function Display(s)"
 margin/left = 108.0
 margin/right = 140.0
 label = "MFD"
 
-[node name="Dock" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 26 )]
+[node name="Dock" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
 
 hint/tooltip = "Docking Systems"
 margin/left = 144.0
@@ -1430,11 +1500,11 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 14 )
-textures/pressed = ExtResource( 15 )
-textures/hover = ExtResource( 16 )
-script/script = ExtResource( 17 )
-__meta__ = { "_editor_icon":ExtResource( 18 ) }
+textures/normal = ExtResource( 15 )
+textures/pressed = ExtResource( 16 )
+textures/hover = ExtResource( 17 )
+script/script = ExtResource( 18 )
+__meta__ = { "_editor_icon":ExtResource( 19 ) }
 Subject = "checklist_startup"
 
 [node name="Pedia" type="Button" parent="HUD/box"]
@@ -1467,7 +1537,7 @@ visibility/blend_mode = 1
 
 [node name="Arrow" type="Sprite" parent="HUD/ProMark"]
 
-texture = ExtResource( 27 )
+texture = ExtResource( 28 )
 flip_v = true
 
 [node name="Velocity" type="Label" parent="HUD/ProMark"]
@@ -1481,7 +1551,7 @@ margin/left = -10.0
 margin/top = -30.0
 margin/right = 30.0
 margin/bottom = -15.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0.886719, 0.00692749, 0.00692749, 1 )
 text = "linvel"
 align = 1
@@ -1493,7 +1563,7 @@ max_lines_visible = -1
 [node name="SamplePlayer" type="SamplePlayer" parent="HUD"]
 
 config/polyphony = 2
-config/samples = SubResource( 1 )
+config/samples = SubResource( 2 )
 default/volume_db = -38.4
 default/pitch_scale = 1.0
 default/pan = 0.1
@@ -1514,7 +1584,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="PediaWindow" parent="Context" instance=ExtResource( 29 )]
+[node name="PediaWindow" parent="Context" instance=ExtResource( 30 )]
 
 visibility/visible = false
 

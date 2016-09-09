@@ -3,7 +3,11 @@ extends Control
 
 onready var game = get_node('/root/Game')
 
+func get_vessel(id):
+	return get_node('Vessels').get_child(id)
 
+func get_station(id):
+	return get_node('Stations').get_child(id)
 
 func get_vessels():
 	return get_node('Vessels').get_children()
@@ -15,11 +19,22 @@ func get_warpnodes():
 	return get_node('WarpNodes').get_children()
 
 func get_warpnode(name):
-	return get_node('WarpNodes').get_node(name)
+	if get_node('WarpNodes').has_node(name):
+		return get_node('WarpNodes').get_node(name)
 
 func get_warpnode_by_index(idx):
 	if !get_warpnodes().empty():
 		return get_node('Warpnodes').get_child(idx)
+
+func get_object_by_name(category, name):
+	if has_node(category):
+		if get_node(category).has_node(name):
+			return get_node(category).get_node(name)
+
+func get_object_by_index(category, idx):
+	if has_node(category):
+		if get_node(category).get_child_count() > idx:
+			return get_node(category).get_child(idx)
 
 func add_vessel(vessel, position, is_player=false):
 	get_node('Vessels').add_child(vessel)
@@ -36,7 +51,7 @@ func remove_vessel(vessel):
 	# Other cleaning up goes here..
 	
 	# Free vessel
-	get_node('Vessels/'+vessel.get_name()).queue_free()
+	get_object_by_name('Vessels', vessel.get_name()).queue_free()
 
 
 

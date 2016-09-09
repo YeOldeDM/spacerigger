@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
 [ext_resource path="res://res/stations/Station_TEMPLATE.tscn" type="PackedScene" id=2]
 [ext_resource path="res://res/stations/WarpNode.tscn" type="PackedScene" id=3]
 [ext_resource path="res://res/worlds/background/Background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://res/worlds/background/Background_Layer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/graphics/planets/test_planet_2048.png" type="Texture" id=6]
 
 [node name="Test World" type="Control"]
 
@@ -41,5 +42,39 @@ target_node = "Wolf"
 [node name="Background" parent="." instance=ExtResource( 4 )]
 
 [node name="Starplane" parent="Background" instance=ExtResource( 5 )]
+
+[node name="Starplane1" parent="Background" instance=ExtResource( 5 )]
+
+color = Color( 1, 1, 1, 0 )
+texture/texture = null
+scale = 0.8
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Background/Starplane1"]
+
+transform/pos = Vector2( -1191.55, 418.309 )
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = false
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.006
+damp_override/linear = 0.0
+damp_override/angular = 0.0
+
+[node name="Sprite" type="Sprite" parent="Background/Starplane1/RigidBody2D"]
+
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 6 )
+modulate = Color( 0.181427, 0.223534, 0.566406, 1 )
 
 
