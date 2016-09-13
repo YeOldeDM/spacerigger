@@ -4,7 +4,7 @@ extends Sprite
 onready var point_a = get_node('PointA')
 onready var point_b = get_node('PointB')
 
-var owner
+onready var owner = get_node('../../')
 
 
 var cleared_for = null
@@ -16,6 +16,25 @@ var touching = null
 var touchin = { 0:false, 1:false }
 
 export var dock_name = "Alpha"
+
+func transplant_shapes():
+	var shape = PS2D.body_get_shape(get_node('Body').get_rid(),0)
+	PS2D.body_add_shape(owner.get_rid(), shape, get_transform())
+	PS2D.body_clear_shapes(get_node('Body').get_rid())
+
+func get_ship_docked_position(force_dock=null):
+	if not touched_in and not force_dock:
+		return
+	var target = touching
+	if force_dock:	target = force_dock
+	var T = target.get_global_transform()
+	T = T.rotated(PI)
+	T = T.translated(Vector2(0,-14))
+	T = T.rotated(-get_rot())
+	T = T.translated(-get_pos())
+	
+	get_node('Pointer').set_global_transform(T)
+	return T
 
 func get_forward_vector():
 	var trans = get_global_transform()
@@ -40,6 +59,10 @@ func get_heading():
 	assert owner
 	return owner.get_rot()+get_rot()
 
+
+
+
+
 func _ready():
 	point_a.set_meta('dockpoint', 0)
 	point_a.connect("area_enter", self, '_on_Point_area_enter', [0])
@@ -48,7 +71,8 @@ func _ready():
 	point_b.set_meta('dockpoint', 1)
 	point_b.connect("area_enter", self, '_on_Point_area_enter', [1])
 	point_b.connect("area_exit", self, '_on_Point_area_exit', [1])
-
+	
+	transplant_shapes()
 
 func _shoot_steam():
 	get_node('SteamLeft').set_emitting(true)
@@ -63,14 +87,20 @@ func _on_Point_area_enter(area, dockpoint):
 		if area.get_meta('dockpoint') == abs(dockpoint-1):
 			touchin[dockpoint] = true
 			_check_for_touchin()
-	if touching != area:
-		touching = area
+	if touching != area.get_parent():
+		touching = area.get_parent()
+	if 'target' in owner:
+		owner.target = area.get_parent().owner
+	if 'target_dock' in owner:
+		var pos = area.get_position_in_parent()
+		print(pos)
+		owner.target_dock = pos
 
 func _on_Point_area_exit(area, dockpoint):
 	if area.has_meta('dockpoint'):
 		touchin[dockpoint] = false
 		_check_for_touchin()
-	if touching == area:
+	if touching == area.get_parent():
 		touching = null
 
 

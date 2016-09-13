@@ -26,7 +26,7 @@ var slider_center_x = slider_rect_x / 2
 var mfd
 
 var current_own_dock = 0
-var current_target_dock = 0
+
 
 
 func init():
@@ -61,7 +61,7 @@ func _draw_target_dock():
 	var ship = game.get_player()
 	if ship:
 		var Td = ship.target.docks
-		var D = Td.get_child(min(current_target_dock, Td.get_child_count()-1))
+		var D = Td.get_child(min(ship.target_dock, Td.get_child_count()-1))
 		var txt = "D: "+D.dock_name
 		box.get_node('target/dock').set_text(txt)
 
@@ -69,7 +69,7 @@ func _draw_docking_info():
 	var ship = game.get_player()
 	if ship:
 		var O = ship.docks.get_child(current_own_dock)
-		var T = ship.target.docks.get_child(current_target_dock)
+		var T = ship.target.docks.get_child(ship.target_dock)
 		var D = (T.get_global_pos() - O.get_global_pos()).length()
 		var devA = rad2deg(O.get_direction_deviation(T))
 		var devP = O.get_positional_deviation(T)

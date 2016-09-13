@@ -32,6 +32,10 @@ var controlled
 
 
 
+
+#####################
+#	PUBLIC METHODS	#
+
 # Turn controls on
 func enable():
 	set_fixed_process(true)
@@ -57,42 +61,24 @@ func unplug():
 
 
 
+
+
+
+#########################
+#	PRIVATE METHODS		#
+
 # Init
 func _ready():
 	set_fixed_process(true)
-	#plug_in(game.get_node('Ship'))
-
-
-
 
 #	CONTROL PROCESS LOOP
 func _fixed_process(delta):
-	
-	#var bg = game.get_world().get_node('Background')
-
-	
 	# Construct cmdState dict
 	for act in cmd_state:
 		if cmd_state[act]:
 			cmd_state[act] = false
 		if Input.is_action_pressed(act):
 			cmd_state[act] = true
-			
-#	# Process ship controls
-#	if controlled:
-#		controlled.process(delta, cmd_state)
-#		
-#		# Sneak parallax scrolling in here..
-#		bg.parallax(controlled.get_pos())
-#		
-#		
-#		# If the ship has a target..
-#		if controlled.target:
-#			var laser = controlled.get_node('Hardpoints').get_child(0)
-#			laser.look_at(controlled.target.get_global_pos())
-#		
-#		# If the controlled is docked..
-#		if controlled.dock_target and controlled.docked:
-#			controlled.sync_rot_with_dock()
+
 
 

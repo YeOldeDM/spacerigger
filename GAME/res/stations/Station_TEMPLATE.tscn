@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://res/stations/Station.gd" type="Script" id=1]
 [ext_resource path="res://res/stations/StationDocks.gd" type="Script" id=2]
@@ -8,22 +8,7 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -70, 128, -70, 137, -84, 137, -84, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -128, 96, -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -70, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -128, 96, -70, 128, -84, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -128, 96, -84, 128, -96, 128 )
+points = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -96, 128, -128, 96 )
 
 [node name="Station" type="RigidBody2D"]
 
@@ -31,15 +16,6 @@ input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/2/trigger = false
-shapes/3/shape = SubResource( 4 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/3/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 1
@@ -69,7 +45,22 @@ script/script = ExtResource( 2 )
 
 [node name="StationDock" parent="Docks" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( -77, 130 )
+editor/display_folded = true
+transform/pos = Vector2( -63, 133 )
+dock_name = "S-Alpha"
+
+[node name="StationDock1" parent="Docks" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( -3, 133 )
+dock_name = "S-Beta"
+
+[node name="StationDock2" parent="Docks" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 132.314, 32.3137 )
+transform/rot = 45.0
+dock_name = "E-Delta"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -79,8 +70,8 @@ texture = ExtResource( 4 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 build_mode = 0
-polygon = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -70, 128, -70, 137, -84, 137, -84, 128, -96, 128, -128, 96 )
-shape_range = Vector2( 0, 3 )
+polygon = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -96, 128, -128, 96 )
+shape_range = Vector2( 0, 0 )
 trigger = false
 
 

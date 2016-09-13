@@ -20,12 +20,15 @@ onready var warp = get_node('box/WarpControl')
 
 onready var mfdleft = get_node('box/MFDPanelLeft')
 onready var mfdright = get_node('box/MFDPanelRight')
-var default_mfd_programs = ['loc', 'linang']
+var default_mfd_programs = ['docking', 'linang']
 
 onready var pro_mark = get_node('ProMark')
 
 
-#	PUBLIC METHODS
+
+
+#####################
+#	PUBLIC METHODS	#
 
 # Dumb process for updating HUD elements
 func process():
@@ -75,7 +78,10 @@ func set_camera_zoom( value, from_outside=false ):
 
 
 
-#	PRIVATE METHODS
+
+
+#########################
+#	PRIVATE METHODS		#
 
 func _ready():
 	if top.has_node('CameraZoom'):

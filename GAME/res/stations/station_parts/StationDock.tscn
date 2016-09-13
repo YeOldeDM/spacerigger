@@ -1,19 +1,24 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://assets/graphics/ships/dock.png" type="Texture" id=1]
 [ext_resource path="res://res/stations/station_parts/StationDock.gd" type="Script" id=2]
 [ext_resource path="res://assets/graphics/particles/engineflare.png" type="Texture" id=3]
 [ext_resource path="res://ref/ColorRamps/white_smoke.res" type="ColorRamp" id=4]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0, 0, 2, 0, 2, 1, 0, 1 )
+points = Vector2Array( 0, 0, 2, 0, 0, 1 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0, 1, -2, 1, -2, 0, 0, 0 )
+points = Vector2Array( 0, 1, -2, 0, 0, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 7, -8, 7, 7, -7, 7, -7, -8 )
 
 [node name="StationDock" type="Sprite"]
 
@@ -24,10 +29,9 @@ dock_name = "Alpha"
 
 [node name="PointA" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( -7, 6.2 )
 input/pickable = true
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -38,16 +42,15 @@ angular_damp = 1.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PointA"]
 
 build_mode = 0
-polygon = Vector2Array( 0, 0, 2, 0, 2, 1, 0, 1 )
+polygon = Vector2Array( 0, 0, 2, 0, 0, 1 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
 [node name="PointB" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 7, 6.2 )
 input/pickable = true
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -58,7 +61,7 @@ angular_damp = 1.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PointB"]
 
 build_mode = 0
-polygon = Vector2Array( 0, 0, -2, 0, -2, 1, 0, 1 )
+polygon = Vector2Array( 0, 0, -2, 0, 0, 1 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
@@ -125,5 +128,53 @@ randomness/damping = 1.0
 randomness/initial_angle = 1.0
 randomness/final_size = 0.5
 color/color_ramp = ExtResource( 4 )
+
+[node name="Pointer" type="Polygon2D" parent="."]
+
+visibility/visible = false
+z/z = 9
+z/relative = false
+polygon = Vector2Array( -1, -6, -1, 4, -2, 4, 0, 6, 2, 4, 1, 4, 1, -6 )
+uv = Vector2Array(  )
+color = Color( 0.285156, 0.731934, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Body" type="RigidBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+
+[node name="Collision" type="CollisionPolygon2D" parent="Body"]
+
+build_mode = 0
+polygon = Vector2Array( -7, -8, -7, 7, 7, 7, 7, -8 )
+shape_range = Vector2( 0, 0 )
+trigger = false
 
 

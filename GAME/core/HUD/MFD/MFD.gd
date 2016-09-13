@@ -1,23 +1,35 @@
 
 extends PanelContainer
 
+#	MFD HUDpanel Node
+#
+#	Process input from MFD
+#	node buttons.
+
+# Children
 onready var funcbox = get_node('box/func')
 onready var display = funcbox.get_node('Display')
 
+# Powered flag
 var powered = true
 
+# Current MFD module
 var module = 'null'
+# MFD Mode (0=display, 1=help)
 var mode = 0
 
+# Module selecting flag
 var selecting = false
 
 
-func _ready():
-	set_screen(module)
+#####################
+#	PUBLIC METHODS	#
 
+# Get current display node
 func get_screen():
 	return display.get_child(0)
 
+# Set current display node
 func set_screen( name ):
 	var path = 'res://core/HUD/MFD/screens/mfd_screen_'+name+'.tscn'
 	var screen = load(path).instance()
@@ -32,8 +44,32 @@ func set_screen( name ):
 		screen.mfd = self
 		if screen.has_method('init'):
 			screen.call('init')
-	
 
+# Toggle power mode
+func toggle_powered():
+	if powered:
+		powered = false
+		set_screen('nopower')
+	else:
+		powered = true
+		set_screen(module)
+
+# Make clicky sound ;)
+func click():
+	SoundMan.play('click')
+
+
+
+
+
+#########################
+#	PRIVATE METHODS		#
+
+# Init
+func _ready():
+	set_screen(module)
+
+# MFD Main Function Button pressed (bottom row)
 func _mainFunction( id ):
 	if id == 0 and powered:
 		# Select MFD module to display
@@ -52,9 +88,7 @@ func _mainFunction( id ):
 		# Toggle powered
 		toggle_powered()
 
-
-
-
+# MFD Function Button pressed (left/right side)
 func _function( id ):
 	if powered:
 		var sig = "function"+str(id)
@@ -67,33 +101,18 @@ func _function( id ):
 				print("No such "+sig)
 
 
-
-
-
-
-func toggle_powered():
-	if powered:
-		powered = false
-		set_screen('nopower')
-	else:
-		powered = true
-		set_screen(module)
-
-
-func click():
-	SoundMan.play('click')
-
+# Process Left-side Button press
 func _on_ButtonsLeft_button_selected( button_idx ):
 	click()
 	_function(button_idx)
 
-
+# Process Right-side Button press
 func _on_ButtonsRight_button_selected( button_idx ):
 	click()
 	var length = funcbox.get_node('ButtonsLeft').get_button_count()
 	_function(button_idx + length)
 
-
+# Process Bottom-side Button press
 func _on_ButtonsBottom_button_selected( button_idx ):
 	click()
 	_mainFunction(button_idx)

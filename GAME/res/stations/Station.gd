@@ -14,8 +14,10 @@ export var Designation = "ST-GOD-A01"
 
 func _ready():
 	config()
-
-
+#	for dock in docks.get_children():
+#		dock.owner = self
+	pass
+	
 func config():
 	var file = ConfigFile.new()
 	file.set_value("SUPPLY", 'energy', 1000)

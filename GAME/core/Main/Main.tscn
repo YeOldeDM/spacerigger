@@ -113,11 +113,11 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 3 )
 
-[node name="TextureFrame" type="TextureFrame" parent="HUD"]
+[node name="Vignette" type="TextureFrame" parent="HUD"]
 
 visibility/self_opacity = 0.25
 visibility/behind_parent = true
-visibility/blend_mode = 4
+visibility/blend_mode = 2
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -134,7 +134,6 @@ stretch_mode = 0
 
 [node name="box" type="Control" parent="HUD"]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -250,7 +249,7 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 208.0
-margin/bottom = 92.0
+margin/bottom = 88.0
 custom_constants/separation = 2
 alignment = 0
 
@@ -283,7 +282,7 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 9.0
 margin/right = 201.0
-margin/bottom = 28.0
+margin/bottom = 26.0
 custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Date"]
@@ -295,7 +294,7 @@ size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
 margin/right = 200.0
-margin/bottom = 18.0
+margin/bottom = 16.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Date"
@@ -311,9 +310,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 30.0
+margin/top = 28.0
 margin/right = 201.0
-margin/bottom = 49.0
+margin/bottom = 45.0
 custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Time"]
@@ -325,7 +324,7 @@ size_flags/vertical = 3
 margin/left = 1.0
 margin/top = 1.0
 margin/right = 200.0
-margin/bottom = 18.0
+margin/bottom = 16.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Time"
@@ -341,9 +340,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 51.0
+margin/top = 47.0
 margin/right = 201.0
-margin/bottom = 54.0
+margin/bottom = 50.0
 
 [node name="stopwatchtitle" type="Label" parent="HUD/box/TopBar/Clock/box"]
 
@@ -352,9 +351,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 56.0
+margin/top = 52.0
 margin/right = 201.0
-margin/bottom = 63.0
+margin/bottom = 59.0
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
@@ -372,9 +371,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 65.0
+margin/top = 61.0
 margin/right = 201.0
-margin/bottom = 85.0
+margin/bottom = 81.0
 alignment = 0
 
 [node name="Time" type="PanelContainer" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
@@ -909,6 +908,7 @@ max_lines_visible = -1
 
 [node name="WarpControl" type="PanelContainer" parent="HUD/box"]
 
+editor/display_folded = true
 visibility/self_opacity = 0.5
 anchor/top = 1
 anchor/bottom = 1
@@ -1143,7 +1143,6 @@ flat = false
 
 [node name="PowerControl" type="Panel" parent="HUD/box"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -1156,6 +1155,7 @@ script/script = ExtResource( 23 )
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -1257,7 +1257,7 @@ theme/theme = ExtResource( 24 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 39.0
-margin/bottom = 9.0
+margin/bottom = 8.0
 text = "0.00w"
 align = 1
 valign = 1
@@ -1272,9 +1272,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 13.0
+margin/top = 12.0
 margin/right = 39.0
-margin/bottom = 29.0
+margin/bottom = 28.0
 range/min = 0.0
 range/max = 1.0
 range/step = 1.0
@@ -1305,9 +1305,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 33.0
+margin/top = 32.0
 margin/right = 39.0
-margin/bottom = 53.0
+margin/bottom = 52.0
 toggle_mode = true
 click_on_press = true
 enabled_focus_mode = 2
@@ -1431,6 +1431,7 @@ align = 0
 [node name="Switchbox" type="PanelContainer" parent="HUD/box/PowerControl"]
 
 editor/display_folded = true
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

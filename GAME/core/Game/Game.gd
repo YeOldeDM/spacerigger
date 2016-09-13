@@ -11,7 +11,7 @@ var Time = 0
 var stopwatch_time = 0
 var stopwatch_running = false
 
-#onready var space = get_node('Space')
+
 onready var control = get_node('Controller')
 onready var world = get_node('World')
 onready var hud = get_node('HUD')
@@ -28,7 +28,12 @@ var temp_angvel
 var pending_player = false
 
 
-#	PUBLIC METHODS
+
+
+
+
+#####################
+#	PUBLIC METHODS	#
 
 func get_player():
 	if control.controlled:
@@ -79,9 +84,14 @@ func pedia(entry=null):
 	_show_pedia(entry)
 	SoundMan.play('beep')
 
+func click():
+	SoundMan.play('click')
 
 
-#	PRIVATE METHODS
+
+
+#########################
+#	PRIVATE METHODS		#
 
 var InitShip = 'NewShip'
 
@@ -98,6 +108,7 @@ func _ready():
 	player_ship.refuel()
 	var T = get_world().get_node('Stations/Godot Station')
 	player_ship.target = T
+	player_ship.snap_to_dock(player_ship.target)
 
 	# Start maximized
 	#OS.set_window_maximized(true)
@@ -143,8 +154,7 @@ func _show_pedia(entry='welcome'):
 #
 
 
-func click():
-	SoundMan.play('click')
+
 
 func _on_Warp_pressed():
 	click()

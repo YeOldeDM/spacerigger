@@ -38,9 +38,11 @@ var current_fuel_use = 0.0
 var current_thrust_force = 0.0
 
 var target = null
+var target_dock = 0
 var active_dock = 0
 var docked = false
 var pending_pushoff = false
+var pending_dock = false
 
 
 
@@ -53,7 +55,7 @@ func get_total_mass():
 func add_fuel(amt=0):
 	amt /= 10000
 	var new_fuel = current_fuel + amt
-	print(amt)
+	#print(amt)
 	set('current_fuel', new_fuel)
 
 func set_warp_zone(target_node):
@@ -112,6 +114,8 @@ func _set_current_fuel(value):
 
 
 func _ready():
+#	for dock in docks.get_children():
+#		dock.owner = self
 	pass
 
 func get_forward_vector():
@@ -122,17 +126,22 @@ func get_left_vector():
 	var tr = get_global_transform()
 	return tr.basis_xform(Vector2(1,0))
 
-func _dock_with(target):
-	if docks.get_child(active_dock).touching:
-		get_node('DockJoint').set_node_b(docks.get_child(active_dock).touching.get_owner().get_path())
+func _dock_with(target,force=false):
+	if docks.get_child(active_dock).touching or force:
+		get_node('DockJoint').set_node_b(target.get_path())
 		docked = true
 
 func _undock_from(target):
 	if docked:
-		get_node('DockJoint').set_node_b(get_path())
 		docked = false
 		pending_pushoff = true
 
+func snap_to_dock(target, dock=0):
+	var T = docks.get_child(active_dock).get_ship_docked_position(target.docks.get_child(dock))
+	set_global_transform(T)
+	pending_dock = true
+	
+	
 func _sync_rotation_with(target):
 	var dock_body = target.get_owner()
 	var t_rot = dock_body.get_rot()
@@ -153,6 +162,14 @@ func _integrate_forces(state):
 	var ct = current_thrust_force
 	ct = 0
 	# Do
+	if pending_dock:
+		_dock_with(target,true)
+		pending_dock = false
+	if docked:
+		var T = docks.get_child(active_dock).get_ship_docked_position()
+		if T != null:	state.set_transform(T)
+		if controller.cmd_state.undock:
+			_undock_from(target)
 	if controller:
 		
 		# Controller Input
@@ -207,8 +224,9 @@ func _integrate_forces(state):
 	
 	if pending_pushoff:
 		pending_pushoff = false
-		var pushoff = get_total_mass() * -get_forward_vector() * 0.1
-		lv += pushoff
+		get_node('DockJoint').set_node_b(get_path())
+		var pushoff = get_total_mass() * docks.get_child(active_dock).get_forward_vector() * 0.1
+		lv = -pushoff
 	# Apply Damping
 	if get_linear_damp() > 0:
 		lv *= 1.0-(get_linear_damp() / get_total_mass())
@@ -218,5 +236,5 @@ func _integrate_forces(state):
 	# Set Velocity
 	state.set_linear_velocity(lv)
 	state.set_angular_velocity(av)
-
+	docks.get_child(active_dock).get_ship_docked_position()
 
