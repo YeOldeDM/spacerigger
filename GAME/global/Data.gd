@@ -146,6 +146,8 @@ func _delete_data(path):
 #	PILOT MANAGEMENT
 #
 
+func new_pilot(profile, name):
+	return Pilot.new(profile, name)
 
 func save_pilot(pilot):
 	var file = File.new()

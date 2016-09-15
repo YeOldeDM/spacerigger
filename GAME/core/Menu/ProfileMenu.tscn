@@ -1,9 +1,97 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://core/Menu/ProfileMenu.gd" type="Script" id=1]
-[ext_resource path="res://res/UI/Contrax_Button.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/fonts/conthrax20.fnt" type="Font" id=3]
-[ext_resource path="res://core/Menu/NewProfileDialog.gd" type="Script" id=4]
+[ext_resource path="res://assets/fonts/libel-suit-rg.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ref/styles/stylebox_blueframe.tres" type="StyleBox" id=3]
+[ext_resource path="res://res/UI/SoftButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/coolvetica rg.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://core/Menu/NewProfileDialog.gd" type="Script" id=6]
+[ext_resource path="res://assets/fonts/OstrichSans-Heavy.otf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 24
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 36
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 1
+border_blend = true
+draw_bg = true
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 16
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 5 )
+
+[sub_resource type="Environment" id=5]
+
+ambient_light/enabled = false
+ambient_light/color = Color( 0, 0, 0, 1 )
+ambient_light/energy = 1.0
+fxaa/enabled = false
+background/mode = 5
+background/color = Color( 0, 0, 0, 1 )
+background/energy = 1.0
+background/scale = 1.0
+background/glow = 0.0
+background/canvas_max_layer = null
+glow/enabled = true
+glow/blur_passes = 3
+glow/blur_scale = 1.0
+glow/blur_strength = 0.8
+glow/blur_blend_mode = 1
+glow/bloom = 5.0
+glow/bloom_treshold = 0.1
+dof_blur/enabled = false
+dof_blur/blur_passes = 1
+dof_blur/begin = 100.0
+dof_blur/range = 10.0
+hdr/enabled = false
+hdr/tonemapper = 0
+hdr/exposure = 1.0
+hdr/white = 1.0
+hdr/glow_treshold = 0.95
+hdr/glow_scale = 1.0
+hdr/min_luminance = 0.4
+hdr/max_luminance = 8.0
+hdr/exposure_adj_speed = 0.5
+fog/enabled = false
+fog/begin = 100.0
+fog/begin_color = Color( 0, 0, 0, 1 )
+fog/end_color = Color( 0, 0, 0, 1 )
+fog/attenuation = 1.0
+fog/bg = true
+bcs/enabled = false
+bcs/brightness = 1.0
+bcs/contrast = 1.0
+bcs/saturation = 1.0
+srgb/enabled = false
+
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 45
+font/use_mipmaps = true
+font/use_filter = false
+font/font = ExtResource( 7 )
 
 [node name="ProfileMenu" type="Control"]
 
@@ -14,9 +102,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 120.0
 margin/right = 0.0
-margin/bottom = 0.0
+margin/bottom = 124.0
 script/script = ExtResource( 1 )
 
 [node name="Profiles" type="VBoxContainer" parent="."]
@@ -29,10 +117,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 482.0
-margin/top = 270.0
-margin/right = 72.0
-margin/bottom = -50.0
+margin/left = 605.0
+margin/top = 390.0
+margin/right = 105.0
+margin/bottom = -210.0
 alignment = 0
 
 [node name="Label" type="Label" parent="Profiles"]
@@ -43,37 +131,26 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 410.0
-margin/bottom = 13.0
+margin/right = 500.0
+margin/bottom = 29.0
+custom_fonts/font = SubResource( 1 )
 text = "Choose a Profile"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HSeparator" type="HSeparator" parent="Profiles"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 17.0
-margin/right = 410.0
-margin/bottom = 20.0
-
 [node name="List" type="PanelContainer" parent="Profiles"]
 
-visibility/blend_mode = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 24.0
-margin/right = 410.0
-margin/bottom = 287.0
-__meta__ = { "_editor_collapsed":true }
+margin/top = 33.0
+margin/right = 500.0
+margin/bottom = 559.0
+custom_styles/panel = ExtResource( 3 )
 
 [node name="scroll" type="ScrollContainer" parent="Profiles/List"]
 
@@ -81,10 +158,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 8.0
-margin/right = 406.0
-margin/bottom = 259.0
+margin/left = 12.0
+margin/top = 16.0
+margin/right = 488.0
+margin/bottom = 510.0
 scroll/horizontal = false
 scroll/vertical = true
 
@@ -96,20 +173,9 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 402.0
+margin/right = 476.0
 margin/bottom = 0.0
 alignment = 0
-
-[node name="HSeparator1" type="HSeparator" parent="Profiles"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 291.0
-margin/right = 410.0
-margin/bottom = 294.0
 
 [node name="Functions" type="HBoxContainer" parent="Profiles"]
 
@@ -118,22 +184,21 @@ focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 298.0
-margin/right = 410.0
-margin/bottom = 320.0
-alignment = 0
+margin/top = 563.0
+margin/right = 500.0
+margin/bottom = 600.0
+alignment = 1
 
-[node name="New" parent="Profiles/Functions" instance=ExtResource( 2 )]
+[node name="New" parent="Profiles/Functions" instance=ExtResource( 4 )]
 
-margin/right = 117.0
-margin/bottom = 22.0
+margin/left = 99.0
+margin/right = 234.0
 text = "New Profile"
 
-[node name="Delete" parent="Profiles/Functions" instance=ExtResource( 2 )]
+[node name="Delete" parent="Profiles/Functions" instance=ExtResource( 4 )]
 
-margin/left = 121.0
-margin/right = 254.0
-margin/bottom = 22.0
+margin/left = 238.0
+margin/right = 400.0
 text = "Delete Profile"
 
 [node name="GameView" type="VBoxContainer" parent="."]
@@ -146,12 +211,11 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -28.0
-margin/top = 280.0
-margin/right = -488.0
-margin/bottom = -110.0
+margin/left = -45.0
+margin/top = 390.0
+margin/right = -560.0
+margin/bottom = -210.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Title" type="Label" parent="GameView"]
 
@@ -161,9 +225,9 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 460.0
-margin/bottom = 22.0
-custom_fonts/font = ExtResource( 3 )
+margin/right = 515.0
+margin/bottom = 44.0
+custom_fonts/font = SubResource( 2 )
 text = "CurrentProfile"
 align = 2
 percent_visible = 1.0
@@ -172,14 +236,16 @@ max_lines_visible = -1
 
 [node name="HSeparator" type="HSeparator" parent="GameView"]
 
+rect/min_size = Vector2( 0, 2 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 26.0
-margin/right = 460.0
-margin/bottom = 29.0
+margin/top = 48.0
+margin/right = 515.0
+margin/bottom = 51.0
+custom_styles/separator = SubResource( 3 )
 
 [node name="Text" type="RichTextLabel" parent="GameView"]
 
@@ -188,15 +254,17 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 33.0
-margin/right = 460.0
-margin/bottom = 390.0
+margin/top = 55.0
+margin/right = 515.0
+margin/bottom = 600.0
+custom_fonts/normal_font = SubResource( 4 )
 bbcode/enabled = true
 bbcode/bbcode = ""
 visible_characters = -1
 
 [node name="NewProfileDialog" type="WindowDialog" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -208,8 +276,7 @@ margin/right = 610.0
 margin/bottom = 340.0
 popup/exclusive = true
 window/title = "Create a new Profile"
-script/script = ExtResource( 4 )
-__meta__ = { "_editor_collapsed":true }
+script/script = ExtResource( 6 )
 
 [node name="box" type="VBoxContainer" parent="NewProfileDialog"]
 
@@ -252,10 +319,10 @@ margin/left = 0.0
 margin/top = 53.0
 margin/right = 280.0
 margin/bottom = 76.0
-text = ""
-max_length = 0
-editable = true
-secret = false
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
 
 [node name="Functions" type="HBoxContainer" parent="NewProfileDialog/box"]
 
@@ -281,6 +348,8 @@ margin/right = 127.0
 margin/bottom = 34.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "OK"
 flat = false
 
@@ -295,20 +364,10 @@ margin/top = 15.0
 margin/right = 182.0
 margin/bottom = 34.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Cancel"
 flat = false
-
-[node name="Accept" parent="." instance=ExtResource( 2 )]
-
-anchor/top = 1
-anchor/right = 1
-anchor/bottom = 1
-margin/left = 400.0
-margin/top = 170.0
-margin/right = 399.0
-margin/bottom = 130.0
-custom_fonts/font = ExtResource( 3 )
-text = "Accept Profile"
 
 [node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="."]
 
@@ -326,9 +385,47 @@ window/title = "Please Confirm..."
 dialog/text = "You are about to delete this Profile.\nAll data within this Profile will disappear.\nThis action cannot be undone!\n\nAre you sure you want to proceed\?"
 dialog/hide_on_ok = true
 
-[connection signal="pressed" from="Profiles/Functions/New" to="." method="_on_New_pressed"]
+[node name="Camera" type="Position2D" parent="."]
 
-[connection signal="pressed" from="Profiles/Functions/Delete" to="." method="_on_Delete_pressed"]
+transform/pos = Vector2( 640, 510 )
+
+[node name="Cam" type="Camera2D" parent="Camera"]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = true
+smoothing/speed = 6.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = SubResource( 5 )
+
+[node name="Accept" parent="." instance=ExtResource( 4 )]
+
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+margin/left = 520.0
+margin/top = 120.0
+margin/right = 499.0
+margin/bottom = 193.0
+custom_fonts/font = SubResource( 6 )
+text = "Accept Profile"
+
+[connection signal="pressed" from="Profiles/Functions/New" to="." method="_on_New_pressed"]
 
 [connection signal="about_to_show" from="NewProfileDialog" to="NewProfileDialog" method="_on_NewProfileDialog_about_to_show"]
 

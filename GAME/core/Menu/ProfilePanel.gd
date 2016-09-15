@@ -1,5 +1,5 @@
 
-extends PanelContainer
+extends Control
 
 onready var info = get_node('box/info')
 

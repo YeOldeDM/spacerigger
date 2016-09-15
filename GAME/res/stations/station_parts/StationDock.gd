@@ -89,9 +89,10 @@ func _on_Point_area_enter(area, dockpoint):
 			_check_for_touchin()
 	if touching != area.get_parent():
 		touching = area.get_parent()
-	if 'target' in owner:
+	
+	if 'target' in owner and 'owner' in area:
 		owner.target = area.get_parent().owner
-	if 'target_dock' in owner:
+	if 'target_dock' in owner and 'owner' in area:
 		var pos = area.get_position_in_parent()
 		print(pos)
 		owner.target_dock = pos

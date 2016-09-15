@@ -35,17 +35,19 @@ var pending_player = false
 #####################
 #	PUBLIC METHODS	#
 
+# Get the player object
 func get_player():
 	if control.controlled:
 		return control.controlled
 
+# Get the current World
 func get_world():
 	if world and !world.get_children().empty():
 		return world.get_child(0)
 	else:
 		return null
 
-
+# Set the current World
 func change_world(world_name):
 	var new_world = load('res://res/worlds/'+world_name+'.tscn')
 	if new_world:
@@ -59,8 +61,10 @@ func change_world(world_name):
 	else:
 		OS.alert("No such world as "+world_name)
 
+# Transport the player ship to another World
+# arrival at object 'destination'
 func warp_player(destination):
-	var node = destination.get_warpnode(temp_node)
+	var node = destination.get_object_by_name("WarpNodes",temp_node)
 	var player_ship = Spawn.ship(InitShip)
 	var pos = node.get_global_pos()
 	destination.add_vessel(player_ship, pos+temp_offset, true)
@@ -80,10 +84,12 @@ func warp_player(destination):
 	temp_ship = null
 	#print(player_ship.has_main_thrust)
 
+# Call the pedia menu 'entry'
 func pedia(entry=null):
 	_show_pedia(entry)
 	SoundMan.play('beep')
 
+# Make a clicky sound
 func click():
 	SoundMan.play('click')
 
@@ -122,6 +128,7 @@ func _process(delta):
 
 
 func _kill_ui_binds():
+	# Kill default spacebar events
 	var space = InputEvent()
 	space.type = InputEvent.KEY
 	space.scancode = KEY_SPACE
@@ -133,25 +140,6 @@ func _show_pedia(entry='welcome'):
 	pedia.current_entry = entry
 	pedia.popup_centered()
 
-#func _draw():
-#	draw_string(preload('res://assets/fonts/hack14.fnt'),\
-#			Vector2(16,8), GAME_NAME)
-
-
-
-
-#func _on_helpbutton_pressed():
-#	help.popup_centered()
-
-
-
-
-
-#func _on_switchships_pressed():
-#	control.disconnect_from(player_ship)
-#	control.connect_to(other_ship)
-#
-#
 
 
 

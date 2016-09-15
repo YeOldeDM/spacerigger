@@ -1,12 +1,14 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://res/ships/NewShip.gd" type="Script" id=1]
 [ext_resource path="res://res/ships/ship_camera.gd" type="Script" id=2]
 [ext_resource path="res://assets/graphics/ships/stragos.png" type="Texture" id=3]
-[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://res/ships/ShipThrusters.gd" type="Script" id=5]
-[ext_resource path="res://res/ships/ship_parts/Particles_MainThruster.tscn" type="PackedScene" id=6]
-[ext_resource path="res://res/ships/ship_parts/Particles_ReactionThruster.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/graphics/ships/stragos_emit.png" type="Texture" id=4]
+[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://res/ships/ShipThrusters.gd" type="Script" id=6]
+[ext_resource path="res://res/ships/ship_parts/Particles_MainThruster.tscn" type="PackedScene" id=7]
+[ext_resource path="res://res/ships/ship_parts/Particles_ReactionThruster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/graphics/particles/engineflare.png" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -68,6 +70,38 @@ points = Vector2Array( -20, 10, -17, -7, -17, 2 )
 custom_solver_bias = 0.0
 points = Vector2Array( -20, 10, -17, 2, -17, 6 )
 
+[sub_resource type="Animation" id=13]
+
+resource/name = "Blink"
+length = 3.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Right:visibility/self_opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.8, 2.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 1.0, 0.0, 0.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right:transform/scale")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.8 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 3, 1 ), Vector2( 0.1, 0.1 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Left:visibility/self_opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.9, 1, 1.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.0 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Left:transform/scale")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0.844526, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 3, 1 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Rear:visibility/self_opacity")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 1.9, 2, 2.3, 2.6, 2.8 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.375, 0.6, 0.0 ] }
+
 [node name="Ship" type="RigidBody2D"]
 
 input/pickable = false
@@ -110,7 +144,7 @@ shapes/11/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 85.0
+mass = 65.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -125,18 +159,18 @@ velocity/angular = 0.0
 damp_override/linear = 0.0
 damp_override/angular = 0.0
 script/script = ExtResource( 1 )
-Chassis = "Tauro"
-Model = "Runner"
+Chassis = "Stragos"
+Model = "Agile"
 Designation = "A1A-212"
-delta_v_main = 1260.0
-delta_v = 500.0
-delta_r = 5.0
-damp_power = 2.0
+delta_v_main = 12600.0
+delta_v = 600.0
+delta_r = 12.0
+damp_power = 0.5
+max_fuel = 160.0
 rcs_config = 1
 has_retro_thrust = false
 has_rcs_thrust = true
 has_warp_drive = true
-max_fuel = 16.0
 
 [node name="Camera" type="Camera2D" parent="."]
 
@@ -166,23 +200,38 @@ shake_falloff = 0.91
 transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 3 )
 flip_v = true
+modulate = Color( 0.691406, 0.691406, 0.691406, 1 )
+
+[node name="Emit" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+transform/pos = Vector2( 0, 8 )
+texture = ExtResource( 4 )
+flip_v = true
+modulate = Color( 1, 0.8237, 0.574219, 1 )
 
 [node name="Docks" type="Node2D" parent="."]
 
-visibility/behind_parent = true
-
-[node name="StationDock" parent="Docks" instance=ExtResource( 4 )]
-
 editor/display_folded = true
 visibility/behind_parent = true
+
+[node name="StationDock" parent="Docks" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
 transform/pos = Vector2( 0, 44 )
+modulate = Color( 0.691406, 0.608188, 0.53476, 1 )
+
+[node name="Collision" parent="Docks/StationDock/Body"]
+
+visibility/visible = false
 
 [node name="Thrusters" type="Node2D" parent="."]
 
+editor/display_folded = true
 visibility/behind_parent = true
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 
-[node name="MainPro" parent="Thrusters" instance=ExtResource( 6 )]
+[node name="MainPro" parent="Thrusters" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 0, -30 )
 config/half_extents = Vector2( 2, 0 )
@@ -194,7 +243,7 @@ thrust_type = 0
 thrust_direction = 0
 thrust_placement = 0
 
-[node name="RCSRightFore" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSRightFore" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( -9, 34 )
 params/direction = 90.0
@@ -202,7 +251,7 @@ thrust_type = 1
 thrust_direction = 3
 thrust_placement = 1
 
-[node name="RCSRightRetro" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSRightRetro" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( -22, 18 )
 params/direction = 180.0
@@ -210,21 +259,21 @@ thrust_type = 1
 thrust_direction = 1
 thrust_placement = 2
 
-[node name="RCSRightPro" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSRightPro" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( -22, -4.99999 )
 thrust_type = 1
 thrust_direction = 0
 thrust_placement = 2
 
-[node name="RCSLeftPro" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSLeftPro" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 22, -4.99999 )
 thrust_type = 1
 thrust_direction = 0
 thrust_placement = 1
 
-[node name="RCSLeftRetro" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSLeftRetro" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 22, 18 )
 params/direction = 180.0
@@ -232,7 +281,7 @@ thrust_type = 1
 thrust_direction = 1
 thrust_placement = 1
 
-[node name="RCSRightAft" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSRightAft" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( -12, -21 )
 params/direction = 90.0
@@ -240,7 +289,7 @@ thrust_type = 1
 thrust_direction = 3
 thrust_placement = 2
 
-[node name="RCSLeftFore" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSLeftFore" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 9, 34 )
 params/direction = 270.0
@@ -248,7 +297,7 @@ thrust_type = 1
 thrust_direction = 2
 thrust_placement = 1
 
-[node name="RCSLeftAft" parent="Thrusters" instance=ExtResource( 7 )]
+[node name="RCSLeftAft" parent="Thrusters" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 12, -21 )
 params/direction = 270.0
@@ -258,6 +307,7 @@ thrust_placement = 2
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 0, 7.99997 )
 build_mode = 0
 polygon = Vector2Array( -6, -38, -12, -32, -13, -16, -11, -12, -11, -7, -17, -7, -17, -8.99997, -19, -13, -26, -13, -28, -9, -28, 6, -25, 10, -20, 10, -17, 6, -17, 2, -10, 2, -8, 12, -8, 19, -9, 21, -7, 38, 7, 38, 9, 21, 8, 19, 8, 12, 10, 2, 17, 2, 17, 6, 20, 10, 25, 10, 28, 6, 28, -9, 25, -13, 19, -13, 17, -8.99997, 17, -7, 11, -7, 11, -12, 13, -16, 12, -32, 6, -38, 0, -39 )
@@ -272,20 +322,44 @@ bias/bias = 0.9
 collision/exclude_nodes = false
 softness = 0.0
 
-[node name="Origin" type="Polygon2D" parent="."]
+[node name="NavLights" type="Node2D" parent="."]
 
-visibility/visible = false
-polygon = Vector2Array( -1, -10, 1, -10, 1, -1, 10, -1, 10, 1, 1, 1, 1, 11, -1, 11, -1, 1, -9, 1, -9, -1, -1, -1 )
-uv = Vector2Array(  )
-color = Color( 1, 0, 0, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
+[node name="Right" type="Sprite" parent="NavLights"]
+
+visibility/self_opacity = 0.0
+visibility/blend_mode = 1
+transform/pos = Vector2( -28, 5 )
+transform/scale = Vector2( 0.927397, 0.356778 )
+texture = ExtResource( 9 )
+modulate = Color( 0, 1, 0, 1 )
+
+[node name="Left" type="Sprite" parent="NavLights"]
+
+visibility/self_opacity = 0.465399
+visibility/blend_mode = 1
+transform/pos = Vector2( 28, 5 )
+transform/scale = Vector2( 2.6993, 1 )
+texture = ExtResource( 9 )
+modulate = Color( 1, 0, 0, 1 )
+
+[node name="Rear" type="Sprite" parent="NavLights"]
+
+visibility/self_opacity = 0.0
+visibility/blend_mode = 1
+transform/pos = Vector2( 0, -23 )
+texture = ExtResource( 9 )
+modulate = Color( 0.783936, 0.888523, 0.964844, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NavLights"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Blink = SubResource( 13 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "Blink"
 
 
 [editable path="Docks/StationDock"]

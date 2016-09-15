@@ -38,3 +38,4 @@ func _on_Button_toggled( pressed ):
 	if pressed:
 		_set_error(error)
 	SoundMan.play('click')
+	get_node('Function Switch').set('has_error', pressed)

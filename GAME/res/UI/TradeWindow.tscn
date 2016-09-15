@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=1]
-[ext_resource path="res://assets/fonts/conthrax14.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://assets/fonts/libel_24.fnt" type="BitmapFont" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -49,10 +49,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 2.0
-margin/top = 2.0
-margin/right = 798.0
-margin/bottom = 363.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 793.0
+margin/bottom = 358.0
 alignment = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
@@ -64,8 +64,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 796.0
-margin/bottom = 22.0
+margin/right = 786.0
+margin/bottom = 32.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
@@ -76,8 +76,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 1.0
 margin/top = 1.0
-margin/right = 795.0
-margin/bottom = 21.0
+margin/right = 785.0
+margin/bottom = 31.0
 alignment = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
@@ -86,10 +86,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
-margin/left = 730.0
+margin/left = 740.0
 margin/top = 0.0
-margin/right = 794.0
-margin/bottom = 20.0
+margin/right = 784.0
+margin/bottom = 30.0
 custom_fonts/font = ExtResource( 2 )
 text = "TRADE"
 align = 2
@@ -105,9 +105,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 26.0
-margin/right = 796.0
-margin/bottom = 361.0
+margin/top = 36.0
+margin/right = 786.0
+margin/bottom = 351.0
 alignment = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer 2"]
@@ -119,8 +119,8 @@ size_flags/vertical = 3
 size_flags/stretch_ratio = 3.0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 594.0
-margin/bottom = 335.0
+margin/right = 586.0
+margin/bottom = 315.0
 scroll/horizontal = true
 scroll/vertical = true
 
@@ -130,10 +130,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 598.0
+margin/left = 590.0
 margin/top = 0.0
-margin/right = 796.0
-margin/bottom = 335.0
+margin/right = 786.0
+margin/bottom = 315.0
 custom_styles/panel = SubResource( 2 )
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=1]
+[gd_scene load_steps=35 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -75,7 +75,33 @@ bcs/contrast = 1.0
 bcs/saturation = 1.0
 srgb/enabled = false
 
-[sub_resource type="SampleLibrary" id=2]
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.27655, 0.769531, 0.353579, 0.425159 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = false
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = 2.0
+content_margin/right = 2.0
+content_margin/top = 2.0
+content_margin/bottom = 2.0
+bg_color = Color( 0.6, 0.6, 0.6, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 1
+border_blend = false
+draw_bg = false
+
+[sub_resource type="SampleLibrary" id=4]
 
 samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 29 ) }
 
@@ -89,8 +115,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 984.0
-margin/bottom = 560.0
+margin/right = 0.0
+margin/bottom = 0.0
 script/script = ExtResource( 1 )
 start_engines = true
 
@@ -134,16 +160,17 @@ stretch_mode = 0
 
 [node name="box" type="Control" parent="HUD"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/left = 32.0
+margin/top = 32.0
+margin/right = 32.0
+margin/bottom = 32.0
 
 [node name="TopBar" type="Control" parent="HUD/box"]
 
@@ -780,7 +807,6 @@ button/selected = 2
 
 [node name="Fuel" type="PanelContainer" parent="HUD/box"]
 
-editor/display_folded = true
 visibility/self_opacity = 0.5
 anchor/left = 3
 anchor/top = 1
@@ -806,7 +832,7 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 143.0
-margin/bottom = 75.0
+margin/bottom = 69.0
 alignment = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/box/Fuel/box"]
@@ -859,6 +885,7 @@ Subject = "system_fuel"
 
 [node name="Bar" type="ProgressBar" parent="HUD/box/Fuel/box"]
 
+rect/min_size = Vector2( 0, 8 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -866,15 +893,17 @@ size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 20.0
 margin/right = 136.0
-margin/bottom = 36.0
+margin/bottom = 28.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
 range/page = 0.0
-range/value = 1.0
+range/value = 50.0
 range/exp_edit = false
 range/rounded = false
-percent/visible = true
+percent/visible = false
 
 [node name="Amt" type="Label" parent="HUD/box/Fuel/box"]
 
@@ -883,9 +912,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 40.0
+margin/top = 32.0
 margin/right = 136.0
-margin/bottom = 52.0
+margin/bottom = 44.0
 text = "Volume: "
 percent_visible = 1.0
 lines_skipped = 0
@@ -898,9 +927,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 56.0
+margin/top = 48.0
 margin/right = 136.0
-margin/bottom = 68.0
+margin/bottom = 60.0
 text = "Rate: "
 percent_visible = 1.0
 lines_skipped = 0
@@ -1564,7 +1593,7 @@ max_lines_visible = -1
 [node name="SamplePlayer" type="SamplePlayer" parent="HUD"]
 
 config/polyphony = 2
-config/samples = SubResource( 2 )
+config/samples = SubResource( 4 )
 default/volume_db = -38.4
 default/pitch_scale = 1.0
 default/pan = 0.1
