@@ -38,7 +38,7 @@ func turn_off():
 
 func _set_power( per ):
 	per = clamp(per, 0.0, 1.0)
-	set_lifetime(lerp(0.0, max_life, per))
+	#set_lifetime(lerp(0.0, max_life, per))
 	set_amount(lerp(1, max_parts, per))
 	power = per
 	if per <= 0.1:

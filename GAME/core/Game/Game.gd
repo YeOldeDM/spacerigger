@@ -99,7 +99,7 @@ func click():
 #########################
 #	PRIVATE METHODS		#
 
-var InitShip = 'Peregrine'
+var InitShip = 'Mathers'
 
 func _ready():
 	_kill_ui_binds()

@@ -1,75 +1,65 @@
-[gd_scene load_steps=26 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://ref/materials/NormalMap.tres" type="CanvasItemMaterial" id=1]
 [ext_resource path="res://res/ships/NewShip.gd" type="Script" id=2]
 [ext_resource path="res://res/ships/ship_camera.gd" type="Script" id=3]
-[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_normal.png" type="Texture" id=4]
-[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_diff.png" type="Texture" id=5]
-[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_bump.png" type="Texture" id=6]
-[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_emit.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_normal.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_diff.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_bump.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_emit.png" type="Texture" id=7]
 [ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://res/ships/ShipThrusters.gd" type="Script" id=9]
 [ext_resource path="res://res/ships/ship_parts/Particles_MainThruster.tscn" type="PackedScene" id=10]
 [ext_resource path="res://res/ships/ship_parts/Particles_ReactionThruster.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/graphics/particles/engineflare.png" type="Texture" id=12]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=25]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 4, -36, 12, -36, 12, -27, 3, -30 )
+points = Vector2Array( -5, -125, 6, -125, 11, -105, -11, -105 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -12, -27, -12, -36, -4, -36, -3, -30 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=26]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 36, -14, 34, -6.99997, 29, -6.99997, 12, -27, 31, -22, 36, -18 )
+points = Vector2Array( -41, -71, -53, -71, -56, -81, -56, -108, -53, -110, -41, -110, -38, -108, -38, -98 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -31, -22, -29, -6.99997, -34, -6.99997, -36, -14, -36, -18 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=27]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 12, -27, 29, -27, 31, -22 )
+points = Vector2Array( 38, -98, 56, -81, 53, -71, 41, -71, 17, -98 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -31, -22, -29, -27, -12, -27, -16, 13, -20, 12, -29, -6.99997 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=28]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 29, -6.99997, 29, 10, 26, 12, 20, 12, 12, -27 )
+points = Vector2Array( -41, -71, -38, -98, -17, -98, -33, -62 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -26, 12, -29, 10, -29, -6.99997, -20, 12 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=29]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -3, -30, 3, -30, 12, -27, 16, 13, 16, 21, 13, 25, -13, 25, -16, 21, -16, 13, -12, -27 )
+points = Vector2Array( 38, -98, 38, -108, 41, -110, 53, -110, 56, -108, 56, -81 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=30]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 12, -27, 20, 12, 16, 13 )
+points = Vector2Array( 17, -98, 41, -71, 33, -62, -33, -62, -17, -98 )
 
-[sub_resource type="CanvasItemShader" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=31]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -17, -98, -11, -105, 11, -105, 17, -98 )
+
+[sub_resource type="ConvexPolygonShape2D" id=32]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -36, 116, -36, -57, -33, -62, 33, -62, 36, -57, 36, 116, 32, 120, -32, 120 )
+
+[sub_resource type="CanvasItemShader" id=14]
 
 _code = { "fragment":"uniform texture normal;\n//normal maps expect Y-up, but 2D is Y-down, so must mirror this.\nNORMAL = tex(normal,UV).rgb * vec3(2.0,-2.0,1.0) - vec3(1.0,-1.0,0.0);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
 
-[sub_resource type="CanvasItemMaterial" id=12]
+[sub_resource type="CanvasItemMaterial" id=24]
 
-shader/shader = SubResource( 11 )
+shader/shader = SubResource( 14 )
 shader/shading_mode = 0
 shader_param/normal = ExtResource( 4 )
 
@@ -77,7 +67,7 @@ shader_param/normal = ExtResource( 4 )
 
 length = 3.0
 loop = true
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Right:visibility/self_opacity")
 tracks/0/interp = 1
@@ -89,59 +79,73 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0, 0.8 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 3, 1 ), Vector2( 0.1, 0.1 ) ] }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Left:visibility/self_opacity")
+tracks/2/path = NodePath("Right1:visibility/self_opacity")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.9, 1, 1.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.0 ] }
+tracks/2/keys = { "times":FloatArray( 0, 0.8, 2.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 1.0, 0.0, 0.0 ] }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Left:transform/scale")
+tracks/3/path = NodePath("Right1:transform/scale")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0.844526, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 3, 1 ) ] }
+tracks/3/keys = { "times":FloatArray( 0, 0.8, 2.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 3, 1 ), Vector2( 0.1, 0.1 ), Vector2( 0.1, 0.1 ) ] }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Rear:visibility/self_opacity")
+tracks/4/path = NodePath("Left:visibility/self_opacity")
 tracks/4/interp = 1
 tracks/4/imported = false
-tracks/4/keys = { "times":FloatArray( 0, 1.9, 2, 2.3, 2.6, 2.8 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.375, 0.6, 0.0 ] }
+tracks/4/keys = { "times":FloatArray( 0, 0.9, 1, 1.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.0 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Left:transform/scale")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0.844526, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 3, 1 ) ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Left1:visibility/self_opacity")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0, 0.9, 1, 1.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.0 ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Left1:transform/scale")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = { "times":FloatArray( 0.85, 1, 2.9 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 3, 1 ), Vector2( 2.6993, 1 ) ] }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Rear:visibility/self_opacity")
+tracks/8/interp = 1
+tracks/8/imported = false
+tracks/8/keys = { "times":FloatArray( 0, 1.9, 2, 2.3, 2.6, 2.8 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0, 0.375, 0.6, 0.0 ] }
 
 [node name="Ship" type="RigidBody2D"]
 
 material/material = ExtResource( 1 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 25 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
+shapes/1/shape = SubResource( 26 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
+shapes/2/shape = SubResource( 27 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 4 )
+shapes/3/shape = SubResource( 28 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/3/trigger = false
-shapes/4/shape = SubResource( 5 )
+shapes/4/shape = SubResource( 29 )
 shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/4/trigger = false
-shapes/5/shape = SubResource( 6 )
+shapes/5/shape = SubResource( 30 )
 shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/5/trigger = false
-shapes/6/shape = SubResource( 7 )
+shapes/6/shape = SubResource( 31 )
 shapes/6/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/6/trigger = false
-shapes/7/shape = SubResource( 8 )
+shapes/7/shape = SubResource( 32 )
 shapes/7/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
 shapes/7/trigger = false
-shapes/8/shape = SubResource( 9 )
-shapes/8/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
-shapes/8/trigger = false
-shapes/9/shape = SubResource( 10 )
-shapes/9/transform = Matrix32( 1, 0, 0, 1, 0, 7.99997 )
-shapes/9/trigger = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 95.0
+mass = 450.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -156,12 +160,12 @@ velocity/angular = 0.0
 damp_override/linear = 0.0
 damp_override/angular = 0.0
 script/script = ExtResource( 2 )
-Chassis = "Peregrine"
-Model = "C"
+Chassis = "Alba"
+Model = "Hauler"
 TailNumber = "A1A-212"
-delta_v_main = 12600.0
-delta_v = 600.0
-delta_r = 12.0
+delta_v_main = 9000.0
+delta_v = 450.0
+delta_r = 4.0
 damp_power = 0.5
 max_fuel = 160.0
 rcs_config = 0
@@ -194,7 +198,7 @@ shake_falloff = 0.91
 
 [node name="Sprite" type="Sprite" parent="."]
 
-material/material = SubResource( 12 )
+material/material = SubResource( 24 )
 transform/pos = Vector2( 0, 3 )
 texture = ExtResource( 5 )
 flip_v = true
@@ -218,18 +222,38 @@ flip_v = true
 
 [node name="Docks" type="Node2D" parent="."]
 
+editor/display_folded = true
 visibility/behind_parent = true
 
 [node name="StationDock" parent="Docks" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 visibility/behind_parent = true
-transform/pos = Vector2( 0, 31 )
-modulate = Color( 0.7229, 0.734375, 0.734106, 1 )
+transform/pos = Vector2( 0, 125 )
+modulate = Color( 0.421875, 0.421875, 0.421875, 1 )
+dock_name = "Fore"
 
 [node name="Collision" parent="Docks/StationDock/Body"]
 
 visibility/visible = false
+
+[node name="StationDock1" parent="Docks" instance=ExtResource( 8 )]
+
+editor/display_folded = true
+visibility/behind_parent = true
+transform/pos = Vector2( 35, 34 )
+transform/rot = 90.0
+modulate = Color( 0.421875, 0.421875, 0.421875, 1 )
+dock_name = "Port"
+
+[node name="StationDock2" parent="Docks" instance=ExtResource( 8 )]
+
+editor/display_folded = true
+visibility/behind_parent = true
+transform/pos = Vector2( -35, 34 )
+transform/rot = 270.0
+modulate = Color( 0.421875, 0.421875, 0.421875, 1 )
+dock_name = "Starboard"
 
 [node name="Thrusters" type="Node2D" parent="."]
 
@@ -237,43 +261,34 @@ editor/display_folded = true
 visibility/behind_parent = true
 script/script = ExtResource( 9 )
 
-[node name="MainPro1 2" parent="Thrusters" instance=ExtResource( 10 )]
-
-transform/pos = Vector2( -8, -29 )
-config/amount = 48
-params/radial_accel = 2.0
-params/damping = 2.0
-params/initial_size = 2.0
-params/final_size = 0.0
-randomness/spread = 0.0
-randomness/radial_accel = 0.5
-randomness/initial_size = 0.0
-max_parts = 48
-thrust_type = 0
-thrust_direction = 0
-thrust_placement = 0
-
 [node name="MainPro1" parent="Thrusters" instance=ExtResource( 10 )]
 
-transform/pos = Vector2( 8, -29 )
+transform/pos = Vector2( 5.19751e-06, -122 )
+transform/scale = Vector2( 1, 1 )
 config/amount = 48
+config/lifetime = 2.0
+config/time_scale = 3.0
+params/spread = 2.0
 params/radial_accel = 2.0
 params/damping = 2.0
-params/initial_size = 2.0
 params/final_size = 0.0
 randomness/spread = 0.0
 randomness/radial_accel = 0.5
 randomness/initial_size = 0.0
 max_parts = 48
+max_life = 2.0
 thrust_type = 0
 thrust_direction = 0
 thrust_placement = 0
 
 [node name="MainRetro1" parent="Thrusters" instance=ExtResource( 10 )]
 
-transform/pos = Vector2( -23, 21 )
-config/amount = 48
+transform/pos = Vector2( -47, -62 )
+config/amount = 80
+config/lifetime = 0.8
+config/time_scale = 2.0
 params/direction = 180.0
+params/spread = 5.0
 params/radial_accel = 2.0
 params/damping = 2.0
 params/initial_size = 1.5
@@ -281,16 +296,20 @@ params/final_size = 0.0
 randomness/spread = 0.0
 randomness/radial_accel = 0.5
 randomness/initial_size = 0.0
-max_parts = 48
+max_parts = 80
+max_life = 0.8
 thrust_type = 0
 thrust_direction = 1
 thrust_placement = 0
 
 [node name="MainRetro2" parent="Thrusters" instance=ExtResource( 10 )]
 
-transform/pos = Vector2( 23, 21 )
-config/amount = 48
+transform/pos = Vector2( 47, -62 )
+config/amount = 80
+config/lifetime = 0.8
+config/time_scale = 2.0
 params/direction = 180.0
+params/spread = 5.0
 params/radial_accel = 2.0
 params/damping = 2.0
 params/initial_size = 1.5
@@ -298,14 +317,23 @@ params/final_size = 0.0
 randomness/spread = 0.0
 randomness/radial_accel = 0.5
 randomness/initial_size = 0.0
-max_parts = 48
+max_parts = 80
+max_life = 0.8
 thrust_type = 0
 thrust_direction = 1
 thrust_placement = 0
 
 [node name="RCSRightFore" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( -17, 27 )
+transform/pos = Vector2( -36, 108 )
+params/direction = 90.0
+thrust_type = 1
+thrust_direction = 3
+thrust_placement = 1
+
+[node name="RCSRightFore1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( -36, 119 )
 params/direction = 90.0
 thrust_type = 1
 thrust_direction = 3
@@ -313,7 +341,15 @@ thrust_placement = 1
 
 [node name="RCSRightRetro" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( -32, 3 )
+transform/pos = Vector2( -23, 129 )
+params/direction = 180.0
+thrust_type = 1
+thrust_direction = 1
+thrust_placement = 2
+
+[node name="RCSRightRetro1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( -11, 129 )
 params/direction = 180.0
 thrust_type = 1
 thrust_direction = 1
@@ -321,21 +357,45 @@ thrust_placement = 2
 
 [node name="RCSRightPro" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( -32, -13 )
+transform/pos = Vector2( -47, -103 )
+thrust_type = 1
+thrust_direction = 0
+thrust_placement = 2
+
+[node name="RCSRightPro1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( -22, -91 )
 thrust_type = 1
 thrust_direction = 0
 thrust_placement = 2
 
 [node name="RCSLeftPro" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 32, -13 )
+transform/pos = Vector2( 47, -103 )
+thrust_type = 1
+thrust_direction = 0
+thrust_placement = 1
+
+[node name="RCSLeftPro1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 22, -91 )
 thrust_type = 1
 thrust_direction = 0
 thrust_placement = 1
 
 [node name="RCSLeftRetro" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 32, 3 )
+transform/pos = Vector2( 23, 129 )
+transform/scale = Vector2( 1, 1 )
+params/direction = 180.0
+thrust_type = 1
+thrust_direction = 1
+thrust_placement = 1
+
+[node name="RCSLeftRetro1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 11, 129 )
+transform/scale = Vector2( 1, 1 )
 params/direction = 180.0
 thrust_type = 1
 thrust_direction = 1
@@ -343,7 +403,15 @@ thrust_placement = 1
 
 [node name="RCSRightAft" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( -36, -8 )
+transform/pos = Vector2( -57, -92 )
+params/direction = 90.0
+thrust_type = 1
+thrust_direction = 3
+thrust_placement = 2
+
+[node name="RCSRightAft1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( -57, -82 )
 params/direction = 90.0
 thrust_type = 1
 thrust_direction = 3
@@ -351,7 +419,15 @@ thrust_placement = 2
 
 [node name="RCSLeftFore" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 17, 27 )
+transform/pos = Vector2( 36, 119 )
+params/direction = 270.0
+thrust_type = 1
+thrust_direction = 2
+thrust_placement = 1
+
+[node name="RCSLeftFore1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 36, 108 )
 params/direction = 270.0
 thrust_type = 1
 thrust_direction = 2
@@ -359,7 +435,15 @@ thrust_placement = 1
 
 [node name="RCSLeftAft" parent="Thrusters" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 36, -8 )
+transform/pos = Vector2( 57, -92 )
+params/direction = 270.0
+thrust_type = 1
+thrust_direction = 2
+thrust_placement = 2
+
+[node name="RCSLeftAft1" parent="Thrusters" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 57, -82 )
 params/direction = 270.0
 thrust_type = 1
 thrust_direction = 2
@@ -370,8 +454,8 @@ thrust_placement = 2
 visibility/visible = false
 transform/pos = Vector2( 0, 7.99997 )
 build_mode = 0
-polygon = Vector2Array( -4, -36, -12, -36, -12, -27, -29, -27, -31, -22, -36, -18, -36, -14, -34, -6.99997, -29, -6.99997, -29, 10, -26, 12, -20, 12, -16, 13, -16, 21, -13, 25, 13, 25, 16, 21, 16, 13, 20, 12, 26, 12, 29, 10, 29, -6.99997, 34, -6.99997, 36, -14, 36, -18, 31, -22, 29, -27, 12, -27, 12, -36, 4, -36, 3, -30, -3, -30 )
-shape_range = Vector2( 0, 9 )
+polygon = Vector2Array( -33, -62, -36, -57, -36, 116, -32, 120, 32, 120, 36, 116, 36, -57, 33, -62, 41, -71, 53, -71, 56, -81, 56, -108, 53, -110, 41, -110, 38, -108, 38, -98, 17, -98, 11, -105, 6, -125, -5, -125, -11, -105, -17, -98, -38, -98, -38, -108, -41, -110, -53, -110, -56, -108, -56, -81, -53, -71, -41, -71 )
+shape_range = Vector2( 0, 7 )
 trigger = false
 
 [node name="DockJoint" type="PinJoint2D" parent="."]
@@ -384,23 +468,39 @@ softness = 0.0
 
 [node name="NavLights" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Right" type="Sprite" parent="NavLights"]
 
 visibility/self_opacity = 0.0
 visibility/blend_mode = 1
-transform/pos = Vector2( -23, 17 )
-transform/scale = Vector2( 0.927397, 0.356778 )
+transform/pos = Vector2( -24, 94.4271 )
+transform/scale = Vector2( 1.41818, 0.509091 )
+texture = ExtResource( 12 )
+modulate = Color( 0, 1, 0, 1 )
+
+[node name="Right1" type="Sprite" parent="NavLights"]
+
+visibility/self_opacity = 0.0
+visibility/blend_mode = 1
+transform/pos = Vector2( -47, -71 )
+transform/scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 12 )
 modulate = Color( 0, 1, 0, 1 )
 
 [node name="Left" type="Sprite" parent="NavLights"]
 
-visibility/self_opacity = 0.465399
+visibility/self_opacity = 0.0
 visibility/blend_mode = 1
-transform/pos = Vector2( 23, 17 )
-transform/scale = Vector2( 2.6993, 1 )
+transform/pos = Vector2( 24, 94 )
+transform/scale = Vector2( 2.43752, 1 )
+texture = ExtResource( 12 )
+modulate = Color( 1, 0, 0, 1 )
+
+[node name="Left1" type="Sprite" parent="NavLights"]
+
+visibility/self_opacity = 0.195957
+visibility/blend_mode = 1
+transform/pos = Vector2( 47, -71 )
+transform/scale = Vector2( 2.87339, 1 )
 texture = ExtResource( 12 )
 modulate = Color( 1, 0, 0, 1 )
 
@@ -408,7 +508,7 @@ modulate = Color( 1, 0, 0, 1 )
 
 visibility/self_opacity = 0.0
 visibility/blend_mode = 1
-transform/pos = Vector2( 0, -20 )
+transform/pos = Vector2( 0, -91 )
 texture = ExtResource( 12 )
 modulate = Color( 0.783936, 0.888523, 0.964844, 1 )
 

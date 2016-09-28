@@ -93,15 +93,16 @@ damp_override/angular = 0.0
 texture = ExtResource( 7 )
 modulate = Color( 0.181427, 0.223534, 0.566406, 1 )
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="Sunlight" type="Light2D" parent="Background/Starplane1"]
 
-transform/pos = Vector2( -48.2344, -119.078 )
+transform/pos = Vector2( 36560.7, -19434.7 )
+transform/scale = Vector2( 100, 100 )
 enabled = true
 texture = ExtResource( 8 )
 offset = Vector2( 0, 0 )
-scale = 500.0
-color = Color( 0.917969, 0.541458, 0.541458, 1 )
-energy = 1.0
+scale = 50.0
+color = Color( 0.964844, 0.908781, 0.542725, 1 )
+energy = 3.0
 mode = 0
 range/height = 50.0
 range/z_min = 0
@@ -115,8 +116,9 @@ shadow/buffer_size = 2048
 shadow/esm_multiplier = 80.0
 shadow/item_mask = 1
 
-[node name="Sprite" type="Sprite" parent="Light2D"]
+[node name="Sprite" type="Sprite" parent="Background/Starplane1/Sunlight"]
 
+visibility/visible = false
 transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 
