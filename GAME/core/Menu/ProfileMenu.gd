@@ -111,7 +111,7 @@ func _on_DeleteConfirmDialog_confirmed():
 	var name = current_profile.get_value('CREATION', 'profile_name')
 	current_profile = null
 	var removed = Data.delete_profile(name)
-	if removed == OK:
-		OS.alert("Deleted profile: "+name, "Success!")
+	if removed != OK:
+		OS.alert("Error while trying to delete profile: "+name)
 	update_profiles()
 	show_current_profile_info()

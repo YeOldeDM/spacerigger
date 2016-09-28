@@ -1,14 +1,25 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://res/stations/Station.gd" type="Script" id=1]
-[ext_resource path="res://res/stations/StationDocks.gd" type="Script" id=2]
-[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://res/stations/StationDocks.gd" type="Script" id=3]
+[ext_resource path="res://res/stations/station_parts/StationDock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/graphics/ships/dock_normal.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -128, -96, -96, -128, 96, -128, 128, -96, 128, 96, 96, 128, -96, 128, -128, 96 )
+
+[sub_resource type="CanvasItemShader" id=14]
+
+_code = { "fragment":"uniform texture normal;\n//normal maps expect Y-up, but 2D is Y-down, so must mirror this.\nNORMAL = tex(normal,UV).rgb * vec3(2.0,-2.0,1.0) - vec3(1.0,-1.0,0.0);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+shader/shader = SubResource( 14 )
+shader/shading_mode = 0
+shader_param/normal = ExtResource( 5 )
 
 [node name="Station" type="RigidBody2D"]
 
@@ -39,33 +50,35 @@ station_class = "Civilian"
 station_type = "Habitat"
 Designation = "ST-GOD-A01"
 
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
 [node name="Docks" type="Node2D" parent="."]
 
-script/script = ExtResource( 2 )
+visibility/behind_parent = true
+script/script = ExtResource( 3 )
 
-[node name="StationDock" parent="Docks" instance=ExtResource( 3 )]
+[node name="StationDock" parent="Docks" instance=ExtResource( 4 )]
 
 editor/display_folded = true
+material/material = SubResource( 3 )
 transform/pos = Vector2( -63, 133 )
 dock_name = "S-Alpha"
 
-[node name="StationDock1" parent="Docks" instance=ExtResource( 3 )]
+[node name="StationDock1" parent="Docks" instance=ExtResource( 4 )]
 
 editor/display_folded = true
 transform/pos = Vector2( -3, 133 )
 dock_name = "S-Beta"
 
-[node name="StationDock2" parent="Docks" instance=ExtResource( 3 )]
+[node name="StationDock2" parent="Docks" instance=ExtResource( 4 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 132.314, 32.3137 )
 transform/rot = 45.0
 dock_name = "E-Delta"
-
-[node name="Sprite" type="Sprite" parent="."]
-
-transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 4 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
@@ -75,4 +88,3 @@ shape_range = Vector2( 0, 0 )
 trigger = false
 
 
-[editable path="Docks/StationDock"]

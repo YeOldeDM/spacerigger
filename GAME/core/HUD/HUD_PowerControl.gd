@@ -21,7 +21,8 @@ var thrusters_on = false
 
 
 var gen_power = 0
-var gen_power_full = 2.5
+var gen_power_full = 22.0
+var gen_power_draw = 3.14
 
 
 var apu_capacity = 50
@@ -217,7 +218,7 @@ func _process(delta):
 	# Discharge generator power if not running and not charging
 	if not charging:
 		if gen_power > 0.0:
-			var new_pwr = gen_power - (1.0*delta)
+			var new_pwr = gen_power - (gen_power_draw*delta)
 			gen_power = max(new_pwr, 0.0)
 			var value = (gen_power*1.0)/(gen_power_full*1.0)
 			draw_element(get_element('GEN', 'Tank'), value)

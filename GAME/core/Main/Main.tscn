@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=1]
+[gd_scene load_steps=37 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -10,26 +10,28 @@
 [ext_resource path="res://ref/styles/stylebox_lcd.sbx" type="StyleBox" id=8]
 [ext_resource path="res://assets/fonts/LCD14.fnt" type="BitmapFont" id=9]
 [ext_resource path="res://ref/themes/themeGame.thm" type="Theme" id=10]
-[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=12]
-[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=13]
-[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=14]
-[ext_resource path="res://assets/graphics/hud/common/help_button_normal.png" type="Texture" id=15]
-[ext_resource path="res://assets/graphics/hud/common/help_button_pressed.png" type="Texture" id=16]
-[ext_resource path="res://assets/graphics/hud/common/help_button_hover.png" type="Texture" id=17]
-[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.gd" type="Script" id=18]
-[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.png" type="Texture" id=19]
-[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=20]
-[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=21]
-[ext_resource path="res://res/UI/pedia_button.tscn" type="PackedScene" id=22]
-[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=23]
-[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=24]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=25]
-[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=26]
-[ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=27]
-[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=28]
-[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=29]
-[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=30]
+[ext_resource path="res://core/HUD/CameraZoom.gd" type="Script" id=11]
+[ext_resource path="res://core/HUD/MFD/MFD.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/graphics/hud/compass_back.png" type="Texture" id=13]
+[ext_resource path="res://assets/graphics/hud/compass.png" type="Texture" id=14]
+[ext_resource path="res://core/HUD/HUD_Autopilot.gd" type="Script" id=15]
+[ext_resource path="res://assets/graphics/hud/common/help_button_normal.png" type="Texture" id=16]
+[ext_resource path="res://assets/graphics/hud/common/help_button_pressed.png" type="Texture" id=17]
+[ext_resource path="res://assets/graphics/hud/common/help_button_hover.png" type="Texture" id=18]
+[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.gd" type="Script" id=19]
+[ext_resource path="res://addons/rigger_nodes/nodes/pedia_button.png" type="Texture" id=20]
+[ext_resource path="res://core/HUD/HUD_Fuel.gd" type="Script" id=21]
+[ext_resource path="res://core/HUD/HUD_WarpControl.gd" type="Script" id=22]
+[ext_resource path="res://res/UI/pedia_button.tscn" type="PackedScene" id=23]
+[ext_resource path="res://core/HUD/HUD_PowerControl.gd" type="Script" id=24]
+[ext_resource path="res://ref/themes/themeData.thm" type="Theme" id=25]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_off.png" type="Texture" id=26]
+[ext_resource path="res://assets/graphics/hud/power/power_source_switch_on.png" type="Texture" id=27]
+[ext_resource path="res://res/UI/Switch.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/graphics/hud/prograde_marker.png" type="Texture" id=29]
+[ext_resource path="res://assets/graphics/hud/target_marker.png" type="Texture" id=30]
+[ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=31]
+[ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Environment" id=1]
 
@@ -103,7 +105,7 @@ draw_bg = false
 
 [sub_resource type="SampleLibrary" id=4]
 
-samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 29 ) }
+samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 31 ) }
 
 [node name="Game" type="Control"]
 
@@ -174,7 +176,6 @@ margin/bottom = 32.0
 
 [node name="TopBar" type="Control" parent="HUD/box"]
 
-editor/display_folded = true
 anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -193,10 +194,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 219.0
+margin/left = 224.0
 margin/top = 10.0
-margin/right = 20.0
-margin/bottom = 60.0
+margin/right = 16.0
+margin/bottom = 64.0
 script/script = ExtResource( 5 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/GameSpeed"]
@@ -208,7 +209,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
-margin/right = 192.0
+margin/right = 201.0
 margin/bottom = 47.0
 alignment = 0
 
@@ -220,7 +221,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 185.0
+margin/right = 194.0
 margin/bottom = 14.0
 text = "Time Control"
 align = 2
@@ -236,7 +237,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 18.0
-margin/right = 185.0
+margin/right = 194.0
 margin/bottom = 40.0
 custom_constants/button_separator = 0
 button/count = 4
@@ -255,16 +256,16 @@ button/selected = 1
 [node name="Clock" type="PanelContainer" parent="HUD/box/TopBar"]
 
 editor/display_folded = true
-anchor/left = 1
-anchor/right = 1
+anchor/left = 3
+anchor/right = 3
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 449.0
-margin/top = 10.0
-margin/right = 234.0
-margin/bottom = 79.0
+margin/left = 96.0
+margin/top = -16.0
+margin/right = -119.0
+margin/bottom = 94.0
 script/script = ExtResource( 6 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/Clock"]
@@ -276,7 +277,7 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 208.0
-margin/bottom = 88.0
+margin/bottom = 103.0
 custom_constants/separation = 2
 alignment = 0
 
@@ -309,7 +310,7 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 9.0
 margin/right = 201.0
-margin/bottom = 26.0
+margin/bottom = 32.0
 custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Date"]
@@ -318,10 +319,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 1.0
-margin/top = 1.0
-margin/right = 200.0
-margin/bottom = 16.0
+margin/left = 4.0
+margin/top = 4.0
+margin/right = 197.0
+margin/bottom = 19.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Date"
@@ -337,9 +338,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 28.0
+margin/top = 34.0
 margin/right = 201.0
-margin/bottom = 45.0
+margin/bottom = 57.0
 custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Time"]
@@ -348,10 +349,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 1.0
-margin/top = 1.0
-margin/right = 200.0
-margin/bottom = 16.0
+margin/left = 4.0
+margin/top = 4.0
+margin/right = 197.0
+margin/bottom = 19.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
 text = "Time"
@@ -367,9 +368,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 47.0
+margin/top = 59.0
 margin/right = 201.0
-margin/bottom = 50.0
+margin/bottom = 62.0
 
 [node name="stopwatchtitle" type="Label" parent="HUD/box/TopBar/Clock/box"]
 
@@ -378,9 +379,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 52.0
+margin/top = 64.0
 margin/right = 201.0
-margin/bottom = 59.0
+margin/bottom = 71.0
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
@@ -398,9 +399,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 61.0
+margin/top = 73.0
 margin/right = 201.0
-margin/bottom = 81.0
+margin/bottom = 96.0
 alignment = 0
 
 [node name="Time" type="PanelContainer" parent="HUD/box/TopBar/Clock/box/Stopwatch"]
@@ -412,7 +413,7 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 108.0
-margin/bottom = 20.0
+margin/bottom = 23.0
 custom_styles/panel = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/Clock/box/Stopwatch/Time"]
@@ -421,9 +422,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 1.0
-margin/top = 1.0
-margin/right = 107.0
+margin/left = 4.0
+margin/top = 4.0
+margin/right = 104.0
 margin/bottom = 19.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0.714449, 0, 1 )
@@ -442,7 +443,7 @@ size_flags/vertical = 2
 margin/left = 112.0
 margin/top = 0.0
 margin/right = 132.0
-margin/bottom = 20.0
+margin/bottom = 23.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -458,7 +459,7 @@ size_flags/vertical = 2
 margin/left = 136.0
 margin/top = 0.0
 margin/right = 162.0
-margin/bottom = 20.0
+margin/bottom = 23.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -474,7 +475,7 @@ size_flags/vertical = 2
 margin/left = 166.0
 margin/top = 0.0
 margin/right = 201.0
-margin/bottom = 20.0
+margin/bottom = 23.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -483,16 +484,18 @@ flat = false
 
 [node name="CameraZoom" type="PanelContainer" parent="HUD/box/TopBar"]
 
-editor/display_folded = true
+anchor/left = 1
+anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 10 )
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 120.0
-margin/bottom = 66.0
+margin/left = 432.0
+margin/top = 10.0
+margin/right = 224.0
+margin/bottom = 80.0
+script/script = ExtResource( 11 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/TopBar/CameraZoom"]
 
@@ -502,8 +505,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
-margin/right = 113.0
-margin/bottom = 61.0
+margin/right = 201.0
+margin/bottom = 63.0
 alignment = 0
 
 [node name="Label" type="Label" parent="HUD/box/TopBar/CameraZoom/box"]
@@ -514,7 +517,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 106.0
+margin/right = 194.0
 margin/bottom = 12.0
 text = "Camera Zoom"
 percent_visible = 1.0
@@ -529,10 +532,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 16.0
-margin/right = 106.0
+margin/right = 194.0
 margin/bottom = 32.0
 range/min = 0.25
-range/max = 40.0
+range/max = 4.0
 range/step = 1.0
 range/page = 0.0
 range/value = 1.0
@@ -542,7 +545,7 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
-[node name="1x" type="Button" parent="HUD/box/TopBar/CameraZoom/box"]
+[node name="ZoomButton" type="HButtonArray" parent="HUD/box/TopBar/CameraZoom/box"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -550,22 +553,35 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 36.0
-margin/right = 106.0
-margin/bottom = 54.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "1x"
-flat = false
+margin/right = 194.0
+margin/bottom = 56.0
+custom_constants/button_separator = 0
+button/count = 4
+button/min_button_size = -1.0
+button/align = 4
+button/0/text = "x0.5"
+button/0/icon = null
+button/1/text = "x1"
+button/1/icon = null
+button/2/text = "x2"
+button/2/icon = null
+button/3/text = "x4"
+button/3/icon = null
+button/selected = 0
 
-[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 11 )]
+[node name="MFDPanelLeft" parent="HUD/box" instance=ExtResource( 12 )]
 
+editor/display_folded = true
 margin/left = 20.0
 margin/top = 250.0
 margin/right = 288.0
 margin/bottom = 33.0
 
-[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 11 )]
+[node name="func" parent="HUD/box/MFDPanelLeft/box"]
+
+editor/display_folded = true
+
+[node name="MFDPanelRight" parent="HUD/box" instance=ExtResource( 12 )]
 
 anchor/left = 1
 anchor/right = 1
@@ -585,18 +601,20 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 172.0
-margin/top = 50.0
-margin/right = 132.0
-margin/bottom = 10.0
+margin/left = 208.0
+margin/top = 48.0
+margin/right = 168.0
+margin/bottom = 8.0
 
 [node name="Back" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 12 )
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
 
 [node name="Dial" type="Sprite" parent="HUD/box/Compass"]
 
-texture = ExtResource( 13 )
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
 
 [node name="Autopilot" type="PanelContainer" parent="HUD/box"]
 
@@ -615,7 +633,7 @@ margin/left = 132.0
 margin/top = 120.0
 margin/right = -28.0
 margin/bottom = 13.0
-script/script = ExtResource( 14 )
+script/script = ExtResource( 15 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Autopilot"]
 
@@ -684,10 +702,10 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 15 )
-textures/pressed = ExtResource( 16 )
-textures/hover = ExtResource( 17 )
-script/script = ExtResource( 18 )
+textures/normal = ExtResource( 16 )
+textures/pressed = ExtResource( 17 )
+textures/hover = ExtResource( 18 )
+script/script = ExtResource( 19 )
 Subject = "autopilot_AFA"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/AFA"]
@@ -777,11 +795,11 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 15 )
-textures/pressed = ExtResource( 16 )
-textures/hover = ExtResource( 17 )
-script/script = ExtResource( 18 )
-__meta__ = { "_editor_icon":ExtResource( 19 ) }
+textures/normal = ExtResource( 16 )
+textures/pressed = ExtResource( 17 )
+textures/hover = ExtResource( 18 )
+script/script = ExtResource( 19 )
+__meta__ = { "_editor_icon":ExtResource( 20 ) }
 Subject = "autopilot_RID"
 
 [node name="Buttons" type="HButtonArray" parent="HUD/box/Autopilot/box/RID"]
@@ -807,6 +825,7 @@ button/selected = 2
 
 [node name="Fuel" type="PanelContainer" parent="HUD/box"]
 
+editor/display_folded = true
 visibility/self_opacity = 0.5
 anchor/left = 3
 anchor/top = 1
@@ -821,7 +840,7 @@ margin/left = -38.0
 margin/top = 120.0
 margin/right = -188.0
 margin/bottom = 44.0
-script/script = ExtResource( 20 )
+script/script = ExtResource( 21 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/Fuel"]
 
@@ -876,11 +895,11 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 15 )
-textures/pressed = ExtResource( 16 )
-textures/hover = ExtResource( 17 )
-script/script = ExtResource( 18 )
-__meta__ = { "_editor_icon":ExtResource( 19 ) }
+textures/normal = ExtResource( 16 )
+textures/pressed = ExtResource( 17 )
+textures/hover = ExtResource( 18 )
+script/script = ExtResource( 19 )
+__meta__ = { "_editor_icon":ExtResource( 20 ) }
 Subject = "system_fuel"
 
 [node name="Bar" type="ProgressBar" parent="HUD/box/Fuel/box"]
@@ -950,7 +969,7 @@ margin/left = 20.0
 margin/top = 360.0
 margin/right = 280.0
 margin/bottom = 268.0
-script/script = ExtResource( 21 )
+script/script = ExtResource( 22 )
 
 [node name="box" type="VBoxContainer" parent="HUD/box/WarpControl"]
 
@@ -992,7 +1011,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 22 )]
+[node name="Help" parent="HUD/box/WarpControl/box/title" instance=ExtResource( 23 )]
 
 margin/left = 230.0
 margin/right = 246.0
@@ -1172,15 +1191,16 @@ flat = false
 
 [node name="PowerControl" type="Panel" parent="HUD/box"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 125.0
-margin/top = 0.0
-margin/right = 325.0
-margin/bottom = 105.0
-script/script = ExtResource( 23 )
+margin/left = -16.0
+margin/top = -16.0
+margin/right = 184.0
+margin/bottom = 89.0
+script/script = ExtResource( 24 )
 
 [node name="APU" type="VBoxContainer" parent="HUD/box/PowerControl"]
 
@@ -1251,7 +1271,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 24 )
+theme/theme = ExtResource( 25 )
 margin/left = 0.0
 margin/top = 44.0
 margin/right = 39.0
@@ -1282,7 +1302,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 24 )
+theme/theme = ExtResource( 25 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 39.0
@@ -1394,7 +1414,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 24 )
+theme/theme = ExtResource( 25 )
 margin/left = 39.0
 margin/top = 0.0
 margin/right = 68.0
@@ -1449,8 +1469,8 @@ margin/left = 60.0
 margin/top = 10.0
 margin/right = 136.0
 margin/bottom = 50.0
-custom_icons/off = ExtResource( 25 )
-custom_icons/on = ExtResource( 26 )
+custom_icons/off = ExtResource( 26 )
+custom_icons/on = ExtResource( 27 )
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
@@ -1483,33 +1503,33 @@ margin/right = 183.0
 margin/bottom = 65.0
 alignment = 0
 
-[node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
+[node name="LifeSupport" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 28 )]
 
 hint/tooltip = "Life Support Systems"
 label = "LIFE"
 
-[node name="Engine" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
+[node name="Engine" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 28 )]
 
 hint/tooltip = "Engine Main Thrusters"
 margin/left = 36.0
 margin/right = 68.0
 label = "ENG"
 
-[node name="RCS" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
+[node name="RCS" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 28 )]
 
 hint/tooltip = "RCS Thrusters"
 margin/left = 72.0
 margin/right = 104.0
 label = "RCS"
 
-[node name="MFD" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
+[node name="MFD" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 28 )]
 
 hint/tooltip = "Multi-Function Display(s)"
 margin/left = 108.0
 margin/right = 140.0
 label = "MFD"
 
-[node name="Dock" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 27 )]
+[node name="Dock" parent="HUD/box/PowerControl/Switchbox/box" instance=ExtResource( 28 )]
 
 hint/tooltip = "Docking Systems"
 margin/left = 144.0
@@ -1530,11 +1550,11 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 15 )
-textures/pressed = ExtResource( 16 )
-textures/hover = ExtResource( 17 )
-script/script = ExtResource( 18 )
-__meta__ = { "_editor_icon":ExtResource( 19 ) }
+textures/normal = ExtResource( 16 )
+textures/pressed = ExtResource( 17 )
+textures/hover = ExtResource( 18 )
+script/script = ExtResource( 19 )
+__meta__ = { "_editor_icon":ExtResource( 20 ) }
 Subject = "checklist_startup"
 
 [node name="Pedia" type="Button" parent="HUD/box"]
@@ -1543,10 +1563,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 5.0
-margin/top = 70.0
-margin/right = 49.0
-margin/bottom = 89.0
+margin/left = 192.0
+margin/top = -16.0
+margin/right = 239.0
+margin/bottom = 4.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -1562,12 +1582,13 @@ autostart = true
 
 [node name="ProMark" type="Node2D" parent="HUD"]
 
-editor/display_folded = true
+visibility/opacity = 0.5
 visibility/blend_mode = 1
 
 [node name="Arrow" type="Sprite" parent="HUD/ProMark"]
 
-texture = ExtResource( 28 )
+visibility/blend_mode = 1
+texture = ExtResource( 29 )
 flip_v = true
 
 [node name="Velocity" type="Label" parent="HUD/ProMark"]
@@ -1583,6 +1604,39 @@ margin/right = 30.0
 margin/bottom = -15.0
 custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0.886719, 0.00692749, 0.00692749, 1 )
+text = "linvel"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMark" type="Node2D" parent="HUD"]
+
+visibility/opacity = 0.5
+visibility/blend_mode = 1
+transform/pos = Vector2( -32, 160 )
+
+[node name="Marker" type="Sprite" parent="HUD/TargetMark"]
+
+visibility/blend_mode = 1
+texture = ExtResource( 30 )
+flip_v = true
+modulate = Color( 0, 1, 0.929688, 1 )
+
+[node name="Name" type="Label" parent="HUD/TargetMark"]
+
+visibility/blend_mode = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -20.0
+margin/top = 17.0
+margin/right = 20.0
+margin/bottom = 32.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 1, 0.929412, 1 )
 text = "linvel"
 align = 1
 valign = 1
@@ -1614,7 +1668,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="PediaWindow" parent="Context" instance=ExtResource( 30 )]
+[node name="PediaWindow" parent="Context" instance=ExtResource( 32 )]
 
 visibility/visible = false
 
@@ -1627,6 +1681,14 @@ visibility/visible = false
 [connection signal="pressed" from="HUD/box/TopBar/Clock/box/Stopwatch/Reset" to="HUD/box/TopBar/Clock" method="_on_Reset_pressed"]
 
 [connection signal="value_changed" from="HUD/box/TopBar/CameraZoom/box/Slider" to="HUD" method="set_camera_zoom"]
+
+[connection signal="button_selected" from="HUD/box/TopBar/CameraZoom/box/ZoomButton" to="HUD/box/TopBar/CameraZoom" method="_on_ZoomButton_button_selected"]
+
+[connection signal="button_selected" from="HUD/box/MFDPanelLeft/box/func/ButtonsLeft" to="HUD/box/MFDPanelLeft" method="_on_ButtonsLeft_button_selected"]
+
+[connection signal="button_selected" from="HUD/box/MFDPanelLeft/box/func/ButtonsRight" to="HUD/box/MFDPanelLeft" method="_on_ButtonsRight_button_selected"]
+
+[connection signal="button_selected" from="HUD/box/MFDPanelLeft/box/ButtonsBottom" to="HUD/box/MFDPanelLeft" method="_on_ButtonsBottom_button_selected"]
 
 [connection signal="button_selected" from="HUD/box/Autopilot/box/AFA/Buttons" to="HUD/box/Autopilot" method="_on_AFA_buttons_selected"]
 
@@ -1651,3 +1713,4 @@ visibility/visible = false
 [connection signal="timeout" from="HUD/UpdateTime" to="HUD" method="_on_UpdateTime_timeout"]
 
 
+[editable path="HUD/box/MFDPanelLeft"]

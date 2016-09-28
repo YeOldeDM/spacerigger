@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://core/World/World.gd" type="Script" id=1]
 [ext_resource path="res://res/ships/NewShip.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://res/worlds/background/Background.tscn" type="PackedScene" id=5]
 [ext_resource path="res://res/worlds/background/Background_Layer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/graphics/planets/test_planet_2048.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/bigflare.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/red_crosshair.png" type="Texture" id=9]
 
 [node name="Test World" type="Control"]
 
@@ -24,10 +26,15 @@ script/script = ExtResource( 1 )
 
 [node name="Ship" parent="Vessels" instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 287.424, 115.411 )
-Designation = "MNU-05"
+transform/pos = Vector2( 280.192, 158.83 )
+
+[node name="Light2D" parent="Vessels/Ship"]
+
+visibility/visible = false
 
 [node name="Stations" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Godot Station" parent="Stations" instance=ExtResource( 3 )]
 
@@ -35,6 +42,8 @@ transform/pos = Vector2( -76.8097, 212.603 )
 transform/rot = 206.209
 
 [node name="WarpNodes" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Papa" parent="WarpNodes" instance=ExtResource( 4 )]
 
@@ -48,6 +57,8 @@ target_node = "Wolf"
 [node name="Background" parent="." instance=ExtResource( 5 )]
 
 [node name="Starplane" parent="Background" instance=ExtResource( 6 )]
+
+color = Color( 0.607605, 0.707031, 0.69771, 1 )
 
 [node name="Starplane1" parent="Background" instance=ExtResource( 6 )]
 
@@ -82,4 +93,32 @@ damp_override/angular = 0.0
 texture = ExtResource( 7 )
 modulate = Color( 0.181427, 0.223534, 0.566406, 1 )
 
+[node name="Light2D" type="Light2D" parent="."]
 
+transform/pos = Vector2( -48.2344, -119.078 )
+enabled = true
+texture = ExtResource( 8 )
+offset = Vector2( 0, 0 )
+scale = 500.0
+color = Color( 0.917969, 0.541458, 0.541458, 1 )
+energy = 1.0
+mode = 0
+range/height = 50.0
+range/z_min = 0
+range/z_max = 3
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="Sprite" type="Sprite" parent="Light2D"]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+
+
+[editable path="Vessels/Ship"]

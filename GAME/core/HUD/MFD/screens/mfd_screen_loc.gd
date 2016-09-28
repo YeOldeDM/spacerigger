@@ -13,6 +13,8 @@ onready var distance = box.get_node('distance')
 
 var mfd
 
+var func_labels = {}
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here

@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=1]
 
 [ext_resource path="res://res/stations/WarpNode.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/stations/melpid1.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/stations/melpid4.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/particles/engineflare.png" type="Texture" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -156,8 +156,8 @@ points = Vector2Array( -64, 400, -128, 416, -112, 400 )
 
 [sub_resource type="ColorRamp" id=31]
 
-offsets = FloatArray( 0, 0.0611354, 0.308588, 0.548763, 1 )
-colors = ColorArray( 0.933594, 0.855243, 0.0218811, 0, 1, 0.940918, 0.3125, 1, 0.975569, 0.903803, 0.341231, 0.985145, 0.41541, 0.0528167, 1, 0.64455, 1, 0.0117188, 0.91507, 0.167644 )
+offsets = FloatArray( 0, 0.0469613, 0.308588, 0.610497, 1 )
+colors = ColorArray( 1, 1, 1, 0, 0, 0, 0, 1, 0.164978, 0.414063, 0.396549, 0.985145, 0.0824162, 0.0528167, 1, 0.64455, 1, 0.0117188, 0.91507, 0.167644 )
 
 [sub_resource type="CircleShape2D" id=32]
 
@@ -270,14 +270,15 @@ target_node = "None"
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
+modulate = Color( 0.413873, 0.399475, 0.429688, 1 )
 
 [node name="Aura" type="Particles2D" parent="."]
 
 visibility/self_opacity = 0.1
-visibility/blend_mode = 1
-transform/pos = Vector2( 0, -490 )
+visibility/blend_mode = 2
+transform/pos = Vector2( 0, -752 )
+transform/scale = Vector2( 2, 2 )
 config/amount = 32
 config/lifetime = 2.0
 config/time_scale = 0.1
@@ -294,7 +295,7 @@ params/radial_accel = -5.0
 params/tangential_accel = 0.0
 params/damping = 10.0
 params/initial_angle = 45.0
-params/initial_size = 64.0
+params/initial_size = 32.0
 params/final_size = 32.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
@@ -306,6 +307,7 @@ color/color_ramp = SubResource( 31 )
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 
+visibility/visible = false
 build_mode = 0
 polygon = Vector2Array( 0, -496, 96, -464, 96, -432, 128, -384, 128, -368, 96, -368, 64, -336, 80, -288, 80, -240, 48, -208, 48, -192, 80, -160, 80, -128, 48, -96, 48, 16, 64, 32, 64, 160, 144, 160, 144, 128, 208, 128, 208, 208, 144, 208, 144, 192, 64, 192, 64, 272, 80, 304, 96, 240, 144, 288, 176, 320, 176, 352, 128, 352, 128, 368, 64, 368, 64, 400, 112, 400, 128, 416, 128, 464, 112, 496, -112, 496, -128, 464, -128, 416, -112, 400, -64, 400, -64, 368, -128, 368, -128, 352, -176, 352, -176, 320, -144, 288, -96, 240, -80, 304, -64, 272, -64, 192, -144, 192, -144, 208, -208, 208, -208, 128, -144, 128, -144, 160, -64, 160, -64, 32, -48, 16, -48, -96, -80, -128, -80, -160, -48, -192, -48, -208, -80, -240, -80, -288, -64, -336, -96, -368, -128, -368, -128, -384, -96, -432, -96, -464 )
 shape_range = Vector2( 0, 29 )
@@ -313,6 +315,7 @@ trigger = false
 
 [node name="Influence" type="Area2D" parent="."]
 
+visibility/visible = false
 input/pickable = true
 shapes/0/shape = SubResource( 32 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )

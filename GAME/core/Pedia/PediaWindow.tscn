@@ -34,6 +34,52 @@ margin/bottom = 0.0
 custom_constants/separation = 0
 alignment = 0
 
+[node name="History" type="HBoxContainer" parent="box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 380.0
+margin/bottom = 18.0
+alignment = 2
+
+[node name="Back" type="Button" parent="box/History"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 340.0
+margin/top = 0.0
+margin/right = 358.0
+margin/bottom = 18.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "<"
+flat = false
+
+[node name="Forward" type="Button" parent="box/History"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 362.0
+margin/top = 0.0
+margin/right = 380.0
+margin/bottom = 18.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = ">"
+flat = false
+
 [node name="panel" type="PanelContainer" parent="box"]
 
 visibility/self_opacity = 0.75
@@ -43,12 +89,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 18.0
 margin/right = 380.0
 margin/bottom = 270.0
 
 [node name="Show" type="VBoxContainer" parent="box/panel"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -56,7 +103,7 @@ size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
 margin/right = 373.0
-margin/bottom = 263.0
+margin/bottom = 245.0
 alignment = 1
 
 [node name="Entry" type="RichTextLabel" parent="box/panel/Show"]
@@ -68,7 +115,7 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 366.0
-margin/bottom = 234.0
+margin/bottom = 216.0
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode/enabled = true
 bbcode/bbcode = ""
@@ -81,9 +128,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 238.0
+margin/top = 220.0
 margin/right = 366.0
-margin/bottom = 256.0
+margin/bottom = 238.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -93,6 +140,7 @@ flat = false
 [node name="Edit" type="VBoxContainer" parent="box/panel"]
 
 process/pause_mode = 2
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = false

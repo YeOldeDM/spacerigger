@@ -44,6 +44,31 @@ func set_screen( name ):
 		screen.mfd = self
 		if screen.has_method('init'):
 			screen.call('init')
+	if 'func_labels' in screen:
+		set_func_labels(screen.func_labels)
+	else:
+		clear_func_labels()
+	
+
+func set_func_labels(dict):
+	var buttons = funcbox.get_node("ButtonsLeft")
+	var buttons2 = funcbox.get_node("ButtonsRight")
+	for i in range(4):
+		if i in dict:
+			buttons.set_button_text(i,dict[i])
+		else:
+			buttons.set_button_text(i,"--")
+		if i+4 in dict:
+			buttons2.set_button_text(i,dict[i+4])
+		else:
+			buttons2.set_button_text(i, "--")
+
+func clear_func_labels():
+	var buttons = funcbox.get_node("ButtonsLeft")
+	var buttons2 = funcbox.get_node("ButtonsRight")
+	for i in range(4):
+		buttons.set_button_text(i, "--")
+		buttons2.set_button_text(i, "--")
 
 # Toggle power mode
 func toggle_powered():
@@ -68,6 +93,7 @@ func click():
 # Init
 func _ready():
 	set_screen(module)
+
 
 # MFD Main Function Button pressed (bottom row)
 func _mainFunction( id ):

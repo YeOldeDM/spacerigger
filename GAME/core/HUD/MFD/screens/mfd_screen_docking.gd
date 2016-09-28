@@ -27,7 +27,43 @@ var mfd
 
 var current_own_dock = 0
 
+var func_labels = {
+	4:	"T+",
+	5:	"T-",
+	6:	"D+",
+	7:	"D-"}
 
+# Next Target
+func function4():
+	var ship = game.get_player()
+	if ship:
+		var T = ship.targeting_system
+		if T:
+			T.next_station_target()
+
+# Prev Target
+func function5():
+	var ship = game.get_player()
+	if ship:
+		var T = ship.targeting_system
+		if T:
+			T.previous_station_target()
+
+# Next Dock
+func function6():
+	var ship = game.get_player()
+	if ship:
+		var T = ship.targeting_system
+		if T:
+			T.next_station_target_dock()
+
+# Prev Dock
+func function7():
+	var ship = game.get_player()
+	if ship:
+		var T = ship.targeting_system
+		if T:
+			T.previous_station_target_dock()
 
 func init():
 	pass
@@ -53,29 +89,28 @@ func _draw_own_dock():
 func _draw_target():
 	var ship = game.get_player()
 	if ship:
-		var T = ship.target
+		var T = ship.targeting_system.get_station_target()
 		var txt = "T: "+T.Designation
 		box.get_node('target/vessel').set_text(txt)
 		
 func _draw_target_dock():
 	var ship = game.get_player()
 	if ship:
-		var Td = ship.target.docks
-		var D = Td.get_child(min(ship.target_dock, Td.get_child_count()-1))
-		var txt = "D: "+D.dock_name
+		var Td = ship.targeting_system.get_station_target_dock()
+		var txt = "D: "+Td.dock_name
 		box.get_node('target/dock').set_text(txt)
 
 func _draw_docking_info():
 	var ship = game.get_player()
 	if ship:
 		var O = ship.docks.get_child(current_own_dock)
-		var T = ship.target.docks.get_child(ship.target_dock)
-		var D = (T.get_global_pos() - O.get_global_pos()).length()
+		var T = ship.targeting_system.get_station_target_dock()
+		var D = (T.get_global_pos() - O.get_global_pos()).length() - 14
 		var devA = rad2deg(O.get_direction_deviation(T))
 		var devP = O.get_positional_deviation(T)
 		var Atxt = "Dev Ang: "+str(abs(devA)).pad_decimals(2)
 		var Ptxt = "Dev Pos: "+str(devP[0]).pad_decimals(2)+", "+str(devP[1]).pad_decimals(2)
-		var Dtxt = "Dist.: "+str(D*0.1).pad_decimals(2)
+		var Dtxt = "Dist.: "+str(abs(D*0.1)).pad_decimals(2)
 		box.get_node('dev_ang').set_text(Atxt)
 		box.get_node('dev_pos').set_text(Ptxt)
 		box.get_node('distance').set_text(Dtxt)

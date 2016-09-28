@@ -1,6 +1,141 @@
 
 extends Node
 
+class TargetingSystem:
+	var owner
+	var world
+
+	var vessel_target = 0
+	var vessel_target_dock = 0
+	
+
+	var station_target = 0 setget _set_station_target
+	var station_target_dock = 0 setget _set_station_target_dock
+
+	var warpnode_target = 0
+	
+	func _init(owner):
+		self.owner = owner
+		
+	func set_world():
+		self.world = owner.world
+
+	
+	func next_station_target():
+		var idx = self.station_target + 1
+		self.set('station_target', idx)
+	
+	func previous_station_target():
+		var idx = self.station_target - 1
+		self.set('station_target', idx)
+	
+	func next_station_target_dock():
+		var idx = self.station_target_dock + 1
+		self.set('station_target_dock', idx)
+	
+	func previous_station_target_dock():
+		var idx = self.station_target_dock - 1
+		self.set('station_target_dock', idx)
+	
+	func _set_station_target(idx):
+		var stations = world.get_stations()
+		if idx > stations.size()-1:
+			idx -= stations.size()
+		elif idx < 0:
+			idx = stations.size()-1
+		station_target = idx
+	
+	
+	func _set_station_target_dock(idx):
+		var docks = get_station_target().get_docks()
+		if idx > docks.size()-1:
+			idx -= docks.size()
+		elif idx < 0:
+			idx = docks.size()-1
+		station_target_dock = idx
+	
+	
+	
+	func get_station_target():
+		if world:
+			return world.get_stations()[station_target]
+	
+	func get_station_target_dock():
+		var docks = get_station_target()
+		if docks:
+			docks = docks.get_docks()
+			return docks[station_target_dock]
+		
+
+	
+	
+	
+class PowerSystem:
+	var owner
+	var EPU
+
+	var BATT1
+	var BATT2
+	
+	var EXT = null	#defined when an external power source is applied
+	
+	var output_mode = 0
+	var recharge_mode = 0
+	#0: off, 1: EPU, 2: BATT1, 3: BATT2, 4: BATT1+2, 5: EXT
+	
+	var powered_systems = {}
+	
+	func _init(owner, EPU, BATT1, BATT2):
+		self.owner = owner
+		self.EPU = EPU
+		self.BATT1 = BATT1
+		self.BATT2 = BATT2
+	
+	func add_system(name, object):
+		powered_systems[name] = object
+	
+	func remove_system(name):
+		powered_systems.erase(name)
+	
+	func get_output_source(recharge=false):
+		var sources = [[null], [self.EPU], [self.BATT1], [self.BATT2], [self.BATT1,self.BATT2], [self.EXT] ]
+		if recharge:
+			return sources[recharge_mode]
+		else:
+			return sources[output_mode]
+		
+	func drain_power(amt):
+		var source = get_output_source()
+		for itm in source:
+			if itm != null:
+				itm.drain((amt*1.0)/(source.size()*1.0))
+	
+	func charge_power(amt):
+		var source = get_output_source(true)
+		for itm in source:
+			if itm != null:
+				itm.charge((amt*1.0)/(source.size()*1.0))
+	
+	
+	
+class Battery:
+	var mass
+	
+	var charge
+	var capacity
+	
+	var discharge_rate
+
+
+
+
+
+
+
+
+
+# OLD STUFF BELOW: Should be trimmed out
+# sooner or later.
 
 #############
 # Vessel	#

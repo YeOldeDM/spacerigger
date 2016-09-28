@@ -17,7 +17,11 @@ func _ready():
 #	for dock in docks.get_children():
 #		dock.owner = self
 	pass
-	
+
+func get_docks():
+	return docks.get_children()
+
+
 func config():
 	var file = ConfigFile.new()
 	file.set_value("SUPPLY", 'energy', 1000)

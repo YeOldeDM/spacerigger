@@ -23,6 +23,7 @@ onready var mfdright = get_node('box/MFDPanelRight')
 var default_mfd_programs = ['docking', 'linang']
 
 onready var pro_mark = get_node('ProMark')
+onready var target_mark = get_node('TargetMark')
 
 
 
@@ -45,7 +46,8 @@ func process():
 # Clock for HUD node updates
 func _on_UpdateTime_timeout():
 	# Call dumb process
-	process()
+	if !game.get_player().is_processing():
+		process()
 
 
 
@@ -65,6 +67,12 @@ func get_player_ship_pro_vector():
 		V = V.rotated(-ship.get_rot())
 		return -V
 
+func get_player_ship_target():
+	var ship = game.get_player()
+	if ship:
+		var T = ship.targeting_system.get_station_target_dock()
+		return T
+	
 # Set zoom level of the ship camera
 func set_camera_zoom( value, from_outside=false ):
 	# if from outside the slider, set the slider to match value
@@ -86,7 +94,7 @@ func set_camera_zoom( value, from_outside=false ):
 func _ready():
 	if top.has_node('CameraZoom'):
 		top.get_node('CameraZoom/box/Slider').connect("changed",self,"set_camera_zoom")
-		top.get_node('CameraZoom/box/1x').connect("pressed",self,"set_camera_zoom",[1.0, true])
+		#top.get_node('CameraZoom/box/1x').connect("pressed",self,"set_camera_zoom",[1.0, true])
 	
 	mfdleft.set_screen(default_mfd_programs[0])
 	mfdright.set_screen(default_mfd_programs[1])
@@ -104,6 +112,7 @@ func _process(delta):
 	
 	if game.get_player():
 		place_prograde_marker()
+		place_target_marker()
 		var ship = game.get_player()
 		var rot = ship.get_rot()
 		get_node('box/Compass/Dial').set_rot(-rot)
@@ -118,4 +127,20 @@ func place_prograde_marker():
 	pro_mark.get_node('Arrow').look_at(origin)
 	pro_mark.get_node('Velocity').set_text(str(vl*0.1).pad_decimals(2)+" m/s")
 	
+
+func place_target_marker():
+	var T = get_player_ship_target()
+	if T:
+		if target_mark.is_hidden():
+			target_mark.show()
+		var origin = T.get_global_transform_with_canvas().get_origin()
+		target_mark.set_pos(origin)
+		var txt = T.dock_name.replace("-"," ")
+		if target_mark.get_node('Name').get_text() != txt:
+			target_mark.get_node('Name').set_text(txt)
+	else:
+		if !target_mark.is_hidden():
+			target_mark.hide()
+
+
 

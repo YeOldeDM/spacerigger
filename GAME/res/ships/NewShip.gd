@@ -1,6 +1,12 @@
 
 extends RigidBody2D
 
+#################
+#				#
+#	Ship 2.0	#
+#				#
+#################
+
 # WorldSpace reference
 onready var world = get_node('../../')
 
@@ -12,13 +18,16 @@ onready var docks = get_node('Docks')
 # Controller node
 var controller = null
 
+# Targeting System Module
+var targeting_system = ShipClass.TargetingSystem.new(self)
+
 # Chassis Name: Each ship sprite should have its own unique name
 export var Chassis = "Tauro"
 # Variant of chassis: Some general variation of the Chassis
 export var Model = "Runner"
 # A unique ID serial # unique to each craft
 # (will be generated procedurally)
-export var Designation = "A1A-212"
+export var TailNumber = "A1A-212"
 
 
 # Velocity force vars
@@ -57,10 +66,15 @@ var current_thrust_force = 0.0
 var target = null
 var target_dock = 0
 var active_dock = 0
+
 var docked = false
 var pending_pushoff = false
 var pending_dock = false
 
+func get_docks():
+	if has_node("Docks"):
+		return get_node("Docks").get_children()
+	return []
 
 # Instantly fill the fuel tank
 func refuel():
@@ -136,16 +150,26 @@ func _set_current_fuel(value):
 	var new_value = clamp(value, 0, max_fuel)
 	current_fuel = new_value
 
-
+var mfd_timer = 0
 func _ready():
-#	for dock in docks.get_children():
-#		dock.owner = self
-	pass
+	set_process(true)
+
+func _process(delta):
+	mfd_timer += delta
+	if mfd_timer >= 1.0:
+		init_targeting_system()
+		set_process(false)
+
+func init_targeting_system():
+	targeting_system.set_world()
+	target = targeting_system.get_station_target()
+
 
 # Get the directional vector relative to the ship's "forward" facing
 func get_forward_vector():
 	var tr = get_global_transform()
 	return tr.basis_xform(Vector2(0,1))
+
 
 # Get the directional vector relative to the ship's "leftward" facing
 func get_left_vector():
@@ -198,71 +222,93 @@ func _integrate_forces(state):
 	var ct = current_thrust_force
 	ct = 0
 	# Do
+	
+	# Dock with pending target
 	if pending_dock:
 		_dock_with(target,true)
 		pending_dock = false
+	
+	# Set docked position
 	if docked:
 		var T = docks.get_child(active_dock).get_ship_docked_position()
 		if T != null:	state.set_transform(T)
+		# Undock command input
 		if controller.cmd_state.undock:
 			_undock_from(target)
+	
+	# Get Controller Input
 	if controller:
 		
 		# Controller Input
 		var cmd = controller.cmd_state
+		
+		# Main Prograde Thrust
 		if cmd.thrust_pro:
 			lv += main_fore_vect / get_mass()
 			add_fuel(-main_fore_vect.length())
 			ct += main_fore_vect.length()
 
-		
+		# Main Retrograde Thrust
 		if cmd.thrust_retro and has_retro_thrust:
-			lv -= main_fore_vect / get_mass()
-			add_fuel(-main_fore_vect.length())
-			ct += main_fore_vect.length()
-
+			var vect = main_fore_vect/2
+			lv -= vect / get_mass()
+			add_fuel(-vect.length())
+			ct += vect.length()
+		
+		# RCS Linear Prograde Thrust
 		if cmd.rcs_pro:
 			lv += rcs_fore_vect / get_mass()
 			add_fuel(-rcs_fore_vect.length())
 			ct += main_fore_vect.length()
-
+		
+		# RCS Linear Retrograde Thrust
 		if cmd.rcs_retro:
 			lv -= rcs_fore_vect / get_mass()
 			add_fuel(-rcs_fore_vect.length())
 			ct += main_fore_vect.length()
-			
+		
+		# RCS Linear Left Thrust
 		if cmd.rcs_left:
 			lv += rcs_left_vect / get_mass()
 			add_fuel(-rcs_left_vect.length())
 			ct += rcs_left_vect.length()
-			
+		
+		# RCS Linear Right Thrust
 		if cmd.rcs_right:
 			lv -= rcs_left_vect / get_mass()
 			add_fuel(-rcs_left_vect.length())
 			ct += rcs_left_vect.length()
-			
+		
+		# RCS Rotate Left Thrust
 		if cmd.yaw_left:
 			av -= yaw_rate / get_mass()
 			add_fuel(-yaw_rate)
 			ct += yaw_rate*100
-			
+		
+		# RCS Rotate Right Thrust
 		if cmd.yaw_right:
 			av += yaw_rate / get_mass()
 			add_fuel(-yaw_rate)
 			ct += yaw_rate*100
-			
+		
+		# Dock & Undock
 		if cmd.dock:
 			_dock_with(target)
 		if cmd.undock:
 			_undock_from(target)
+	
+	# Set current applied force
 	current_thrust_force = ct
+	# Calculate fuel use for this frame
 	current_fuel_use = ct*delta
 	
+	# Add pushoff force if undocking
 	if pending_pushoff:
 		pending_pushoff = false
 		get_node('DockJoint').set_node_b(get_path())
 		var pushoff = get_total_mass() * docks.get_child(active_dock).get_forward_vector() * 0.1
 		lv = -pushoff
+
 	# Apply Damping
 	if get_linear_damp() > 0:
 		lv *= 1.0-(get_linear_damp() / get_total_mass())

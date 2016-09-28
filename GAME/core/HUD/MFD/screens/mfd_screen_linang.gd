@@ -7,6 +7,8 @@ onready var game = get_node('/root/Game')
 
 var mfd
 
+var func_labels = {}
+
 func process():
 	if game.get_player():
 		var ship = game.get_player()

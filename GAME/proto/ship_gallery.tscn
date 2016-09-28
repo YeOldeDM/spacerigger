@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=1]
+
+[ext_resource path="res://ref/materials/NormalMap.tres" type="CanvasItemMaterial" id=1]
+[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_diff.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_emit.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/ships/alba/alba_normal.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/ships/alba/alba_diff.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/ships/alba/alba_emit.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_normal.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_diff.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/ships/mathers/mathers_emit.png" type="Texture" id=9]
+[ext_resource path="res://assets/graphics/bigflare.png" type="Texture" id=10]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = { "fragment":"uniform texture normal;\n//normal maps expect Y-up, but 2D is Y-down, so must mirror this.\nNORMAL = tex(normal,UV).rgb * vec3(2.0,-2.0,1.0) - vec3(1.0,-1.0,0.0);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/normal = ExtResource( 4 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/normal = ExtResource( 7 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Peregrine" type="Sprite" parent="."]
+
+material/material = ExtResource( 1 )
+transform/pos = Vector2( 536, 464 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Peregrine"]
+
+visibility/blend_mode = 1
+texture = ExtResource( 3 )
+
+[node name="Alba" type="Sprite" parent="."]
+
+material/material = SubResource( 2 )
+transform/pos = Vector2( 648, 464 )
+texture = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Alba"]
+
+visibility/blend_mode = 1
+texture = ExtResource( 6 )
+
+[node name="Mathers" type="Sprite" parent="."]
+
+material/material = SubResource( 3 )
+transform/pos = Vector2( 752, 480 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Mathers"]
+
+visibility/blend_mode = 1
+texture = ExtResource( 9 )
+
+[node name="Light2D" type="Light2D" parent="."]
+
+transform/pos = Vector2( 560, 624 )
+enabled = true
+texture = ExtResource( 10 )
+offset = Vector2( 0, 0 )
+scale = 50.0
+color = Color( 1, 0, 0, 1 )
+energy = 1.0
+mode = 0
+range/height = 10.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="Light2D1" type="Light2D" parent="."]
+
+transform/pos = Vector2( 640, 320 )
+enabled = true
+texture = ExtResource( 10 )
+offset = Vector2( 0, 0 )
+scale = 50.0
+color = Color( 1, 0.954346, 0.46875, 1 )
+energy = 1.0
+mode = 0
+range/height = 50.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+transform/pos = Vector2( 656, 464 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+

@@ -27,14 +27,15 @@ func get_ship_docked_position(force_dock=null):
 		return
 	var target = touching
 	if force_dock:	target = force_dock
-	var T = target.get_global_transform()
-	T = T.rotated(PI)
-	T = T.translated(Vector2(0,-14))
-	T = T.rotated(-get_rot())
-	T = T.translated(-get_pos())
-	
-	get_node('Pointer').set_global_transform(T)
-	return T
+	if target:
+		var T = target.get_global_transform()
+		T = T.rotated(PI)
+		T = T.translated(Vector2(0,-14))
+		T = T.rotated(-get_rot())
+		T = T.translated(-get_pos())
+		
+		get_node('Pointer').set_global_transform(T)
+		return T
 
 func get_forward_vector():
 	var trans = get_global_transform()
@@ -83,33 +84,34 @@ func _stop_steam():
 	get_node('SteamRight').set_emitting(false)
 
 func _on_Point_area_enter(area, dockpoint):
-	if area.has_meta('dockpoint'):
-		if area.get_meta('dockpoint') == abs(dockpoint-1):
-			touchin[dockpoint] = true
-			_check_for_touchin()
-	if touching != area.get_parent():
-		touching = area.get_parent()
+	if 'targeting_system' in owner:
+		if area.get_parent() == owner.targeting_system.get_station_target_dock():
+			if area.has_meta('dockpoint'):
+				if area.get_meta('dockpoint') == abs(dockpoint-1):
+					touchin[dockpoint] = true
+					if 'targeting_system' in owner:
+						_check_for_touchin()
+			if touching != area.get_parent():
+				touching = area.get_parent()
 	
-	if 'target' in owner and 'owner' in area:
-		owner.target = area.get_parent().owner
-	if 'target_dock' in owner and 'owner' in area:
-		var pos = area.get_position_in_parent()
-		print(pos)
-		owner.target_dock = pos
+
 
 func _on_Point_area_exit(area, dockpoint):
 	if area.has_meta('dockpoint'):
 		touchin[dockpoint] = false
-		_check_for_touchin()
+		if 'targeting_system' in owner:
+			_check_for_touchin()
 	if touching == area.get_parent():
 		touching = null
 
 
 func _check_for_touchin():
-	if touchin[0]==true and touchin[1]==true:
-		if not touched_in:
-			touched_in = true
-			_shoot_steam()
+	if 'targeting_system' in owner:
+		if touching == owner.targeting_system.get_station_target_dock():
+			if touchin[0]==true and touchin[1]==true:
+				if not touched_in:
+					touched_in = true
+					_shoot_steam()
 
 	else:	
 		touched_in = false
