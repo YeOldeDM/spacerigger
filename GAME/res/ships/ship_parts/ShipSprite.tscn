@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://ref/materials/NormalMap.tres" type="CanvasItemMaterial" id=1]
+[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_diff.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_bump.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/ships/peregrine/peregrine_emit.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/bigflare.png" type="Texture" id=5]
+
+[node name="Diff" type="Sprite"]
+
+material/material = ExtResource( 1 )
+texture = ExtResource( 2 )
+flip_v = true
+
+[node name="AO" type="Sprite" parent="."]
+
+visibility/self_opacity = 0.2
+visibility/light_mask = 0
+texture = ExtResource( 3 )
+flip_v = true
+
+[node name="Emit" type="Sprite" parent="."]
+
+visibility/self_opacity = 0.4
+visibility/blend_mode = 1
+visibility/light_mask = 0
+texture = ExtResource( 4 )
+flip_v = true
+
+[node name="Light2D" type="Light2D" parent="."]
+
+transform/pos = Vector2( 47, 61 )
+enabled = true
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+scale = 50.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range/height = 20.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+

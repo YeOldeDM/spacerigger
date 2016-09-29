@@ -306,7 +306,7 @@ func _integrate_forces(state):
 	if pending_pushoff:
 		pending_pushoff = false
 		get_node('DockJoint').set_node_b(get_path())
-		var pushoff = get_total_mass() * docks.get_child(active_dock).get_forward_vector() * 0.1
+		var pushoff = docks.get_child(active_dock).get_forward_vector() * 2
 		lv = -pushoff
 
 	# Apply Damping

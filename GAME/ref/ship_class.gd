@@ -74,8 +74,7 @@ class PowerSystem:
 	var owner
 	var EPU
 
-	var BATT1
-	var BATT2
+	var batteries = []
 	
 	var EXT = null	#defined when an external power source is applied
 	
@@ -85,42 +84,17 @@ class PowerSystem:
 	
 	var powered_systems = {}
 	
-	func _init(owner, EPU, BATT1, BATT2):
+	func _init(owner, EPU=null, batteries=[]):
 		self.owner = owner
 		self.EPU = EPU
-		self.BATT1 = BATT1
-		self.BATT2 = BATT2
-	
-	func add_system(name, object):
-		powered_systems[name] = object
-	
-	func remove_system(name):
-		powered_systems.erase(name)
-	
-	func get_output_source(recharge=false):
-		var sources = [[null], [self.EPU], [self.BATT1], [self.BATT2], [self.BATT1,self.BATT2], [self.EXT] ]
-		if recharge:
-			return sources[recharge_mode]
-		else:
-			return sources[output_mode]
+		self.batteries = batteries
 		
-	func drain_power(amt):
-		var source = get_output_source()
-		for itm in source:
-			if itm != null:
-				itm.drain((amt*1.0)/(source.size()*1.0))
-	
-	func charge_power(amt):
-		var source = get_output_source(true)
-		for itm in source:
-			if itm != null:
-				itm.charge((amt*1.0)/(source.size()*1.0))
 	
 	
-	
+
+
 class Battery:
 	var mass
-	
 	var charge
 	var capacity
 	
@@ -131,6 +105,74 @@ class Battery:
 
 
 
+
+
+class FuelSystem:
+	var owner
+	
+	var tanks = []
+	
+	func _init(owner, tanks):
+		self.owner = owner
+		self.tanks = tanks
+
+	func add_fuel_tank(contents,capacity,amount=null):
+		var tank = ShipClass.FuelTank.new(self,contents,capacity,amount)
+		
+		self.tanks.append(tank)
+	
+	func remove_fuel_tank(idx):
+		self.tanks.remove(idx)
+	
+	
+	func get_pump_engaged(idx):
+		assert idx < self.tanks.size()
+		return self.tanks[idx].pump_engaged
+
+	func set_pump_engaged(idx, state):
+		assert idx < self.tanks.size()
+		self.tanks[idx].pump_engaged = state
+
+
+
+class FuelTank:
+	var owner
+	var contents
+	
+	var capacity
+	var amount
+	
+	var pump_engaged = false
+	
+	func _init(owner,contents,capacity,amount=null):
+		self.owner = owner
+		self.contents = contents
+		self.capacity = capacity
+		self.amount = amount
+		if amount == null:	# Default amount will start with a full tank
+			self.amount = capacity
+	
+	func is_empty():
+		return self.amount <= 0.0
+	
+	func is_full():
+		return self.amount >= self.capacity
+	
+	func has_amount(amt):
+		return amt <= self.amount
+	
+	func get_empty_space():
+		return self.capacity-self.amount
+
+	func drain_tank(amt):
+		var value = max(amt,self.amount)
+		self.amount -= value
+		return value
+
+	func fill_tank(amt):
+		var value = min(amt,self.get_empty_space())
+		self.amount += value
+		return value
 
 
 
