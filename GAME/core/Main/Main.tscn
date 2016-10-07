@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=1]
+[gd_scene load_steps=40 format=1]
 
 [ext_resource path="res://core/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://core/Controller/Controller.gd" type="Script" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://assets/graphics/hud/target_marker.png" type="Texture" id=30]
 [ext_resource path="res://assets/sound/radiator.smp" type="Sample" id=31]
 [ext_resource path="res://core/Pedia/PediaWindow.tscn" type="PackedScene" id=32]
+[ext_resource path="res://core/Context/OptionWindow.gd" type="Script" id=33]
+[ext_resource path="res://assets/fonts/libel-suit-rg.ttf" type="DynamicFontData" id=34]
 
 [sub_resource type="Environment" id=1]
 
@@ -46,11 +48,11 @@ background/scale = 1.0
 background/glow = 0.0
 background/canvas_max_layer = null
 glow/enabled = true
-glow/blur_passes = 3
-glow/blur_scale = 2.0
-glow/blur_strength = 1.0
-glow/blur_blend_mode = null
-glow/bloom = 50.0
+glow/blur_passes = 2
+glow/blur_scale = 1.0
+glow/blur_strength = 1.25
+glow/blur_blend_mode = 0
+glow/bloom = 1.0
 glow/bloom_treshold = 0.95
 dof_blur/enabled = false
 dof_blur/blur_passes = 1
@@ -71,7 +73,7 @@ fog/begin_color = Color( 0, 0, 0, 1 )
 fog/end_color = Color( 0, 0, 0, 1 )
 fog/attenuation = 1.0
 fog/bg = true
-bcs/enabled = false
+bcs/enabled = true
 bcs/brightness = 1.0
 bcs/contrast = 1.0
 bcs/saturation = 1.0
@@ -107,6 +109,13 @@ draw_bg = false
 
 samples/radiator = { "db":0.0, "pitch":1.0, "sample":ExtResource( 31 ) }
 
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 34 )
+
 [node name="Game" type="Control"]
 
 anchor/right = 1
@@ -122,7 +131,7 @@ margin/bottom = 0.0
 script/script = ExtResource( 1 )
 start_engines = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Env" type="WorldEnvironment" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 environment = SubResource( 1 )
@@ -162,7 +171,6 @@ stretch_mode = 0
 
 [node name="box" type="Control" parent="HUD"]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -188,6 +196,7 @@ margin/bottom = 64.0
 
 [node name="GameSpeed" type="PanelContainer" parent="HUD/box/TopBar"]
 
+editor/display_folded = true
 anchor/left = 1
 anchor/right = 1
 focus/ignore_mouse = false
@@ -484,6 +493,7 @@ flat = false
 
 [node name="CameraZoom" type="PanelContainer" parent="HUD/box/TopBar"]
 
+editor/display_folded = true
 anchor/left = 1
 anchor/right = 1
 focus/ignore_mouse = false
@@ -1573,6 +1583,22 @@ shortcut = null
 text = "Pedia"
 flat = false
 
+[node name="Options" type="Button" parent="HUD/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 192.0
+margin/top = 16.0
+margin/right = 255.0
+margin/bottom = 36.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Options"
+flat = false
+
 [node name="UpdateTime" type="Timer" parent="HUD"]
 
 process_mode = 1
@@ -1672,6 +1698,395 @@ scale = Vector2( 1, 1 )
 
 visibility/visible = false
 
+[node name="Options" type="PanelContainer" parent="Context"]
+
+process/pause_mode = 2
+editor/display_folded = true
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 336.0
+margin/top = 256.0
+margin/right = 288.0
+margin/bottom = 224.0
+script/script = ExtResource( 33 )
+
+[node name="box" type="VBoxContainer" parent="Context/Options"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 649.0
+margin/bottom = 537.0
+alignment = 0
+
+[node name="Panel" type="PanelContainer" parent="Context/Options/box"]
+
+editor/display_folded = true
+visibility/blend_mode = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 642.0
+margin/bottom = 43.0
+
+[node name="Label" type="Label" parent="Context/Options/box/Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 635.0
+margin/bottom = 36.0
+custom_fonts/font = SubResource( 5 )
+text = "OPTIONS"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tabs" type="TabContainer" parent="Context/Options/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 47.0
+margin/right = 642.0
+margin/bottom = 506.0
+tab_align = 1
+tabs_visible = true
+
+[node name="Graphics" type="Tabs" parent="Context/Options/box/Tabs"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Context/Options/box/Tabs/Graphics"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+alignment = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 634.0
+margin/bottom = 423.0
+scroll/horizontal = false
+scroll/vertical = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 634.0
+margin/bottom = 110.0
+alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 315.0
+margin/bottom = 110.0
+alignment = 0
+
+[node name="Bloom" type="CheckBox" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 315.0
+margin/bottom = 23.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Bloom Effect"
+flat = false
+align = 0
+
+[node name="HDR" type="CheckBox" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 27.0
+margin/right = 315.0
+margin/bottom = 50.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "HDR Effect"
+flat = false
+align = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 54.0
+margin/right = 315.0
+margin/bottom = 70.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 77.0
+margin/bottom = 15.0
+text = "Brightness"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Brightness" type="HSlider" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+size_flags/stretch_ratio = 3.0
+margin/left = 81.0
+margin/top = 0.0
+margin/right = 315.0
+margin/bottom = 16.0
+range/min = 0.0
+range/max = 20.0
+range/step = 1.0
+range/page = 0.0
+range/value = 10.0
+range/exp_edit = false
+range/rounded = true
+tick_count = 3
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 74.0
+margin/right = 315.0
+margin/bottom = 90.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 77.0
+margin/bottom = 15.0
+text = "Contrast"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Contrast" type="HSlider" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer1"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+size_flags/stretch_ratio = 3.0
+margin/left = 81.0
+margin/top = 0.0
+margin/right = 315.0
+margin/bottom = 16.0
+range/min = 0.0
+range/max = 20.0
+range/step = 1.0
+range/page = 0.0
+range/value = 10.0
+range/exp_edit = false
+range/rounded = true
+tick_count = 3
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 94.0
+margin/right = 315.0
+margin/bottom = 110.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 77.0
+margin/bottom = 15.0
+text = "Saturation"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Saturation" type="HSlider" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+size_flags/stretch_ratio = 3.0
+margin/left = 81.0
+margin/top = 0.0
+margin/right = 315.0
+margin/bottom = 16.0
+range/min = 0.0
+range/max = 20.0
+range/step = 1.0
+range/page = 0.0
+range/value = 10.0
+range/exp_edit = false
+range/rounded = true
+tick_count = 3
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 319.0
+margin/top = 0.0
+margin/right = 634.0
+margin/bottom = 110.0
+
+[node name="Audio" type="Tabs" parent="Context/Options/box/Tabs"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="Controls" type="Tabs" parent="Context/Options/box/Tabs"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="Misc" type="Tabs" parent="Context/Options/box/Tabs"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="Close" type="Button" parent="Context/Options/box"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 510.0
+margin/right = 642.0
+margin/bottom = 530.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Close"
+flat = false
+
 [connection signal="button_selected" from="HUD/box/TopBar/GameSpeed/box/SpeedSelector" to="HUD/box/TopBar/GameSpeed" method="_on_SpeedSelector_button_selected"]
 
 [connection signal="pressed" from="HUD/box/TopBar/Clock/box/Stopwatch/Start" to="HUD/box/TopBar/Clock" method="_on_Start_pressed"]
@@ -1710,7 +2125,21 @@ visibility/visible = false
 
 [connection signal="pressed" from="HUD/box/Pedia" to="." method="_on_Pedia_pressed"]
 
+[connection signal="pressed" from="HUD/box/Options" to="." method="_on_Options_pressed"]
+
 [connection signal="timeout" from="HUD/UpdateTime" to="HUD" method="_on_UpdateTime_timeout"]
+
+[connection signal="toggled" from="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/Bloom" to="Context/Options" method="_on_Bloom_toggled"]
+
+[connection signal="toggled" from="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HDR" to="Context/Options" method="_on_HDR_toggled"]
+
+[connection signal="value_changed" from="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/Brightness" to="Context/Options" method="_on_Brightness_value_changed"]
+
+[connection signal="value_changed" from="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer1/Contrast" to="Context/Options" method="_on_Contrast_value_changed"]
+
+[connection signal="value_changed" from="Context/Options/box/Tabs/Graphics/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Saturation" to="Context/Options" method="_on_Saturation_value_changed"]
+
+[connection signal="pressed" from="Context/Options/box/Close" to="Context/Options" method="_on_Close_pressed"]
 
 
 [editable path="HUD/box/MFDPanelLeft"]

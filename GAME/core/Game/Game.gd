@@ -99,7 +99,7 @@ func click():
 #########################
 #	PRIVATE METHODS		#
 
-var InitShip = 'Mathers'
+var InitShip = 'Spooler'
 
 func _ready():
 	_kill_ui_binds()
@@ -172,3 +172,8 @@ func _on_Warp_pressed():
 func _on_Pedia_pressed():
 	click()
 	context.get_node('PediaWindow').popup_centered()
+
+
+func _on_Options_pressed():
+	get_tree().set_pause(true)
+	context.get_node('Options').show()

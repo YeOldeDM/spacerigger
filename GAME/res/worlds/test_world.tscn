@@ -34,8 +34,6 @@ visibility/visible = false
 
 [node name="Stations" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Godot Station" parent="Stations" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -76.8097, 212.603 )
